@@ -15,6 +15,7 @@ Usage
         --system_prompt system_prompt.txt \
         --csv "Protocol Ph2-3 Veriscribe Template Mar 2026 (1) - section-config-extract 1.csv" \
         [--start 1] [--end 10] \
+        [--authoring_type protocol|csr|sap] \
         [--model_id <bedrock-model-arn>]
 
 Arguments
@@ -25,6 +26,9 @@ Arguments
                       The file will be modified in place with new 'transformed_output' and 'reasoning' columns.
 --start               (Optional) Starting row number (1-based) to process. Defaults to 1.
 --end                 (Optional) Ending row number (1-based) to process. Defaults to all rows.
+--authoring_type      (Optional) Type of authoring: 'protocol', 'csr', or 'sap'. 
+                      Determines which source documents are used as anchor and secondary sources.
+                      Defaults to 'protocol'.
 --model_id            (Optional) AWS Bedrock model ARN / inference-profile ID.
                       Defaults to the Claude Sonnet 4 inference profile.
 """
@@ -123,19 +127,53 @@ def generate(prompt: str, model_id: str, client=None) -> str:
 # Prompt assembly
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Authoring mode configuration
+# ---------------------------------------------------------------------------
+
+AUTHORING_SOURCES = {
+    "protocol": {
+        "anchor": "Synopsis",
+        "secondary": "Investigators Brochure, Industry Literature, Guidelines"
+    },
+    "csr": {
+        "anchor": "Protocol and/or SAP and/or MOP",
+        "secondary": "Protocol Amendments - Summary of Changes, Narratives & Forms for Death / SAE / Other Significant AEs, Industry Literature, Guidelines, Discussion references, eCRFs"
+    },
+    "sap": {
+        "anchor": "Protocol",
+        "secondary": "eCRFs"
+    }
+}
+
+
 def build_prompt(
     system_prompt: str,
     section_context: str,
     toc_content: str,
     input_instruction: str,
+    authoring_type: str = "protocol",
 ) -> str:
     """
     Wraps the raw input_instruction inside the <input_instruction> XML tag
     and appends it to the system prompt, matching the notebook structure.
     Also includes the current section context and the TOC as context.
+    Replaces authoring mode placeholders based on authoring_type.
     """
+    # Get authoring sources for the given type
+    sources = AUTHORING_SOURCES.get(authoring_type.lower(), AUTHORING_SOURCES["protocol"])
+    
+    # Replace placeholders in system prompt
+    prompt_with_authoring = system_prompt.replace(
+        "<AUTHORING_TYPE>", authoring_type
+    ).replace(
+        "<ANCHOR_SOURCE_TYPE>", sources["anchor"]
+    ).replace(
+        "<LIST_OF_SUPPORTING_SOURCE_TYPES>", sources["secondary"]
+    )
+    
     return (
-        system_prompt.rstrip()
+        prompt_with_authoring.rstrip()
         + "\n\n<section_context>\n"
         + section_context.strip()
         + "\n</section_context>\n\n<toc_context>\n"
@@ -155,7 +193,7 @@ DEFAULT_MODEL_ID = (
     "inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0"
 )
 DEFAULT_SYSTEM_PROMPT = "system_prompt.txt"
-DEFAULT_CSV = "Protocol Ph2-3 Veriscribe Template Mar 2026 (1) - section-config-extract 1.csv"
+DEFAULT_CSV = "temp_ingestion.csv"
 
 
 def parse_args():
@@ -192,6 +230,12 @@ def parse_args():
         default=DEFAULT_MODEL_ID,
         help=f"AWS Bedrock model ARN or inference-profile ID. "
              f"Defaults to: {DEFAULT_MODEL_ID}",
+    )
+    parser.add_argument(
+        "--authoring_type",
+        default="protocol",
+        choices=["protocol", "csr", "sap"],
+        help="Authoring type: 'protocol', 'csr', or 'sap'. Defaults to 'protocol'.",
     )
     return parser.parse_args()
 
@@ -262,7 +306,7 @@ def main():
             f"section_title: {section_title}"
         )
 
-        prompt = build_prompt(system_prompt, section_context, toc_content, section_instructions)
+        prompt = build_prompt(system_prompt, section_context, toc_content, section_instructions, args.authoring_type)
         result = generate(prompt, args.model_id, client)
 
         # Cache prompt and response

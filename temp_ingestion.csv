@@ -11,7 +11,8 @@ In addition, if there are unusual or special outcome measures being assessed in 
 - Describe the disease or medical condition being studied
 - Describe the current standard of care, if one exists
 - Identify limitations of current knowledge or available therapy
-- State the reason for conducting this clinical trial based on the identified problem or question","The input instruction requires authoring content that synthesizes information about the population, disease, standard of care, and knowledge gaps from multiple reference sources, which signals RAG pipeline. Each element from the parenthetical example was converted into a separate bullet point using directive action verbs: 'Describe' for population, disease, and standard of care; 'Identify' for limitations; and 'State' for the reason. The conditional phrase 'if one exists' was preserved exactly as written to maintain the original conditional logic. The instruction was restructured from a single descriptive sentence into enumerated content requirements while preserving all original terminology like 'target population', 'standard of care', 'limitations of knowledge or available therapy', and 'reason for conducting the clinical trial'. No cross-references, domain assumptions, or additional content beyond what was explicitly stated in the input were added."
+- State the specific problem or clinical question that this trial addresses
+- Provide the reason for conducting this clinical trial","The input instruction requires synthesis and authoring of content about the study population, disease, standard of care, and knowledge gaps from source documents, which signals RAG pipeline usage. Each element from the parenthetical example was converted into a separate bullet point using directive action verbs ('Describe', 'Identify', 'State', 'Provide'). The original conditional language 'if one exists' was preserved exactly as specified in transformation rule 10. The instruction was restructured from a single descriptive sentence into enumerated content requirements per rule 2, while maintaining the original intent and terminology per rule 9. No cross-references, boilerplate text, or table creation was involved, making this a pure RAG instruction for content synthesis."
 "1.2","Background","Synopsis","Investigators Brochure, Industry Literature","","","This section should include:
 A short summary of findings from nonclinical in vitro or in vivo studies that have potential clinical significance
 A short summary of relevant clinical research and any history of human use or exposure to the study intervention, including use in other countries, and clinical pharmacology studies
@@ -41,7 +42,7 @@ This section should NOT contain information about the current study's design.","
 - Discuss important literature and data that are relevant to the trial and that provide background for the trial
 - Provide applicable clinical, epidemiological, or public health background or context of the clinical trial
 - Describe the importance of the clinical trial and any relevant treatment issues or controversies
-- Include reference citations for all literature and data discussed; list citations in Section 11, References","First bullet point: Converted 'A summary of findings from nonclinical...' to directive 'Summarize findings from nonclinical...' using action verb while preserving exact terminology and scope. Second bullet point: Converted 'A summary of relevant clinical research...' to directive 'Summarize relevant clinical research...' maintaining all original qualifiers including 'including use in other countries, and clinical pharmacology studies'. Third bullet point: Converted 'Discussion of important literature...' to directive 'Discuss important literature...' preserving exact wording and scope. Added separate instruction about reference citations since original mentioned they should be listed in Section 11. Fourth bullet point: Converted 'Applicable clinical, epidemiological...' to directive 'Provide applicable clinical, epidemiological...' maintaining exact terminology. Fifth bullet point: Converted 'Importance of the clinical trial...' to directive 'Describe the importance of the clinical trial...' preserving original wording including 'any relevant treatment issues or controversies'. RAG pipeline selected because all content requires authoring and synthesis from multiple source documents (nonclinical studies, clinical research, literature, epidemiological data) rather than copying from a single fixed source."
+- Include reference citations for all literature discussed; list citations in Section 11, References","Converted each bullet point from the input into directive statements using action verbs (Summarize, Discuss, Provide, Describe). The first bullet was transformed from 'A summary of findings...' to 'Summarize findings...' to make it directive. The second bullet was similarly converted from 'A summary of relevant clinical research...' to 'Summarize relevant clinical research...' preserving all the specific elements mentioned (human use, other countries, clinical pharmacology studies). The third bullet was changed from 'Discussion of important literature...' to 'Discuss important literature...' and the parenthetical reference instruction was extracted and made into a separate directive about citations. The fourth and fifth bullets were converted from descriptive phrases to directive statements using 'Provide' and 'Describe' respectively. All original content elements and conditions were preserved exactly as stated in the input. RAG pipeline was selected because all instructions require authoring and synthesis from multiple source documents and literature rather than copying existing text."
 "1.3","Risk Benefit Assessment","Synopsis","","Heading","","","","",""
 "1.3.1","Known Potential Risks","Synopsis","Investigators Brochure, Industry Literature","","","Include a discussion of known potential risks from either clinical or nonclinical studies. If a package insert or device labeling from a licensed or approved product is available, it should be used as the primary source of risk information. If the product is investigational, the Investigatorâ€™s Brochure (IB) should be the primary source of the risk information. In addition, relevant published literature can also provide relevant risk information. If the risk profile cannot be described from the package insert, device labeling, or the IB, the risk information discussion will result from published literature and should be included and referenced appropriately. Describe any physical, psychological, social, legal, economic, or any other risks to subjects by participating in the study that the Principal Investigator (PI) foresees, addressing each of the following:
 - Immediate risks
@@ -65,19 +66,22 @@ Do not describe risks associated with drugs, medications, or medical devices tha
 0. *If risk is related to proposed procedures included in the protocol, describe alternative procedures that have been considered and explain why alternative procedures are not included*  
  ","PIPELINE: RAG
 
-- Summarize known potential risks from clinical or nonclinical studies using the following source hierarchy:
-  • Primary source: Package insert or device labeling if available for licensed or approved product
-  • Primary source: Investigator's Brochure if product is investigational
-  • Secondary source: Relevant published literature
-- Include risk information from published literature if the risk profile cannot be described from the package insert, device labeling, or the IB
-- Reference all literature sources appropriately
+- Describe known potential risks from clinical studies, using the package insert or device labeling as the primary source if the product is licensed or approved
+- If the product is investigational, use the Investigator's Brochure as the primary source of risk information
+- Include relevant risk information from published literature if available
+- If the risk profile cannot be described from the package insert, device labeling, or the Investigator's Brochure, synthesize risk information from published literature and include appropriate references
 
-- Describe physical, psychological, social, legal, economic, or any other risks to subjects by participating in the study that the Principal Investigator foresees
-- Address each of the following risk categories:
-  • Immediate risks
-  • Long-range risks
+- Describe physical risks to subjects from participating in the study that the Principal Investigator foresees
+- Describe psychological risks to subjects from participating in the study that the Principal Investigator foresees
+- Describe social risks to subjects from participating in the study that the Principal Investigator foresees
+- Describe legal risks to subjects from participating in the study that the Principal Investigator foresees
+- Describe economic risks to subjects from participating in the study that the Principal Investigator foresees
+- Describe any other risks to subjects from participating in the study that the Principal Investigator foresees
 
-- If risk is related to proposed procedures included in the protocol, describe alternative procedures that have been considered and explain why alternative procedures are not included","The input instruction requires synthesis and authoring from multiple potential sources (package insert, device labeling, IB, published literature) rather than copying from a single known source, indicating RAG pipeline. First bullet point: Transformed the source hierarchy from narrative description into structured directive format using 'Summarize' as action verb, preserving the exact conditional logic ('if available', 'if product is investigational', 'if the risk profile cannot be described'). Maintained the specific terminology like 'package insert', 'device labeling', 'Investigator's Brochure'. Second section: Converted the descriptive phrase 'Describe any physical, psychological, social, legal, economic, or any other risks' into directive format while preserving the complete list of risk types and the qualifier 'that the Principal Investigator foresees'. Third section: Restructured the numbered list (immediate risks, long-range risks) into bullet format for clarity while maintaining the exact categories. Final bullet: Preserved the conditional statement 'If risk is related to proposed procedures' exactly as written, maintaining the requirement to describe alternatives and explain why they're not included. All technical language and regulatory terminology was preserved without paraphrasing."
+- Address immediate risks from study participation
+- Address long-range risks from study participation
+
+- If risk is related to proposed procedures included in the protocol, describe alternative procedures that have been considered and explain why alternative procedures are not included","The input instruction requires synthesis and authoring from multiple potential sources (package insert, device labeling, Investigator's Brochure, published literature) rather than copying from a single known source, indicating RAG pipeline. The instruction was transformed by converting the descriptive language into directive action verbs: 'Include a discussion' became 'Describe', 'should be used' became 'use', etc. The hierarchical source preference (package insert/device labeling first, then IB, then literature) was preserved exactly as stated with conditional logic intact. The bullet points for risk categories (physical, psychological, social, legal, economic, other) were converted to separate directive statements using 'Describe' for each category. The sub-bullets for immediate and long-range risks were converted to directive statements using 'Address'. The numbered item about alternative procedures was converted to a conditional directive statement preserving the original condition 'If risk is related to proposed procedures'. All original conditional language ('if available', 'if the product is investigational', 'cannot be described') was preserved without modification to maintain the exact logic and conditions specified in the input."
 "1.3.2","Known Potential Benefits","Synopsis","Investigators Brochure, Industry Literature","","","Include a discussion of known potential benefits from either clinical or nonclinical studies. If a package insert or device labeling from a licensed or approved product is available, it should be used as the primary source of potential benefit information. If the product is investigational, the IB should be the primary source of the potential benefit information. In addition, relevant published literature can also provide potential relevant benefit information. If the potential benefit cannot be described from the package insert, device labeling, or the IB, the potential benefit information discussion will result from published literature and should be included and referenced appropriately.
 Describe any physical, psychological, social, legal, or any other potential benefits to individual subjects or society in general, as a result of participating in the study, addressing each of the following:
 Immediate potential benefits
@@ -97,16 +101,25 @@ Do not discuss the potential benefits for patients with diseases other than the 
 
 *Note that payment to subjects, whether as an inducement to participate or as compensation for time and inconvenience, is not considered a “benefit.” Provision of incidental care is also not to be considered a benefit.*","PIPELINE: RAG
 
-- Describe known potential benefits from clinical or nonclinical studies using the following source hierarchy:
-  • Primary source: Package insert or device labeling if available from a licensed or approved product
-  • Primary source: Investigator's Brochure if the product is investigational
-  • Secondary source: Relevant published literature
-- Include and reference published literature appropriately if potential benefit cannot be described from the package insert, device labeling, or the IB
-- Describe physical, psychological, social, legal, or any other potential benefits to individual subjects or society in general as a result of participating in the study
-- Address immediate potential benefits to subjects
-- Address long-range potential benefits to subjects
-- Exclude payment to subjects as inducement to participate or compensation for time and inconvenience from benefit discussion
-- Exclude provision of incidental care from benefit discussion","The instruction requires synthesis and description of potential benefits from multiple possible sources (package insert, device labeling, IB, published literature) with a clear source hierarchy, making this a RAG pipeline task. The first bullet point preserves the original source hierarchy exactly as specified, using the conditional language 'if available' and 'if the product is investigational' without modification. The second bullet maintains the original conditional structure 'if potential benefit cannot be described from...' and preserves the requirement to reference literature appropriately. The third bullet converts the original descriptive language 'Describe any physical, psychological, social, legal, or any other potential benefits' into a directive while preserving all benefit categories and the scope 'to individual subjects or society in general.' The fourth and fifth bullets directly transform the original bullet points about immediate and long-range benefits into directive statements. The final two bullets preserve the original exclusions about payment and incidental care, converting the note format into explicit exclusion directives using 'Exclude' as the action verb. All original conditional language and specific terminology has been maintained without paraphrasing or simplification."
+- Describe known potential benefits from clinical or nonclinical studies, using the following source hierarchy:
+  • If a package insert or device labeling from a licensed or approved product is available, use as the primary source of potential benefit information
+  • If the product is investigational, use the Investigator's Brochure as the primary source of potential benefit information
+  • Include relevant published literature to provide additional potential benefit information
+  • If potential benefit cannot be described from the package insert, device labeling, or the Investigator's Brochure, base the potential benefit information discussion on published literature and include appropriate references
+
+- Describe potential benefits to individual subjects or society in general as a result of participating in the study, addressing each of the following categories:
+  • Physical potential benefits
+  • Psychological potential benefits
+  • Social potential benefits
+  • Legal potential benefits
+  • Any other potential benefits
+
+- Organize the benefit discussion into the following timeframes:
+  • Immediate potential benefits
+  • Long-range potential benefits
+
+- Exclude payment to subjects as inducement to participate or compensation for time and inconvenience from the benefits discussion
+- Exclude provision of incidental care from the benefits discussion","Source hierarchy (lines 1-4): Input provided explicit prioritization of sources (package insert/device labeling first, then IB for investigational products, then published literature), so converted to bullet-point hierarchy with conditional logic preserved exactly as stated. Benefit categories (lines 5-6): Input required description of 'physical, psychological, social, legal, or any other potential benefits' so enumerated each category as separate bullet points using the exact terminology from input. Timeframe organization (lines 7-8): Input specified 'immediate potential benefits' and 'long-range potential benefits' as required elements, so converted to bullet structure maintaining original language. Exclusions (lines 9-10): Input contained explicit exclusions for payment and incidental care, so converted to 'Exclude' directives to ensure AI does not include these elements. RAG pipeline selected because instruction requires synthesis and authoring from multiple potential sources (package insert, IB, literature) rather than copying from a single known source. All conditional language ('if available', 'if the product is investigational', 'if the potential benefit cannot be described') preserved exactly as stated in input to maintain original logic and specificity."
 "1.3.3","Assessment of Potential Risks and Benefits","Synopsis","Investigators Brochure, Industry Literature","","1.3.1, 1.3.2","Address each of the following:
 Rationale for the necessity of exposing subjects to risks.
 Justification as to why the risks of participation in the study outweigh the value of the information to be gained.
@@ -119,17 +132,17 @@ This section should offer an unbiased assessment of the study's balance between 
 
 - Provide a rationale for the necessity of exposing subjects to risks and summarize the ways that risks to subjects were minimized in the study design
 - Provide justification as to why the risks of participation in the study outweigh the value of the information to be gained
-- Base the assessment on the known potential risks identified in Section 1.3.1 and known potential benefits identified in Section 1.3.2
+- Base the assessment on the known potential risks described in Section 1.3.1 and known potential benefits described in Section 1.3.2
 - Include specific risk mitigation strategies implemented in the study protocol
-- Address the overall risk-benefit balance for the study population","The input instruction required assessment and analysis content that must be authored by synthesizing information from multiple sources (known risks from 1.3.1, known benefits from 1.3.2, study design elements for risk mitigation). Converted the two bullet points into directive statements using 'Provide a rationale' and 'Provide justification' while preserving the exact language from the original instruction. Added explicit directive to base assessment on the preceding sections (1.3.1 and 1.3.2) to ensure comprehensive coverage. Added requirement to include specific risk mitigation strategies and overall risk-benefit balance to make the instruction more actionable while staying within the scope of assessment content. The instruction requires RAG pipeline because it involves authoring analytical content that synthesizes information from multiple protocol sections rather than copying existing text."
+- Address the overall risk-benefit profile in the context of the study population and therapeutic area","The input instruction contained two main bullet points requiring assessment and justification content that must be authored rather than copied. The first bullet point 'Rationale for the necessity of exposing subjects to risks and a summary of the ways that risks to subjects were minimized in the study design' was preserved exactly as written and converted to a directive using 'Provide a rationale' and 'summarize'. The second bullet point 'Justification as to why the risks of participation in the study outweigh the value of the information to be gained' was similarly preserved and converted to 'Provide justification'. Added directive to base assessment on preceding sections 1.3.1 and 1.3.2 since this section logically synthesizes the risk and benefit information from those sections. Added requirements for specific risk mitigation strategies and overall risk-benefit profile to ensure comprehensive coverage. RAG pipeline selected because this requires synthesis and authoring of assessment content from multiple sources rather than copying existing text."
 "1.4","Mechanism of Action","Synopsis","Investigators Brochure, Industry Literature","","","Include the investigational product (IP)â€™s mechanism of action if known.
 Describe comprehensively and with great detail how the investigational drug or treatment exerts its intended biological effects. Indicate the drug class or type, and describe the mechanism of action for its drug class or type. Also describe how two or more mechanisms of action might interact.
 ","*Include the investigational product (IP)’s mechanism of action if known.*
 ","PIPELINE: RAG
 
-- Describe the investigational product's mechanism of action if known
+- Describe the mechanism of action of the investigational product if known
 - Include information only if mechanism of action data is available in the Investigator's Brochure or referenced input documents
-- Exclude if mechanism of action information is not available","The input instruction contains a conditional requirement ('if known') that must be preserved exactly as specified per transformation rule 10. The instruction requires describing mechanism of action content, which involves authoring/synthesizing information from source documents like the Investigator's Brochure rather than copying fixed text, making this a RAG pipeline task. Converted the descriptive phrase 'Include the investigational product's mechanism of action' to the directive 'Describe the investigational product's mechanism of action' using the action verb 'Describe' per rule 1. Added explicit conditions to clarify when to include versus exclude content based on data availability, making the conditional logic explicit per rule 10. The scope is naturally bounded to mechanism of action only, preventing overlap with other sections like pharmacokinetics or safety profile that would be covered elsewhere."
+- Exclude if mechanism of action information is not available","The input instruction requires describing the investigational product's mechanism of action 'if known', which indicates conditional content inclusion based on availability. This was transformed into a RAG directive using the action verb 'Describe' to tell the AI what to do rather than what the section is about. The original conditional language 'if known' was preserved and expanded into explicit conditions specifying where to source the information (Investigator's Brochure or referenced input documents) and what to do if the information is not available (exclude it). Since this requires synthesis and authoring of mechanism of action content from source documents rather than copying existing text, RAG pipeline was selected. The instruction was kept self-contained within the current section without adding cross-references or expanding beyond what was explicitly stated in the input."
 "2","STUDY OBJECTIVES AND ENDPOINTS","Synopsis","","Heading","","","","",""
 "2.1","Primary Objective(s) and Endpoint(s)","Synopsis","","","","Insert the primary objectives and endpoints copied from the synopsis together in this section in tabular format.
 | Objective(s)     | Endpoint(s)      |
@@ -145,13 +158,17 @@ Describe comprehensively and with great detail how the investigational drug or t
 |  |  |
 |  |  |","PIPELINE: TEXT_MANIPULATION
 
-Format the primary objectives and endpoints from the Protocol into a table with the following structure. Include all primary objectives as applicable to the study. Present each objective using the format ""To evaluate..."":
+- Copy the primary objective(s) and corresponding endpoint(s) from the Synopsis
+- Format the content as a table with two columns: ""Objective(s)"" and ""Endpoint(s)""
+- Present each objective using the format ""To evaluate..."" as applicable to the study
+- Include all primary objectives and their corresponding endpoints in separate rows
+- Use the following table structure:
 
 | Objective(s) | Endpoint(s) |
 | :---- | :---- |
 |  |  |
 |  |  |
-|  |  |","The input instruction specifies copying objectives and endpoints into a predefined tabular format, which is a TEXT_MANIPULATION task since it involves extracting and formatting existing content from the protocol rather than authoring new content. The instruction was transformed by: 1) Converting 'Insert the objectives and endpoints' to the directive 'Format the primary objectives and endpoints from the Protocol' to specify the source document, 2) Adding 'Include all primary objectives as applicable to the study' to preserve the original conditional 'as applicable', 3) Retaining the exact formatting requirement 'To evaluate...' as specified in the input, 4) Preserving the exact table structure provided in the input including the column alignment formatting, 5) Scoping to 'primary objectives' only since this is section 2.1 which specifically covers primary objectives according to the section context, distinguishing it from secondary (2.2) and exploratory (2.3) objectives covered in separate sections."
+|  |  |","The input instruction specifies copying objectives and endpoints in tabular format, which is a TEXT_MANIPULATION task involving copying and formatting existing content. The instruction preserves the exact table structure provided in the input (including the column headers and formatting with colons and dashes). The phrase 'as applicable to the study' was retained to preserve the original conditional language. The format requirement 'To evaluate...' was maintained exactly as specified. Since this is section 2.1 focusing on Primary Objectives, the instruction was scoped to primary objectives only, with the Synopsis identified as the primary source per the authoring mode rules. The table structure with empty rows was preserved to show the expected format for the AI system."
 "2.2","Secondary Objective(s) and Endpoint(s)","Synopsis","","","","Insert the secondary objectives and endpoints copied from the synopsis together in this section in tabular format. If there are any key secondary objectives, separate the key secondary objectives from the other secondary objectives.
 | Objective(s)     | Endpoint(s)      |
 |------------------|------------------|
@@ -163,7 +180,7 @@ Format the primary objectives and endpoints from the Protocol into a table with 
 |  |  |
 |  |  |","PIPELINE: TEXT_MANIPULATION
 
-Format the secondary objectives and their corresponding endpoints from the Protocol into a table with the following structure:
+Copy the secondary objectives and their corresponding endpoints from the Synopsis, formatting them as a table with the following structure:
 
 | Objective(s) | Endpoint(s) |
 | :---- | :---- |
@@ -171,9 +188,9 @@ Format the secondary objectives and their corresponding endpoints from the Proto
 |  |  |
 |  |  |
 
-- Copy all secondary objectives and endpoints exactly as stated in the Protocol
-- Include only secondary objectives in this table
-- Exclude primary objectives and exploratory objectives from this section","The input instruction consists solely of an empty table template with headers 'Objective(s)' and 'Endpoint(s)' and three empty rows. Since this is section 2.2 'Secondary Objective(s) and Endpoint(s)' based on the section context, I transformed this into a directive to populate the table with secondary objectives from the Protocol. I preserved the exact table format including the column alignment syntax (:----). I added explicit instructions to copy content from the Protocol source and included boundary conditions to exclude primary and exploratory objectives to prevent content duplication across sections 2.1 and 2.3. The TEXT_MANIPULATION pipeline was selected because this involves copying structured content from a source document (Protocol) into a predefined table format without requiring synthesis or authoring of new content."
+- Include all secondary objectives listed in the Synopsis
+- Exclude primary objectives and exploratory objectives from this section
+- Maintain the exact wording of objectives and endpoints as stated in the Synopsis","The input instruction shows an empty table template with columns for 'Objective(s)' and 'Endpoint(s)' with three empty rows. This is a clear TEXT_MANIPULATION task as it requires copying specific content (secondary objectives and endpoints) from the Synopsis into a predefined table format. I preserved the exact table structure from the input, including the column headers and formatting. I added directive instructions to copy from the Synopsis (the primary source) and specified that only secondary objectives should be included, excluding primary and exploratory objectives to prevent content duplication across sections 2.1, 2.2, and 2.3. The instruction maintains the table structure exactly as provided in the input while adding clear sourcing and scoping directives."
 "2.3","Exploratory Objective(s) and Endpoint(s)","Synopsis","","","","Insert the exploratory objectives and endpoints copied from the synopsis together in this section in tabular format.
 | Objective(s)     | Endpoint(s)      |
 |------------------|------------------|
@@ -185,17 +202,18 @@ Format the secondary objectives and their corresponding endpoints from the Proto
 |  |  |
 |  |  |","PIPELINE: TEXT_MANIPULATION
 
-Format the exploratory objectives and endpoints from the Protocol into a table with the following structure:
+Format the exploratory objectives and endpoints from the Synopsis into a table with the following structure:
 
 | Objective(s) | Endpoint(s) |
-|--------------|-------------|
-|              |              |
-|              |              |
-|              |              |
+| :---- | :---- |
+|  |  |
+|  |  |
+|  |  |
 
-- Copy only exploratory objectives and their corresponding endpoints
-- Exclude primary and secondary objectives from this table
-- If no exploratory objectives are defined in the Protocol, leave the table rows empty","The input instruction provides only an empty table template with headers 'Objective(s)' and 'Endpoint(s)' and three empty rows. Since this is section 2.3 'Exploratory Objective(s) and Endpoint(s)', I transformed this into a directive to populate the table with exploratory objectives specifically from the Protocol. I preserved the exact table structure from the input, including the column headers and number of rows. I added explicit instructions to copy content from the Protocol source and to exclude primary/secondary objectives to prevent duplication with sections 2.1 and 2.2. I included a condition for handling cases where no exploratory objectives exist. This is TEXT_MANIPULATION because it involves copying and formatting existing content from a source document into a predefined table structure."
+- Copy all exploratory objectives and their corresponding endpoints from the Synopsis
+- Include only exploratory objectives in this table
+- Exclude primary and secondary objectives (scoped to other sections)
+- If no exploratory objectives are specified in the Synopsis, leave the table rows empty","The input instruction contains only an empty table template with three rows for objectives and endpoints. Since this is section 2.3 specifically for exploratory objectives and endpoints, I transformed this into a directive to populate the table with exploratory objectives from the Synopsis (the primary source). I specified TEXT_MANIPULATION pipeline because the task involves copying content from a source document into a predefined table format. I added explicit scoping to exclude primary and secondary objectives since those are covered in sections 2.1 and 2.2. I preserved the exact table structure from the input including the column headers and formatting. I added a conditional instruction to handle cases where no exploratory objectives exist in the source document, maintaining the empty rows as shown in the template."
 "3","INVESTIGATIONAL PLAN","Synopsis","","Heading","","","","",""
 "3.1","Overall Study Design and Plan","Synopsis","","","","The scientific integrity of the trial and the credibility of the data from the trial depend substantially on the trial design.
 Provide a brief overall description of the trial design, similar to a short abstract. Details of each item described in this section will follow in other sections of this protocol template. Include descriptions of the following, as applicable:
@@ -248,23 +266,24 @@ Use charts and diagrams as needed. Include an events table that includes timing 
 See [Appendix 1](#bookmark=id.3gnlt4p), Schedule of Events (SOE).
 ","PIPELINE: TEXT_MANIPULATION
 
-- Provide a brief overall description of the trial design, similar to a short abstract
-- Include a statement of the hypothesis, if applicable
-- State the phase of the trial
-- Describe the type/design of trial to be conducted (eg, randomized, placebo-controlled, double-blinded, parallel design, open-label, dose escalation, dose-ranging, adaptive, cluster randomized, group sequential, multi-regional, superiority or non-inferiority design)
-- Describe methods to be used to minimize bias
-- State the number of study groups/arms and study intervention duration
-- Indicate if single site or multi-site
-- Name the study intervention(s)
-- Note if interim analysis is planned
-- Note if the study includes any stratifications and if so, identify the stratification planned (eg, sex, race/ethnicity, age, dose)
-- Name sub-studies, if any, included in this protocol
-- If other studies used a very similar protocol, discuss any important differences between the protocols, if applicable
-- Use charts and diagrams as needed
+- Copy the study hypothesis from the Synopsis
+- Copy the phase of the trial from the Synopsis
+- Copy the trial type/design description from the Synopsis, including:
+  • Randomization approach (if applicable)
+  • Blinding/masking approach (if applicable)
+  • Control group type (if applicable)
+  • Design characteristics (parallel, crossover, adaptive, etc.)
+  • Study objective type (superiority, non-inferiority, equivalence)
+- Copy the description of bias minimization methods from the Synopsis
+- Copy the number of study groups/arms and study intervention duration from the Synopsis
+- State if single site or multi-site based on Synopsis
+- Copy the name of study intervention(s) from the Synopsis
+- Include statement about interim analysis if planned in Synopsis and reference Section 9
+- Include statement about stratifications if described in Synopsis, identify the stratification factors, and reference Section 9
+- Copy names of sub-studies from Synopsis if any are included
+- Include comparison to other similar protocols only if described in Synopsis
 - Exclude dose escalation or dose-ranging details (scoped to Section 5)
-- Exclude interim analysis details (refer to Section 9)
-- Exclude stratification details (refer to Section 9)
-- Exclude timing of assessments details (refer to Appendix 1)","The input instruction is primarily asking for a descriptive overview that copies and presents existing study design information without requiring synthesis from multiple sources or authoring new content. The instruction uses phrases like 'provide a brief overall description' and lists specific elements to include that would be directly available from the protocol design specifications. The bullet points enumerate specific design elements that need to be stated or described, which are factual elements that would be copied from existing study design documents rather than authored. The instruction includes explicit exclusions directing content to other sections (Section 5 for dose details, Section 9 for statistical details, Appendix 1 for timing), which supports the TEXT_MANIPULATION classification as it's organizing and presenting existing information rather than creating new content. The phrase 'use charts and diagrams as needed' suggests incorporating existing visual materials. The conditional statements 'as applicable' and 'if any' were preserved exactly as written to maintain the original conditional logic."
+- Reference Appendix 1, Schedule of Events","The input instruction requests copying specific elements from what would be the Synopsis (primary source) to create a brief overall description. Each bullet point in the input represents a discrete content element to be copied, so I transformed these into direct copy directives using 'Copy' action verbs. The instruction specifies 'as applicable' throughout, which I preserved as conditional language. I maintained the exclusion directive about dose escalation details being scoped to Section 5. The reference to charts/diagrams and events table was converted to a reference directive for Appendix 1. Since all content is being copied from a single source (Synopsis) without synthesis or authoring, this is TEXT_MANIPULATION pipeline. I preserved the conditional nature of many elements ('if applicable', 'if planned', 'if any') as these represent the original instruction's flexibility for different study types."
 "3.2","Rationale For Study Design And Control Group","Synopsis","Industry Literature, Guidelines, Investigators Brochure","","1.1, 3.3","Provide a rationale for the selected study design and comparator group(s) chosen.
 In addition to the type of control, other critical design features that may need discussion are the use of a cross-over design and the selection of subjects with particular prior history, such as response or non-response to a specific drug or member of a drug class.
 Consider the following questions:
@@ -279,27 +298,178 @@ Consider the following questions:
 - Why has the study population for this study been chosen?
 
 For any choices or selections made for the trial design, you MUST provide a justification or rationale or explanation. Each of these choices/selections in the trial design must be substantiated with an explanation/rationale/justification/reasoning behind its selection based on evidence. Briefly summarize the basis for the dose of study drug(s) that was chosen (i.e., nonclinical data, previous clinical trials, current clinical practice).
-Do not discuss randomization or stratification in previous clinical trials except if a previous trial used exactly the same randomization method and stratification factors. Do not discuss sample size calculations. In the rationale for the control group, do not discuss the non-control group(s).","","",""
+Do not discuss randomization or stratification in previous clinical trials except if a previous trial used exactly the same randomization method and stratification factors. Do not discuss sample size calculations. In the rationale for the control group, do not discuss the non-control group(s).","* Provide a rationale for the selected study design and comparator group(s) chosen.
+
+* Provide a rationale for the doses or dose ranges to be used in the study for all treatments, and describe the basis for choosing them (eg, prior experience in humans, animal data).
+
+* In addition to the type of control, other critical design features that may need discussion are the use of a cross-over design and the selection of subjects with particular prior history, such as response or non-response to a specific drug or member of a drug class.
+
+* Consider the following questions:  
+- What are the primary questions that the study will be designed to answer?
+
+- Will the study design support the intended labeling?
+
+- What is the rationale for the dose that was chosen?
+
+- Why was the design chosen?
+
+- What were the designs that were rejected, and why?
+
+- What are the potential benefits of the test product over the comparator or standard treatment?","PIPELINE: RAG
+
+- Provide a rationale for the selected study design and comparator group(s) chosen
+- Provide a rationale for the doses or dose ranges to be used in the study for all treatments, and describe the basis for choosing them (eg, prior experience in humans, animal data)
+- Describe critical design features that may need discussion including:
+  • The use of a cross-over design if applicable
+  • The selection of subjects with particular prior history, such as response or non-response to a specific drug or member of a drug class if applicable
+- Address the following questions in the rationale:
+  • What are the primary questions that the study will be designed to answer?
+  • Will the study design support the intended labeling?
+  • What is the rationale for the dose that was chosen?
+  • Why was the design chosen?
+  • What were the designs that were rejected, and why?
+  • What are the potential benefits of the test product over the comparator or standard treatment?","The input instruction requires synthesis and authoring of rationale content rather than copying from a specific source, indicating RAG pipeline. First bullet point: Preserved exact wording 'Provide a rationale for the selected study design and comparator group(s) chosen' as it was already directive. Second bullet point: Kept original language including the parenthetical example '(eg, prior experience in humans, animal data)' to maintain specificity. Third bullet point: Converted narrative description into structured sub-bullets using action verb 'Describe' and added conditional language 'if applicable' to preserve the optional nature of cross-over design and subject selection criteria. Final section: Transformed the 'Consider the following questions' instruction into a directive 'Address the following questions in the rationale' and maintained all six questions exactly as written with their original question marks and specific wording. No cross-references were removed as none existed. No domain knowledge was added beyond what was explicitly stated in the input."
 "3.3","Justification For Dose","Synopsis","Investigators Brochure, Industry Literature","","","Provide a justification for the dose(s) that was chosen for each drug administered in this study.
 Provide a justification for the route of administration and dosing regimen, including starting dose, of the study intervention(s) and control product(s).
 This should put the selected dose of study drug(s) into historical and scientific context of the previous uses of this study drug. 
 
 If this is a first-in-human study, the rationale and calculation of the human equivalent dose should go here. Otherwise, put the dose being administered in this study in the context of the maximum dose that has been previously administered to humans. 
-Include information about exposure to different doses, if available.","","",""
+Include information about exposure to different doses, if available.","*Provide a justification for the route of administration, planned maximum dosage, and dosing regimen, including starting dose, of the study intervention(s) and control product(s).*","PIPELINE: RAG
+
+- Provide justification for the route of administration of the study intervention, including rationale based on pharmacokinetic properties and clinical considerations
+- Provide justification for the planned maximum dosage of the study intervention, including supporting data from preclinical studies or prior clinical experience
+- Provide justification for the dosing regimen of the study intervention, including frequency and timing rationale
+- Provide justification for the starting dose of the study intervention, including dose selection rationale and safety considerations
+- Provide justification for the route of administration of the control product, if applicable
+- Provide justification for the planned maximum dosage of the control product, if applicable
+- Provide justification for the dosing regimen of the control product, if applicable
+- Provide justification for the starting dose of the control product, if applicable","The input instruction requires providing justifications for multiple dosing parameters (route, maximum dosage, dosing regimen, starting dose) for both study intervention(s) and control product(s). This requires synthesis and authoring of rationale content that would need to be drawn from multiple sources like preclinical data, prior studies, pharmacokinetic information, and safety data. Each element from the original instruction was converted into a separate directive using the action verb 'Provide justification for' to maintain the exact language. The instruction was broken down into discrete bullet points for each required justification element. Added 'if applicable' conditions for control product elements since not all studies may have control products. The content requires authoring explanatory text based on retrieved scientific and clinical information rather than copying from a single source, making this a RAG pipeline instruction."
 "3.4","Study Duration","Synopsis","","","3.1","Insert the following text:
 ""A subject is considered to have completed the study if he or she has completed all phases of the study including the last visit or the last scheduled procedure shown in the schedule of events in Appendix 1.
-The end of the study is defined as completion of the last visit or procedure shown in the schedule of events in the trial globally.""","","",""
+The end of the study is defined as completion of the last visit or procedure shown in the schedule of events in the trial globally.""","* Describe the expected duration of the study, with proposed subject recruitment start date and end date.
+
+* Include a statement that the actual overall study duration or subject recruitment period may vary.
+
+* Explain the justification for the overall duration of the study.
+
+A clinical trial is considered completed when subjects are no longer being examined or the last subject’s last study visit has occurred.
+
+Example text provided as a guide, customize as needed:
+
+\[A subject is considered to have completed the study if he or she has completed all phases of the study including the last visit or the last scheduled procedure shown in the SOE in [Appendix 1](#bookmark=id.3gnlt4p).
+
+The end of the study is defined as completion of the last visit or procedure shown in the SOE in the trial globally.\]","PIPELINE: HYBRID
+
+- Copy the proposed subject recruitment start date and end date from Synopsis
+- State the expected overall study duration based on the recruitment period and individual subject participation duration from Synopsis
+- Include the following statement: ""The actual overall study duration or subject recruitment period may vary.""
+- Provide justification for the overall duration of the study based on the study design and endpoints from Synopsis
+
+BOILERPLATE
+A subject is considered to have completed the study if he or she has completed all phases of the study including the last visit or the last scheduled procedure shown in the SOE in Appendix 1.
+
+The end of the study is defined as completion of the last visit or procedure shown in the SOE in the trial globally.
+END BOILERPLATE
+
+- State that a clinical trial is considered completed when subjects are no longer being examined or the last subject's last study visit has occurred","First bullet point transformed to directive 'Copy the proposed subject recruitment start date and end date from Synopsis' and 'State the expected overall study duration' - these require extracting specific factual information from the primary source. Second bullet point preserved exactly as stated since it was already directive: 'Include the following statement'. Third bullet point converted from 'Explain the justification' to 'Provide justification' for more directive language while preserving the original requirement. The standalone sentence about clinical trial completion was converted to a directive statement using 'State that'. The example text was wrapped as BOILERPLATE since it was provided as template text to be customized, with reference to Appendix 1 preserved as specified in the original. HYBRID pipeline selected because the instruction combines TEXT_MANIPULATION (copying dates from Synopsis), RAG elements (providing justification based on study design), and boilerplate insertion."
 "4","STUDY POPULATION SELECTION","Synopsis","","Heading","","","","",""
 "4.1","Inclusion Criteria","Synopsis","","","","Insert the list of inclusion criteria. Inclusion criteria should be taken from the protocol synopsis, without any change.
 Use a numbered list for the inclusion criteria.
-Precede the numbered list of inclusion criteria with the following text: ""Each participant must meet the following criteria to be enrolled in this study:""","","",""
+Precede the numbered list of inclusion criteria with the following text: ""Each participant must meet the following criteria to be enrolled in this study:""","* Insert the list of inclusion criteria.
+
+* Use a numbered list for the inclusion criteria for easier identification of an individual criterion if any amendments are needed.
+
+* Inclusion criteria should be single, stand-alone criteria ideally that can be answered yes or no.
+
+Some suggested text follows:
+
+Each subject must meet the following criteria to be enrolled in this study.
+
+1. 
+
+2. 
+
+3.  Refer to Appendix 5
+
+4. 
+
+5. 
+
+6. 
+
+7. 
+
+8. 
+","PIPELINE: TEXT_MANIPULATION
+
+Insert the following introductory text:
+""Each subject must meet the following criteria to be enrolled in this study.""
+
+- Copy the inclusion criteria from the Synopsis
+- Format as a numbered list (1., 2., 3., etc.) for easier identification of individual criteria if any amendments are needed
+- Ensure each criterion is presented as a single, stand-alone statement that can be answered yes or no
+- Include reference to Appendix 5 where applicable for specific criteria
+- Maintain the exact numbering sequence and criterion content as specified in the Synopsis","The input instruction requests insertion of inclusion criteria in a specific numbered format. The introductory text 'Each subject must meet the following criteria to be enrolled in this study' was explicitly provided as suggested text, so it's included as a direct insertion. The instruction specifies copying inclusion criteria and formatting them as numbered list, which is a TEXT_MANIPULATION task since it involves copying content from the Synopsis (primary source) and applying formatting. The requirement for 'single, stand-alone criteria ideally that can be answered yes or no' was preserved as a formatting directive. The reference to 'Appendix 5' mentioned in the suggested structure was retained as a conditional inclusion requirement. The instruction emphasizes numbered formatting for amendment purposes, so this formatting requirement was made explicit in the directive."
 "4.2","Exclusion Criteria","Synopsis","","","","Insert the list of exclusion criteria. Exclusion criteria should be taken from the protocol synopsis, without any change.
 Use a numbered list for the exclusion criteria.
-Precede the numbered list of exclusion criteria with the following text: ""Participants who meet any of the following criteria will be excluded from the study:""","","",""
+Precede the numbered list of exclusion criteria with the following text: ""Participants who meet any of the following criteria will be excluded from the study:""","* Insert the list of exclusion criteria.
+
+* Use a numbered list for the exclusion criteria for easier identification of an individual criterion if any amendments are needed.
+
+* Exclusion criteria should be single, stand-alone criteria ideally that can be answered yes or no.
+
+Some suggested text follows:
+
+Subjects who meet any of the following criteria will be excluded from the study.
+
+1. 
+
+9.  Refer to Appendix 5
+
+10. 
+
+11. 
+
+12. 
+
+13. 
+
+14. ","PIPELINE: TEXT_MANIPULATION
+
+Copy the exclusion criteria from the Synopsis, formatting as follows:
+
+- Begin with the introductory text: ""Subjects who meet any of the following criteria will be excluded from the study.""
+- Format each exclusion criterion as a numbered list item
+- Ensure each criterion is written as a single, stand-alone statement that can be answered yes or no
+- Include all exclusion criteria from the Synopsis in sequential numerical order
+- For any criterion that references contraceptive guidance, format as: ""[criterion number]. Refer to Appendix 5""
+- Maintain the exact wording of each exclusion criterion as specified in the Synopsis","The input instruction requests copying exclusion criteria from a source and formatting them in a specific numbered list structure. This is a TEXT_MANIPULATION task since it involves copying existing content with formatting requirements rather than authoring new content. The directive 'Insert the list of exclusion criteria' indicates content should be copied from the Synopsis (primary source). The numbered list requirement was preserved exactly as specified. The instruction about single, stand-alone yes/no criteria was converted to a formatting directive to ensure proper structure. The suggested text structure with the introductory sentence was incorporated as a formatting requirement. The reference to 'Appendix 5' in the example was preserved as a conditional formatting instruction for any criteria that reference contraceptive guidance. The instruction maintains the requirement for sequential numbering and preserves the exact wording requirement to avoid any alteration of regulatory language."
 "4.3","Screen Failures","Synopsis","","","","Example text provided as a guide, customize as needed:
 [Screen failures are defined as subjects who consent to participate in the clinical trial but are not subsequently randomly assigned to the study intervention or entered in the study. A minimal set of screen failure information is required to ensure transparent reporting of screen failure subjects, to meet the Consolidated Standards of Reporting Trials (CONSORT) publishing requirements and to respond to queries from regulatory authorities. Minimal information includes demography, screen failure details, eligibility criteria, and any serious adverse event (SAE).
 Individuals who do not meet the criteria for participation in this trial (screen failure) because of a <specify modifiable factor> may be rescreened. Rescreened subjects should be assigned the same subject number as for the initial screening.]
-","","",""
+","*Subjects who are consented to participate in the clinical trial, who do not meet one or more criteria required for participation in the trial during the screening procedures, are considered screen failures. Indicate how screen failures will be handled in the trial, including conditions and criteria upon which re-screening is acceptable, when applicable.*  
+*Example text provided as a guide, customize as needed:*
+
+\[Screen failures are defined as subjects who consent to participate in the clinical trial but are not subsequently randomly assigned to the study intervention or entered in the study. A minimal set of screen failure information is required to ensure transparent reporting of screen failure subjects, to meet the Consolidated Standards of Reporting Trials (CONSORT) publishing requirements and to respond to queries from regulatory authorities. Minimal information includes demography, screen failure details, eligibility criteria, and any serious adverse event (SAE).
+
+Individuals who do not meet the criteria for participation in this trial (screen failure) because of a  may be rescreened. Rescreened subjects should be assigned the same subject number as for the initial screening.\]
+","PIPELINE: TEXT_MANIPULATION
+
+- Define screen failures as subjects who consent to participate in the clinical trial but do not meet one or more criteria required for participation during screening procedures
+- State that screen failures are subjects who are not subsequently randomly assigned to the study intervention or entered in the study
+- Specify that a minimal set of screen failure information is required to ensure transparent reporting of screen failure subjects
+- List the purposes for collecting screen failure information:
+  • Meet Consolidated Standards of Reporting Trials (CONSORT) publishing requirements
+  • Respond to queries from regulatory authorities
+- Enumerate the minimal information required for screen failures:
+  • Demography
+  • Screen failure details
+  • Eligibility criteria
+  • Any serious adverse event (SAE)
+- State conditions for re-screening when applicable:
+  • Copy re-screening criteria from Synopsis if specified
+  • If re-screening is permitted, specify that rescreened subjects should be assigned the same subject number as for the initial screening
+- Include any additional screen failure handling procedures specified in the Synopsis","The input instruction provides example boilerplate text with guidance to customize as needed, which signals TEXT_MANIPULATION pipeline. The instruction asks to indicate how screen failures will be handled, including re-screening conditions 'when applicable'. I transformed the example text into directive bullet points using action verbs like 'Define', 'State', 'Specify', 'List', 'Enumerate'. I preserved the original technical language including 'Consolidated Standards of Reporting Trials (CONSORT)', 'screen failures', and 'randomly assigned to study intervention'. I maintained the conditional language 'when applicable' for re-screening as specified in the original instruction. I added a directive to copy re-screening criteria from Synopsis if specified, since the Synopsis is the primary source for protocol content. I structured the minimal information requirements as a bulleted list for clarity. I preserved the instruction about using the same subject number for rescreened subjects exactly as written in the example text. The instruction is self-contained within this section and doesn't reference other sections."
 "4.4","Strategies for Recruitment and Retention","Synopsis","","","","Identify general strategies for subject recruitment and retention. This section may refer to a separate detailed recruitment and retention plan in the manual of procedures (MOP) and site-specific plans could be included in a site-specific standard operating procedure (SOP). Consider inclusion of the information below either in this section or the MOP.
 Target study sample size by gender, race and ethnicity, and age; identify anticipated number to be screened including women and minorities in order to reach the target enrollment (should be consistent with information contained in Section 9.2, Determination of Sample Size).
 Anticipated accrual rate.
@@ -312,7 +482,48 @@ If the study requires long-term participation, describe procedures that will be 
 If applicable, specific strategies that will be used to recruit and retain historically under-represented populations in order to meet target sample size and conform with the NIH Policy on Inclusion of Women and Minorities as Subjects In Research Involving Human Subjects. Include the number of women and minorities expected to be recruited, or provide justification on those rare occasions where women and/or minorities will not be recruited.
 In addition, this section should address:
 If appropriate, include justification for inclusion of vulnerable subjects and recruitment strategy. Vulnerable subjects include, but are not limited to pregnant women, those who lack consent capacity, including the mentally ill, prisoners, cognitively impaired subjects, children, and employee volunteers. Include safeguards for protecting vulnerable populations. Please refer to OHRP guidelines when choosing the study population. Note that these regulations apply if any subjects are members of the designated population, even if it is not the target population (eg, if a subject becomes a prisoner during the study).
-If subjects will be compensated or provided any incentives (eg vouchers, gift cards,) for study participation, describe amount, form and timing of such compensation in relation to study activities (include financial and non-financial incentives). Describe who will receive incentives (if not the subject). For example, if minors, state whether the minor or the parent/guardian will receive the incentive. If incapacitated adults, state if payment will be provided to the subject or to a legally authorized representative or guardian.","","",""
+If subjects will be compensated or provided any incentives (eg vouchers, gift cards,) for study participation, describe amount, form and timing of such compensation in relation to study activities (include financial and non-financial incentives). Describe who will receive incentives (if not the subject). For example, if minors, state whether the minor or the parent/guardian will receive the incentive. If incapacitated adults, state if payment will be provided to the subject or to a legally authorized representative or guardian.","**This section may be deleted in favor of having this information in the MOP, especially if recruitment strategies have not been finalized**.*Identify general strategies for subject recruitment and retention. This section may refer to a separate detailed recruitment and retention plan in the manual of procedures (MOP) and site-specific plans could be included in a site-specific standard operating procedure (SOP). Consider inclusion of the information below either in this section or the MOP.*
+
+* Target study sample size by gender, race and ethnicity, and age; identify anticipated number to be screened including women and minorities in order to reach the target enrollment (should be consistent with information contained in Section 9.2, Determination of Sample Size).
+
+* Anticipated accrual rate.
+
+* Anticipated number of sites and subjects to be enrolled from the US and outside the US.
+
+* Source of subjects (eg, inpatient hospital setting, outpatient clinics, student health service, or general public).
+
+* Recruitment venues.
+
+* How potential subjects will be identified and approached.
+
+* Types of recruitment strategies planned (eg subject advocacy groups, national newspaper, local flyers; social media, specific names of where advertisements may be planned are not needed).
+
+* If the study requires long-term participation, describe procedures that will be used to enhance subject retention (eg, multiple methods for contacting subjects, visit reminders, incentives for visit attendance).
+
+* If applicable, specific strategies that will be used to recruit and retain historically under-represented populations in order to meet target sample size and conform with the NIH Policy on Inclusion of Women and Minorities as Subjects In Research Involving Human Subjects. Include the number of women and minorities expected to be recruited, or provide justification on those rare occasions where women and/or minorities will not be recruited.
+
+In a*ddition, this section should address:*
+
+* If appropriate, include justification for inclusion of vulnerable subjects and recruitment strategy. Vulnerable subjects include, but are not limited to pregnant women, those who lack consent capacity, including the mentally ill, prisoners, cognitively impaired subjects, children, and employee volunteers. Include safeguards for protecting vulnerable populations. Please refer to OHRP guidelines when choosing the study population. Note that these regulations apply if any subjects are members of the designated population, even if it is not the target population (eg, if a subject becomes a prisoner during the study).
+
+* If subjects will be compensated or provided any incentives (eg vouchers, gift cards,) for study participation, describe amount, form and timing of such compensation in relation to study activities (include financial and non-financial incentives). Describe who will receive incentives (if not the subject). For example, if minors, state whether the minor or the parent/guardian will receive the incentive. If incapacitated adults, state if payment will be provided to the subject or to a legally authorized representative or guardian.","PIPELINE: TEXT_MANIPULATION
+
+- Copy the target study sample size by gender, race and ethnicity, and age from the Synopsis
+- Copy the anticipated number to be screened including women and minorities from the Synopsis
+- Ensure consistency with information contained in Section 9.2, Determination of Sample Size
+- State the anticipated accrual rate from the Synopsis
+- State the anticipated number of sites and subjects to be enrolled from the US and outside the US from the Synopsis
+- Describe the source of subjects (eg, inpatient hospital setting, outpatient clinics, student health service, or general public) from the Synopsis
+- List recruitment venues from the Synopsis
+- Describe how potential subjects will be identified and approached from the Synopsis
+- List types of recruitment strategies planned (eg subject advocacy groups, national newspaper, local flyers; social media) from the Synopsis
+- If the study requires long-term participation, describe procedures that will be used to enhance subject retention (eg, multiple methods for contacting subjects, visit reminders, incentives for visit attendance) from the Synopsis
+- If applicable, describe specific strategies that will be used to recruit and retain historically under-represented populations in order to meet target sample size and conform with the NIH Policy on Inclusion of Women and Minorities as Subjects In Research Involving Human Subjects from the Synopsis
+- Include the number of women and minorities expected to be recruited from the Synopsis, or provide justification on those rare occasions where women and/or minorities will not be recruited from the Synopsis
+- If appropriate, include justification for inclusion of vulnerable subjects and recruitment strategy from the Synopsis
+- Include safeguards for protecting vulnerable populations from the Synopsis
+- If subjects will be compensated or provided any incentives for study participation, describe amount, form and timing of such compensation in relation to study activities from the Synopsis
+- Describe who will receive incentives (if not the subject) from the Synopsis","The input instruction contains detailed bullet points specifying exact content elements to be included in the recruitment and retention section. Each bullet point represents a specific piece of information that should be copied from the Synopsis (the primary source). The instruction uses language like 'identify', 'describe', 'list', and 'include' which are directive verbs, but the content is clearly meant to be extracted from existing source material rather than authored or synthesized. The instruction specifies that information should be 'consistent with Section 9.2' and references specific data points like sample sizes, accrual rates, and site numbers that would exist in structured form in the Synopsis. All conditional statements ('if applicable', 'if appropriate', 'if the study requires') were preserved exactly as written. The instruction does not require synthesis from multiple sources or authoring of new content, but rather extraction and presentation of existing recruitment and retention information from the Synopsis, making this a TEXT_MANIPULATION pipeline task."
 "5","STUDY TREATMENT(S)","Synopsis","","Heading","","","","",""
 "5.1","Description of Treatment(s)","Synopsis","","Heading","","","","",""
 "5.1.1","Study Drug","Synopsis","Investigators Brochure","","","Describe the study intervention(s).
@@ -345,17 +556,101 @@ Who will be responsible for dispensing study drug(s) or device(s). How to prepar
 
 This section should contain the name of the study intervention(s) and instructions for administration of the study intervention(s) to the participant (e.g., oral administration, intramuscular injection into the deltoid region of the dominant arm, intravenous bolus, etc.). This section should include dose regimens (e.g., twice daily)/dosing intervals (e.g., every 12 hours) if there is more than one dose to be administered in the study, when the first dose is administered (generally Day 1), and for how long the treatment should be given (e.g., single dose, three 28-day cycles, etc.).
 This section should contain information about the investigational product, dose, route of administration, dosage and mode of administration of each drug.
-Do not describe storage of the study intervention(s). Do not describe the composition of the study intervention(s). Do not describe participant follow-up. Do not describe dose modifications or treatment continuation. Do not describe the class or mechanism of action of the study drug(s) or study device(s). Do not describe special precautions for handling study drug(s). Describe the preparation of the study drug(s). Do not describe supportive and rescue treatments. Do not describe missed or vomited doses of the study drug(s). Do not describe dose modifications of the study drug(s).","","",""
+Do not describe storage of the study intervention(s). Do not describe the composition of the study intervention(s). Do not describe participant follow-up. Do not describe dose modifications or treatment continuation. Do not describe the class or mechanism of action of the study drug(s) or study device(s). Do not describe special precautions for handling study drug(s). Describe the preparation of the study drug(s). Do not describe supportive and rescue treatments. Do not describe missed or vomited doses of the study drug(s). Do not describe dose modifications of the study drug(s).","Provide the following information:
+
+* The trial treatment(s) to be administered, including the trade and generic names(s) of all the product(s), as well as the name(s) of active and inactive ingredients.
+
+* The dose(s).
+
+* The route/mode(s) of administration (eg, oral, nasal, intramuscular).
+
+* The dosing schedule.
+
+* The treatment period(s), including the follow-up period(s) for subjects for each IP treatment/trial treatment group/arm of the trial.
+
+* The type of comparator(s) (eg, placebo, no treatment, active drug, dose-response) and study configuration (parallel, cross-over).
+
+* The method for dispensing study treatment to the subject and who will be responsible for dispensing study treatment.
+
+The following figure is provided as a sample of the template figure format.
+
+**Figure 1.        Sample Figure**","PIPELINE: TEXT_MANIPULATION
+
+- Copy the trial treatment information from Synopsis, including:
+  • Trade and generic names of all investigational products
+  • Names of active and inactive ingredients for each product
+
+- Copy the dose information from Synopsis for each treatment arm
+
+- Copy the route and mode of administration from Synopsis (e.g., oral, nasal, intramuscular)
+
+- Copy the dosing schedule from Synopsis for each treatment group
+
+- Copy the treatment period duration from Synopsis, including:
+  • Treatment period length for each investigational product treatment group
+  • Follow-up period duration for subjects in each trial treatment arm
+
+- Copy the comparator information from Synopsis, including:
+  • Type of comparator (e.g., placebo, no treatment, active drug, dose-response)
+  • Study configuration (parallel, cross-over)
+
+- Copy the method for dispensing study treatment to subjects from Synopsis
+
+- Copy information identifying who will be responsible for dispensing study treatment from Synopsis
+
+Insert the following files as images into the content:
+1. Figure 1 sample figure file (if provided)","The input instruction requests specific treatment administration details to be provided, with explicit bullet points listing required content elements. Since the authoring mode specifies Synopsis as the primary source for protocol authoring and content may be directly copied from it, I transformed each bullet point into a TEXT_MANIPULATION directive using 'Copy from Synopsis' format. Each bullet point from the original instruction was preserved as a separate copy directive to maintain the specific content requirements: trade/generic names and ingredients, doses, routes/modes, dosing schedule, treatment periods including follow-up, comparator types and study configuration, and dispensing method and responsibility. The instruction mentioned a sample figure template, so I included an image insertion directive for Figure 1 with conditional language since the actual file wasn't specified. TEXT_MANIPULATION pipeline was selected because all content is to be copied directly from the Synopsis source document without synthesis or authoring from multiple references."
 "5.3","Selection and Timing of Dose for Each Subject","Synopsis","Investigators Brochure","","3.1","Provide the following information:
 Procedures for selecting each subjectâ€™s dose of test drug/IP and active control/comparator. These procedures can vary from simple random assignment to a selected fixed drug/dose regimen, to some specified titration procedure, to more elaborate response-determined selection procedures, eg, where dose is titrated upward at intervals until intolerance or some specified endpoint is achieved.
 Procedures for back-titration, if any.
 The timing (time of day, interval) of dosing and the relation of dosing to meals. If appropriate, state that there is no relationship to the timing of meals.
 Any specific instructions to be given to subjects about when or how to take the dose(s).
 Any requirements such as the need for previous fasting and the duration of this fasting. Also, specify if there is any particular meal restriction or meal composition that should or should not go with the treatment administration. It should also be considered if the patient needs to be in a specific position during the treatment administration.
-Do not describe dose modifications or treatment regimen modifications for the study drug(s). Do not describe administration of the study drug(s). Describe when the start of treatment and the end of treatment are. Do not describe what to do in case of a missed dose. When describing pharmacokinetics of a study drug, clearly indicate which drug is being discussed. Do not describe treatment schedule and monitoring. Do not describe supportive or rescue treatments. Do not describe participant positioning during study drug administration. Do not describe handling instructions for the study drug(s). Do not describe any product information.","","",""
+Do not describe dose modifications or treatment regimen modifications for the study drug(s). Do not describe administration of the study drug(s). Describe when the start of treatment and the end of treatment are. Do not describe what to do in case of a missed dose. When describing pharmacokinetics of a study drug, clearly indicate which drug is being discussed. Do not describe treatment schedule and monitoring. Do not describe supportive or rescue treatments. Do not describe participant positioning during study drug administration. Do not describe handling instructions for the study drug(s). Do not describe any product information.","Provide the following information:
+
+* Procedures for selecting each subject’s dose of test drug/IP and active control/comparator. These procedures can vary from simple random assignment to a selected fixed drug/dose regimen, to some specified titration procedure, to more elaborate response-determined selection procedures, eg, where dose is titrated upward at intervals until intolerance or some specified endpoint is achieved.
+
+* Procedures for back-titration, if any.
+
+* The timing (time of day, interval) of dosing and the relation of dosing to meals. If appropriate, state that there is no relationship to the timing of meals.
+
+* Any specific instructions to be given to subjects about when or how to take the dose(s).
+","PIPELINE: TEXT_MANIPULATION
+
+- Copy the dose selection procedures for each subject from the Synopsis, including:
+  • Method for determining individual subject doses (random assignment, titration procedure, or response-determined selection)
+  • Specific criteria for dose adjustments if applicable
+  • Any stratification factors used in dose assignment
+
+- Copy procedures for back-titration from the Synopsis if available
+- If back-titration procedures are not specified in the Synopsis, state ""No back-titration procedures are specified for this study""
+
+- Copy the dosing timing requirements from the Synopsis, including:
+  • Time of day for dose administration
+  • Dosing intervals
+  • Relationship of dosing to meals
+  • If no meal relationship exists, state ""Dosing has no relationship to the timing of meals""
+
+- Copy any specific subject instructions for dose administration from the Synopsis, including:
+  • Instructions on when to take doses
+  • Instructions on how to take doses
+  • Any special handling or preparation requirements for subjects","The input instruction requests copying specific procedural information about dose selection, timing, and administration instructions. This is clearly a TEXT_MANIPULATION task as it involves copying existing content from the Synopsis rather than synthesizing from multiple sources. I transformed the bullet points into directive copy instructions while preserving the original structure and terminology. For dose selection procedures, I specified copying from Synopsis and enumerated the types of procedures mentioned (random assignment, titration, response-determined). For back-titration, I added a conditional instruction to handle cases where this information may not be available. For timing information, I preserved the specific elements mentioned (time of day, interval, meal relationship) and included the conditional statement about no meal relationship. For subject instructions, I maintained the original phrasing about 'when or how to take' and added handling requirements as this is commonly part of administration instructions. Each bullet point was converted to a copy directive with specific content boundaries to ensure complete coverage of the required information."
 "5.4","Dose Escalation And Modification","Synopsis","Investigators Brochure","","3.1","If applicable, describe the dose escalation scheme (using exact dose, rather than percentages). State any minimum period required before a subjectâ€™s dose might be raised to the next higher dose or dose range. If applicable, the protocol should state the conditions under which a dose change will be made, particularly in regard to failure to respond or to toxic or untoward changes in stipulated indicators (eg, white blood cell count in cancer chemotherapy).
 Address dose modifications for specific abnormal laboratory values of concern or other adverse events (AEs) that are known to be associated with the planned study intervention. The protocol must state explicitly the dose-limiting effects that are anticipated. Provide criteria that will be used to determine dose escalations. If a subject is responding positively to the intervention, the protocol should specify whether study intervention administration would progress to still higher doses. If appropriate, provide a dose de-escalation schema with intervention modifications. Do not restate reasons for withdrawal of subjects. Cross-reference relevant sections, as appropriate. Describe treatment delays or interruptions.
-This section should not describe any information about treatment-emergent adverse events and how they will be assessed. This must include the criteria for any dose modification. Do not repeat the planned doses of study drug(s). Do not describe the schedule for administration of the study drug(s). If no dose modifications are planned for a specific study drug, clearly state that no dose modifications are planned. ","","",""
+This section should not describe any information about treatment-emergent adverse events and how they will be assessed. This must include the criteria for any dose modification. Do not repeat the planned doses of study drug(s). Do not describe the schedule for administration of the study drug(s). If no dose modifications are planned for a specific study drug, clearly state that no dose modifications are planned. ","*If applicable, describe the dose escalation scheme and dose regimen (using exact dose, rather than percentages). State any minimum period required before a subject’s dose might be raised to the next higher dose or dose range. If applicable, the protocol should state the conditions under which a dose change will be made, particularly in regard to failure to respond or to toxic or untoward changes in stipulated indicators (eg, white blood cell count in cancer chemotherapy).*
+
+*Address dose modifications for specific abnormal laboratory values of concern or other adverse events (AEs) that are known to be associated with the planned study intervention. The protocol must state explicitly the dose-limiting effects that are anticipated. Provide criteria that will be used to determine dose escalations. If a subject is responding positively to the intervention, the protocol should specify whether study intervention administration would progress to still higher doses. If appropriate, provide a dose de-escalation schema with intervention modifications. Do not restate reasons for withdrawal of subjects. Cross-reference relevant sections, as appropriate.*
+","PIPELINE: TEXT_MANIPULATION
+
+- Copy the dose escalation scheme and dose regimen from the Synopsis, specifying exact doses rather than percentages
+- State the minimum period required before a subject's dose might be raised to the next higher dose or dose range, if applicable
+- Copy the conditions under which a dose change will be made from the Synopsis, particularly in regard to failure to respond or to toxic or untoward changes in stipulated indicators
+- Include dose modifications for specific abnormal laboratory values of concern or other adverse events that are known to be associated with the planned study intervention
+- State explicitly the dose-limiting effects that are anticipated
+- Provide criteria that will be used to determine dose escalations
+- Specify whether study intervention administration would progress to still higher doses if a subject is responding positively to the intervention
+- Provide a dose de-escalation schema with intervention modifications, if appropriate
+- Exclude reasons for withdrawal of subjects from this section","The input instruction contains multiple 'if applicable' conditions which were preserved exactly as conditional requirements. The instruction asks to 'describe' and 'state' information about dose escalation schemes, which indicates copying existing content from the Synopsis rather than authoring new content. Each bullet point corresponds to a specific requirement from the input: dose escalation scheme (exact doses), minimum periods, conditions for dose changes, dose modifications for lab values/AEs, dose-limiting effects, escalation criteria, progression to higher doses, de-escalation schema, and exclusion of withdrawal reasons. The instruction to 'cross-reference relevant sections' was removed per transformation rule 11. All conditional language like 'if applicable' and 'if appropriate' was preserved exactly as stated in the input per rule 10. The TEXT_MANIPULATION pipeline was selected because the instruction primarily involves copying structured content from the Synopsis source document."
 "5.5","Missed Dose","Synopsis","Investigators Brochure","","3.1, 5.1.1, 5.1.2","Include any specific instructions about how delayed or missed doses should be handled. Do not describe visit scheduling flexibility.","","",""
 "5.6","Randomization and Blinding or Masking","Synopsis","Investigators Brochure","","3.1","This section should contain a description of randomization and blinding (or masking for vision studies) procedures (if applicable to the study design). It should include a description or a table that describes how study subjects will be assigned to study groups, without being so specific that blinding or randomization might be compromised (eg, the ratio between intervention and placebo groups may be stated). If adaptive randomization or other methods of covariate balancing/minimization are employed, include a cross link to the methods of analysis in Section 9, Planned Statistical Methods. In addition, details regarding the implementation of procedures to minimize bias should be included in this section. DO NOT include details that might compromise these strategies. Design techniques to avoid bias can be found in the ICH Guidance for Industry E9 Statistical Principles for Clinical Trials.
 Plans for the maintenance of trial randomization codes and appropriate blinding for the study should be discussed. The timing and procedures for planned and unplanned breaking of randomization codes should be included. Include a statement regarding when unblinding may occur and who may unblind. Provide the criteria for breaking the study blind or subject code. Discuss the circumstances in which the blind would be broken for an individual or for all subjects (eg, for SAEs). Indicate to whom the intentional and unintentional breaking of the blind should be reported.

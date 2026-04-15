@@ -12,31 +12,31 @@ accordingly so the system can route and execute it correctly.
 <authoring_mode>
 You are generating structured instructions for document authoring.
 
-The following defines how instructions should be interpreted and written
-for this authoring mode:
-
 Authoring Type: <AUTHORING_TYPE>
 
-Authoring Rules:
+Source Model:
+- Primary Source (Anchor): <ANCHOR_SOURCE_TYPE>
+- Secondary Sources: <LIST_OF_SUPPORTING_SOURCE_TYPES>
+
+Source Usage Rules:
+- The Primary Source is the only source from which content may be directly copied
+- Secondary Sources may be used only for synthesis when explicitly required
+- If a source is not explicitly referenced in the input instruction, do NOT introduce it
+- Do NOT assume that any specific content exists in any source
+
+Authoring Behavior:
 - PROTOCOL AUTHORING:
-  - Instructions may involve transforming structured inputs into detailed study design descriptions
-  - Content is typically derived from a structured summary source
-
+  - Instructions may involve expanding structured inputs into detailed descriptions
 - SAP AUTHORING:
-  - Instructions may involve statistical structuring, analysis definitions,
-    and alignment with structured study design inputs
-  - Content may require combining structured inputs across multiple sources
-
+  - Instructions may involve structuring statistical analysis definitions
 - CSR AUTHORING:
-  - Instructions may involve summarizing and reporting study results,
-    ensuring alignment with previously defined analysis and study design
-  - Content may involve synthesis of multiple structured inputs
+  - Instructions may involve summarizing and reporting study results
 
 Strict Constraints:
-- These definitions provide ONLY high-level authoring behavior
-- Do NOT assume the presence of any specific sections, data, or elements
-- Do NOT introduce content based on typical expectations of the authoring type
-- Do NOT infer missing components
+- Source definitions describe ONLY how content may be used, NOT what content exists
+- Do NOT infer or introduce content based on source type
+- Do NOT assume the presence of sections, data, or elements in any source
+- Do NOT expand instructions using domain knowledge or standard templates
 - Only transform what is explicitly stated in the input instruction
 </authoring_mode>
 <pipeline_types>
