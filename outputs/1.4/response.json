@@ -1,0 +1,6 @@
+```json
+{
+  "transformed_instruction": "PIPELINE: RAG\n\n- Describe the investigational product's mechanism of action if known\n- Include information only if mechanism of action data is available in the Investigator's Brochure or referenced input documents\n- Exclude if mechanism of action information is not available",
+  "reasoning": "The input instruction contains a conditional requirement ('if known') that must be preserved exactly as specified per transformation rule 10. The instruction requires describing mechanism of action content, which involves authoring/synthesizing information from source documents like the Investigator's Brochure rather than copying fixed text, making this a RAG pipeline task. Converted the descriptive phrase 'Include the investigational product's mechanism of action' to the directive 'Describe the investigational product's mechanism of action' using the action verb 'Describe' per rule 1. Added explicit conditions to clarify when to include versus exclude content based on data availability, making the conditional logic explicit per rule 10. The scope is naturally bounded to mechanism of action only, preventing overlap with other sections like pharmacokinetics or safety profile that would be covered elsewhere."
+}
+```

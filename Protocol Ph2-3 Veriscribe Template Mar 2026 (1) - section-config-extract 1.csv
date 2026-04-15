@@ -1,0 +1,1084 @@
+"section_number","section_title","core_files","expected_files","section_type","section_dependencies","ground_truth","template_instructions","transformed_output","reasoning"
+"1","INTRODUCTION","Synopsis","","Heading","","","","",""
+"1.1","Study Rationale","Synopsis","Industry Literature, Guidelines","","","State the problem or question (eg, describe the population, disease, current standard of care, if one exists, and limitations of knowledge or available therapy) and the reason for conducting the clinical trial. If the disease etiology is known, briefly describe it and explain the need that the clinical protocol addresses. The following questions can be used as a guidance:
+How does the study treatment address the etiology or pathology of the disease it would be treating?
+Does it address the cause of the disease or does it treat symptoms of the disease?
+What is the current state of the art therapy for this disease (if there is one) and how is the study drug different from the approved therapy?
+This section should also discuss any regulatory guidelines used to inform the study design.
+In addition, if there are unusual or special outcome measures being assessed in the study, this section should discuss why these are appropriate measures for the disease/pathology that is the study drug's indication. Such issues as the etiology of the disease, their current available treatments and the study design including the duration of treatment, dose, number of times it is given, and the reasons for selecting the specific population of participants in the study should be included. Briefly summarize the rationale for the dose of the study drug used in the protocol. Do not mention any drugs or devices not being administered in this study. ","*State the problem or question (eg, describe the population, disease, current standard of care, if one exists, and limitations of knowledge or available therapy) and the reason for conducting the clinical trial.*","PIPELINE: RAG
+
+- Describe the target population for this clinical trial
+- Describe the disease or medical condition being studied
+- Describe the current standard of care, if one exists
+- Identify limitations of current knowledge or available therapy
+- State the reason for conducting this clinical trial based on the identified problem or question","The input instruction requires authoring content that synthesizes information about the population, disease, standard of care, and knowledge gaps from multiple reference sources, which signals RAG pipeline. Each element from the parenthetical example was converted into a separate bullet point using directive action verbs: 'Describe' for population, disease, and standard of care; 'Identify' for limitations; and 'State' for the reason. The conditional phrase 'if one exists' was preserved exactly as written to maintain the original conditional logic. The instruction was restructured from a single descriptive sentence into enumerated content requirements while preserving all original terminology like 'target population', 'standard of care', 'limitations of knowledge or available therapy', and 'reason for conducting the clinical trial'. No cross-references, domain assumptions, or additional content beyond what was explicitly stated in the input were added."
+"1.2","Background","Synopsis","Investigators Brochure, Industry Literature","","","This section should include:
+A short summary of findings from nonclinical in vitro or in vivo studies that have potential clinical significance
+A short summary of relevant clinical research and any history of human use or exposure to the study intervention, including use in other countries, and clinical pharmacology studies
+Discussion of important literature and data that are relevant to the trial and that provide background for the trial 
+Applicable clinical, epidemiological, or public health background or context of the clinical trial
+Importance of the clinical trial and any relevant treatment issues or controversies. This section MUST include:
+A description of the disease/pathology that the study drug is expected to treat. 
+A short summary of findings from nonclinical in vitro or in vivo studies that have potential clinical significance or that have led to the clinical development of the study drug.
+A short summary of relevant clinical research and any history of human use or exposure to the study intervention, including use in other countries, and clinical pharmacology studies. If available, include the following information about the previous relevant clinical research: phase and design of the study and results for safety, pharmacokinetics, pharmacodynamics and efficacy.
+A discussion of important literature and data that are relevant to the trial and that provide background for the trial (reference citations should be listed in Section 11, References)
+When discussing previous clinical trials, discuss each of them separately.
+Describe the importance of the present clinical trial and any relevant treatment issues or controversies. Do not discuss any drugs or devices that are not administered in this study.
+
+This section should NOT contain information about the current study's design.","*This section should include:*
+
+* A summary of findings from nonclinical in vitro or in vivo studies that have potential clinical significance
+
+* A summary of relevant clinical research and any history of human use or exposure to the study intervention, including use in other countries, and clinical pharmacology studies
+
+* Discussion of important literature and data that are relevant to the trial and that provide background for the trial (reference citations should be listed in Section 11, References)
+
+* Applicable clinical, epidemiological, or public health background or context of the clinical trial  
+* Importance of the clinical trial and any relevant treatment issues or controversies","PIPELINE: RAG
+
+- Summarize findings from nonclinical in vitro or in vivo studies that have potential clinical significance
+- Summarize relevant clinical research and any history of human use or exposure to the study intervention, including use in other countries, and clinical pharmacology studies
+- Discuss important literature and data that are relevant to the trial and that provide background for the trial
+- Provide applicable clinical, epidemiological, or public health background or context of the clinical trial
+- Describe the importance of the clinical trial and any relevant treatment issues or controversies
+- Include reference citations for all literature and data discussed; list citations in Section 11, References","First bullet point: Converted 'A summary of findings from nonclinical...' to directive 'Summarize findings from nonclinical...' using action verb while preserving exact terminology and scope. Second bullet point: Converted 'A summary of relevant clinical research...' to directive 'Summarize relevant clinical research...' maintaining all original qualifiers including 'including use in other countries, and clinical pharmacology studies'. Third bullet point: Converted 'Discussion of important literature...' to directive 'Discuss important literature...' preserving exact wording and scope. Added separate instruction about reference citations since original mentioned they should be listed in Section 11. Fourth bullet point: Converted 'Applicable clinical, epidemiological...' to directive 'Provide applicable clinical, epidemiological...' maintaining exact terminology. Fifth bullet point: Converted 'Importance of the clinical trial...' to directive 'Describe the importance of the clinical trial...' preserving original wording including 'any relevant treatment issues or controversies'. RAG pipeline selected because all content requires authoring and synthesis from multiple source documents (nonclinical studies, clinical research, literature, epidemiological data) rather than copying from a single fixed source."
+"1.3","Risk Benefit Assessment","Synopsis","","Heading","","","","",""
+"1.3.1","Known Potential Risks","Synopsis","Investigators Brochure, Industry Literature","","","Include a discussion of known potential risks from either clinical or nonclinical studies. If a package insert or device labeling from a licensed or approved product is available, it should be used as the primary source of risk information. If the product is investigational, the Investigatorâ€™s Brochure (IB) should be the primary source of the risk information. In addition, relevant published literature can also provide relevant risk information. If the risk profile cannot be described from the package insert, device labeling, or the IB, the risk information discussion will result from published literature and should be included and referenced appropriately. Describe any physical, psychological, social, legal, economic, or any other risks to subjects by participating in the study that the Principal Investigator (PI) foresees, addressing each of the following:
+- Immediate risks
+- Long-range risks
+If risk is related to proposed procedures included in the protocol, describe alternative procedures that have been considered and explain why alternative procedures are not included. The long-term safety monitoring in the current study does not apply for this section. Any mention to long-term safety should rather provide information about how long patients have been monitored in previous studies after taking the study drug and if any long-term safety signals have been detected
+Risks should be focused on:
+a) The study drug, using information from previous use of the study drug (e.g., the Investigator's Brochure) to provide a description of the expected adverse events.
+b) The study procedures, including standard procedures and any ""non-standard"" procedures (e.g., imaging and use of any contrast agents, any medications/treatments other than the study drug that the participant will be receiving.
+c) Any other component that poses a risk to the participants and that does not contradict any of the previous statements. 
+
+You must include risk management strategies. Risk management strategies should include, and discuss safety assessments: AE reporting, safety laboratory evaluations, vital signs, physical examinations, concomitant medication monitoring, and safety review by a committee such as a DSMB or DMC.
+Do not describe risks associated with drugs, medications, or medical devices that are not being administered in this study. Do not describe alternative treatments. Do not describe risk mitigation for drugs, medications, or medical devices that are not being administered in this study. Do not discuss drugs, medications, or medical devices that are not being administered in this study. Do not list laboratory parameters. Do not describe the length of patient follow-up in previous studies. Do not discuss the timeframe for SAE reporting. Do not provide an introductory statement stating what has been done to generate this section.
+"," *Include a discussion of known potential risks from either clinical or nonclinical studies. If a package insert or device labeling from a licensed or approved product is available, it should be used as the primary source of risk information. If the product is investigational, the Investigator’s Brochure (IB) should be the primary source of the risk information. In addition, relevant published literature can also provide relevant risk information. If the risk profile cannot be described from the package insert, device labeling, or the IB, the risk information discussion will result from published literature and should be included and referenced appropriately.*
+
+*Describe any physical, psychological, social, legal, economic, or any other risks to subjects by participating in the study that the Principal Investigator (PI) foresees, addressing each of the following:*
+
+* Immediate risks
+
+* Long-range risks
+
+0. *If risk is related to proposed procedures included in the protocol, describe alternative procedures that have been considered and explain why alternative procedures are not included*  
+ ","PIPELINE: RAG
+
+- Summarize known potential risks from clinical or nonclinical studies using the following source hierarchy:
+  • Primary source: Package insert or device labeling if available for licensed or approved product
+  • Primary source: Investigator's Brochure if product is investigational
+  • Secondary source: Relevant published literature
+- Include risk information from published literature if the risk profile cannot be described from the package insert, device labeling, or the IB
+- Reference all literature sources appropriately
+
+- Describe physical, psychological, social, legal, economic, or any other risks to subjects by participating in the study that the Principal Investigator foresees
+- Address each of the following risk categories:
+  • Immediate risks
+  • Long-range risks
+
+- If risk is related to proposed procedures included in the protocol, describe alternative procedures that have been considered and explain why alternative procedures are not included","The input instruction requires synthesis and authoring from multiple potential sources (package insert, device labeling, IB, published literature) rather than copying from a single known source, indicating RAG pipeline. First bullet point: Transformed the source hierarchy from narrative description into structured directive format using 'Summarize' as action verb, preserving the exact conditional logic ('if available', 'if product is investigational', 'if the risk profile cannot be described'). Maintained the specific terminology like 'package insert', 'device labeling', 'Investigator's Brochure'. Second section: Converted the descriptive phrase 'Describe any physical, psychological, social, legal, economic, or any other risks' into directive format while preserving the complete list of risk types and the qualifier 'that the Principal Investigator foresees'. Third section: Restructured the numbered list (immediate risks, long-range risks) into bullet format for clarity while maintaining the exact categories. Final bullet: Preserved the conditional statement 'If risk is related to proposed procedures' exactly as written, maintaining the requirement to describe alternatives and explain why they're not included. All technical language and regulatory terminology was preserved without paraphrasing."
+"1.3.2","Known Potential Benefits","Synopsis","Investigators Brochure, Industry Literature","","","Include a discussion of known potential benefits from either clinical or nonclinical studies. If a package insert or device labeling from a licensed or approved product is available, it should be used as the primary source of potential benefit information. If the product is investigational, the IB should be the primary source of the potential benefit information. In addition, relevant published literature can also provide potential relevant benefit information. If the potential benefit cannot be described from the package insert, device labeling, or the IB, the potential benefit information discussion will result from published literature and should be included and referenced appropriately.
+Describe any physical, psychological, social, legal, or any other potential benefits to individual subjects or society in general, as a result of participating in the study, addressing each of the following:
+Immediate potential benefits
+Long-range potential benefits
+Note that payment to subjects, whether as an inducement to participate or as compensation for time and inconvenience, is not considered a â€œbenefit.â€ Provision of incidental care is also not to be considered a benefit.
+This section should summarize benefits that have been shown in previous studies/previous uses of the study drug. 
+If there is no currently known benefit to the therapy, but the study may have some benefit to the participant or to society, these benefits should be mentioned here as ""potential benefits"" and not as ""known benefits"". These potential benefits can include those that participants will receive from undergoing study procedures, such as getting information about their health.
+When describing a previous clinical trial, ensure that the drug or device evaluated in that trial is mentioned.
+Do not discuss the timeframe of potential benefits in specific lengths of time; only differentiate between immediate benefits and long-term benefits.
+Do not discuss the potential benefits for patients with diseases other than the one being studied in this clinical trial.","*Include a discussion of known potential benefits from either clinical or nonclinical studies. If a package insert or device labeling from a licensed or approved product is available, it should be used as the primary source of potential benefit information. If the product is investigational, the IB should be the primary source of the potential benefit information. In addition, relevant published literature can also provide potential relevant benefit information. If the potential benefit cannot be described from the package insert, device labeling, or the IB, the potential benefit information discussion will result from published literature and should be included and referenced appropriately.*
+
+*Describe any physical, psychological, social, legal, or any other potential benefits to individual subjects or society in general, as a result of participating in the study, addressing each of the following:*
+
+* Immediate potential benefits
+
+* Long-range potential benefits
+
+*Note that payment to subjects, whether as an inducement to participate or as compensation for time and inconvenience, is not considered a “benefit.” Provision of incidental care is also not to be considered a benefit.*","PIPELINE: RAG
+
+- Describe known potential benefits from clinical or nonclinical studies using the following source hierarchy:
+  • Primary source: Package insert or device labeling if available from a licensed or approved product
+  • Primary source: Investigator's Brochure if the product is investigational
+  • Secondary source: Relevant published literature
+- Include and reference published literature appropriately if potential benefit cannot be described from the package insert, device labeling, or the IB
+- Describe physical, psychological, social, legal, or any other potential benefits to individual subjects or society in general as a result of participating in the study
+- Address immediate potential benefits to subjects
+- Address long-range potential benefits to subjects
+- Exclude payment to subjects as inducement to participate or compensation for time and inconvenience from benefit discussion
+- Exclude provision of incidental care from benefit discussion","The instruction requires synthesis and description of potential benefits from multiple possible sources (package insert, device labeling, IB, published literature) with a clear source hierarchy, making this a RAG pipeline task. The first bullet point preserves the original source hierarchy exactly as specified, using the conditional language 'if available' and 'if the product is investigational' without modification. The second bullet maintains the original conditional structure 'if potential benefit cannot be described from...' and preserves the requirement to reference literature appropriately. The third bullet converts the original descriptive language 'Describe any physical, psychological, social, legal, or any other potential benefits' into a directive while preserving all benefit categories and the scope 'to individual subjects or society in general.' The fourth and fifth bullets directly transform the original bullet points about immediate and long-range benefits into directive statements. The final two bullets preserve the original exclusions about payment and incidental care, converting the note format into explicit exclusion directives using 'Exclude' as the action verb. All original conditional language and specific terminology has been maintained without paraphrasing or simplification."
+"1.3.3","Assessment of Potential Risks and Benefits","Synopsis","Investigators Brochure, Industry Literature","","1.3.1, 1.3.2","Address each of the following:
+Rationale for the necessity of exposing subjects to risks.
+Justification as to why the risks of participation in the study outweigh the value of the information to be gained.
+This section should offer an unbiased assessment of the study's balance between risks and benefits. Include a justification as to why the benefits to the participant from the study intervention outweigh its risks. Include a justification for any unusual risks to the participants that would be outside of the risks of normal standard of care.
+","*Include an assessment of known potential risks and benefits, addressing each of the following:*
+
+* Rationale for the necessity of exposing subjects to risks and a summary of the ways that risks to subjects were minimized in the study design
+
+* Justification as to why the risks of participation in the study outweigh the value of the information to be gained","PIPELINE: RAG
+
+- Provide a rationale for the necessity of exposing subjects to risks and summarize the ways that risks to subjects were minimized in the study design
+- Provide justification as to why the risks of participation in the study outweigh the value of the information to be gained
+- Base the assessment on the known potential risks identified in Section 1.3.1 and known potential benefits identified in Section 1.3.2
+- Include specific risk mitigation strategies implemented in the study protocol
+- Address the overall risk-benefit balance for the study population","The input instruction required assessment and analysis content that must be authored by synthesizing information from multiple sources (known risks from 1.3.1, known benefits from 1.3.2, study design elements for risk mitigation). Converted the two bullet points into directive statements using 'Provide a rationale' and 'Provide justification' while preserving the exact language from the original instruction. Added explicit directive to base assessment on the preceding sections (1.3.1 and 1.3.2) to ensure comprehensive coverage. Added requirement to include specific risk mitigation strategies and overall risk-benefit balance to make the instruction more actionable while staying within the scope of assessment content. The instruction requires RAG pipeline because it involves authoring analytical content that synthesizes information from multiple protocol sections rather than copying existing text."
+"1.4","Mechanism of Action","Synopsis","Investigators Brochure, Industry Literature","","","Include the investigational product (IP)â€™s mechanism of action if known.
+Describe comprehensively and with great detail how the investigational drug or treatment exerts its intended biological effects. Indicate the drug class or type, and describe the mechanism of action for its drug class or type. Also describe how two or more mechanisms of action might interact.
+","*Include the investigational product (IP)’s mechanism of action if known.*
+","PIPELINE: RAG
+
+- Describe the investigational product's mechanism of action if known
+- Include information only if mechanism of action data is available in the Investigator's Brochure or referenced input documents
+- Exclude if mechanism of action information is not available","The input instruction contains a conditional requirement ('if known') that must be preserved exactly as specified per transformation rule 10. The instruction requires describing mechanism of action content, which involves authoring/synthesizing information from source documents like the Investigator's Brochure rather than copying fixed text, making this a RAG pipeline task. Converted the descriptive phrase 'Include the investigational product's mechanism of action' to the directive 'Describe the investigational product's mechanism of action' using the action verb 'Describe' per rule 1. Added explicit conditions to clarify when to include versus exclude content based on data availability, making the conditional logic explicit per rule 10. The scope is naturally bounded to mechanism of action only, preventing overlap with other sections like pharmacokinetics or safety profile that would be covered elsewhere."
+"2","STUDY OBJECTIVES AND ENDPOINTS","Synopsis","","Heading","","","","",""
+"2.1","Primary Objective(s) and Endpoint(s)","Synopsis","","","","Insert the primary objectives and endpoints copied from the synopsis together in this section in tabular format.
+| Objective(s)     | Endpoint(s)      |
+|------------------|------------------|
+|                  |                  |
+|                  |                  |
+|                  |                  |
+","Insert the objectives and endpoints together in this section in tabular format as applicable to the study in the following style: “To evaluate…”
+
+| Objective(s) | Endpoint(s) |
+| :---- | :---- |
+|  |  |
+|  |  |
+|  |  |","PIPELINE: TEXT_MANIPULATION
+
+Format the primary objectives and endpoints from the Protocol into a table with the following structure. Include all primary objectives as applicable to the study. Present each objective using the format ""To evaluate..."":
+
+| Objective(s) | Endpoint(s) |
+| :---- | :---- |
+|  |  |
+|  |  |
+|  |  |","The input instruction specifies copying objectives and endpoints into a predefined tabular format, which is a TEXT_MANIPULATION task since it involves extracting and formatting existing content from the protocol rather than authoring new content. The instruction was transformed by: 1) Converting 'Insert the objectives and endpoints' to the directive 'Format the primary objectives and endpoints from the Protocol' to specify the source document, 2) Adding 'Include all primary objectives as applicable to the study' to preserve the original conditional 'as applicable', 3) Retaining the exact formatting requirement 'To evaluate...' as specified in the input, 4) Preserving the exact table structure provided in the input including the column alignment formatting, 5) Scoping to 'primary objectives' only since this is section 2.1 which specifically covers primary objectives according to the section context, distinguishing it from secondary (2.2) and exploratory (2.3) objectives covered in separate sections."
+"2.2","Secondary Objective(s) and Endpoint(s)","Synopsis","","","","Insert the secondary objectives and endpoints copied from the synopsis together in this section in tabular format. If there are any key secondary objectives, separate the key secondary objectives from the other secondary objectives.
+| Objective(s)     | Endpoint(s)      |
+|------------------|------------------|
+|                  |                  |
+|                  |                  |
+|                  |                  |","| Objective(s) | Endpoint(s) |
+| :---- | :---- |
+|  |  |
+|  |  |
+|  |  |","PIPELINE: TEXT_MANIPULATION
+
+Format the secondary objectives and their corresponding endpoints from the Protocol into a table with the following structure:
+
+| Objective(s) | Endpoint(s) |
+| :---- | :---- |
+|  |  |
+|  |  |
+|  |  |
+
+- Copy all secondary objectives and endpoints exactly as stated in the Protocol
+- Include only secondary objectives in this table
+- Exclude primary objectives and exploratory objectives from this section","The input instruction consists solely of an empty table template with headers 'Objective(s)' and 'Endpoint(s)' and three empty rows. Since this is section 2.2 'Secondary Objective(s) and Endpoint(s)' based on the section context, I transformed this into a directive to populate the table with secondary objectives from the Protocol. I preserved the exact table format including the column alignment syntax (:----). I added explicit instructions to copy content from the Protocol source and included boundary conditions to exclude primary and exploratory objectives to prevent content duplication across sections 2.1 and 2.3. The TEXT_MANIPULATION pipeline was selected because this involves copying structured content from a source document (Protocol) into a predefined table format without requiring synthesis or authoring of new content."
+"2.3","Exploratory Objective(s) and Endpoint(s)","Synopsis","","","","Insert the exploratory objectives and endpoints copied from the synopsis together in this section in tabular format.
+| Objective(s)     | Endpoint(s)      |
+|------------------|------------------|
+|                  |                  |
+|                  |                  |
+|                  |                  |","| Objective(s) | Endpoint(s) |
+| :---- | :---- |
+|  |  |
+|  |  |
+|  |  |","PIPELINE: TEXT_MANIPULATION
+
+Format the exploratory objectives and endpoints from the Protocol into a table with the following structure:
+
+| Objective(s) | Endpoint(s) |
+|--------------|-------------|
+|              |              |
+|              |              |
+|              |              |
+
+- Copy only exploratory objectives and their corresponding endpoints
+- Exclude primary and secondary objectives from this table
+- If no exploratory objectives are defined in the Protocol, leave the table rows empty","The input instruction provides only an empty table template with headers 'Objective(s)' and 'Endpoint(s)' and three empty rows. Since this is section 2.3 'Exploratory Objective(s) and Endpoint(s)', I transformed this into a directive to populate the table with exploratory objectives specifically from the Protocol. I preserved the exact table structure from the input, including the column headers and number of rows. I added explicit instructions to copy content from the Protocol source and to exclude primary/secondary objectives to prevent duplication with sections 2.1 and 2.2. I included a condition for handling cases where no exploratory objectives exist. This is TEXT_MANIPULATION because it involves copying and formatting existing content from a source document into a predefined table structure."
+"3","INVESTIGATIONAL PLAN","Synopsis","","Heading","","","","",""
+"3.1","Overall Study Design and Plan","Synopsis","","","","The scientific integrity of the trial and the credibility of the data from the trial depend substantially on the trial design.
+Provide a brief overall description of the trial design, similar to a short abstract. Details of each item described in this section will follow in other sections of this protocol template. Include descriptions of the following, as applicable:
+A statement of the hypothesis
+Phase of the trial
+A description of the type/design of trial to be conducted (eg, randomized, placebo-controlled, double-blinded, parallel design, open-label, dose escalation, dose-ranging, adaptive, cluster randomized, group sequential, multi-regional, superiority or non-inferiority design)
+A description of methods to be used to minimize bias
+The number of study groups/arms and study intervention duration
+Indicate if single site or multi-site
+Name of study intervention(s)
+Note if the study includes any stratifications and if so, identify the stratification planned (eg, sex, race/ethnicity, age, dose)
+Name of sub-studies, if any, included in this protocol
+If other studies used a very similar protocol, consider discussing any important differences between the protocols. This section must include the following:
+A description of the study population.
+The number of participants, study groups/arms and study intervention duration
+Duration of the follow-up period.
+If other studies used a very similar protocol, consider discussing any important differences between the protocols.
+Include a reference to ""Appendix 1: Schedule of Events""
+If a Safety Monitoring Committee (SMC) or a Data and Safety Monitoring Board (DSMB) is being convened for this study, it should be stated in this section.
+Do not discuss inclusion and exclusion criteria. Do not discuss sample size calculations.","The scientific integrity of the trial and the credibility of the data from the trial depend substantially on the trial design.
+
+Provide a brief overall description of the trial design, similar to a short abstract. Details of each item described in this section will follow in other sections of this protocol template. Include descriptions of the following, as applicable:
+
+* A statement of the hypothesis
+
+* Phase of the trial
+
+* A description of the type/design of trial to be conducted (eg, randomized, placebo-controlled, double-blinded, parallel design, open-label, dose escalation, dose-ranging, adaptive, cluster randomized, group sequential, multi-regional, superiority or non-inferiority design)
+
+* A description of methods to be used to minimize bias
+
+* Dose escalation or dose-ranging details should be contained in Section 5, Study Treatments
+
+* The number of study groups/arms and study intervention duration
+
+* Indicate if single site or multi-site
+
+* Name of study intervention(s)
+
+* Note if interim analysis is planned and refer to details in Section 9, Planned Statistical Methods
+
+* Note if the study includes any stratifications and if so, identify the stratification planned (eg, sex, race/ethnicity, age, dose) and refer to details in Section 9, Planned Statistical Methods
+
+* Name of sub-studies, if any, included in this protocol
+
+If other studies used a very similar protocol, consider discussing any important differences between the protocols.
+
+Use charts and diagrams as needed. Include an events table that includes timing of assessments in an appendix to the protocol. Be certain that the events table exactly matches the methods and procedures described in the protocol text.
+
+See [Appendix 1](#bookmark=id.3gnlt4p), Schedule of Events (SOE).
+","PIPELINE: TEXT_MANIPULATION
+
+- Provide a brief overall description of the trial design, similar to a short abstract
+- Include a statement of the hypothesis, if applicable
+- State the phase of the trial
+- Describe the type/design of trial to be conducted (eg, randomized, placebo-controlled, double-blinded, parallel design, open-label, dose escalation, dose-ranging, adaptive, cluster randomized, group sequential, multi-regional, superiority or non-inferiority design)
+- Describe methods to be used to minimize bias
+- State the number of study groups/arms and study intervention duration
+- Indicate if single site or multi-site
+- Name the study intervention(s)
+- Note if interim analysis is planned
+- Note if the study includes any stratifications and if so, identify the stratification planned (eg, sex, race/ethnicity, age, dose)
+- Name sub-studies, if any, included in this protocol
+- If other studies used a very similar protocol, discuss any important differences between the protocols, if applicable
+- Use charts and diagrams as needed
+- Exclude dose escalation or dose-ranging details (scoped to Section 5)
+- Exclude interim analysis details (refer to Section 9)
+- Exclude stratification details (refer to Section 9)
+- Exclude timing of assessments details (refer to Appendix 1)","The input instruction is primarily asking for a descriptive overview that copies and presents existing study design information without requiring synthesis from multiple sources or authoring new content. The instruction uses phrases like 'provide a brief overall description' and lists specific elements to include that would be directly available from the protocol design specifications. The bullet points enumerate specific design elements that need to be stated or described, which are factual elements that would be copied from existing study design documents rather than authored. The instruction includes explicit exclusions directing content to other sections (Section 5 for dose details, Section 9 for statistical details, Appendix 1 for timing), which supports the TEXT_MANIPULATION classification as it's organizing and presenting existing information rather than creating new content. The phrase 'use charts and diagrams as needed' suggests incorporating existing visual materials. The conditional statements 'as applicable' and 'if any' were preserved exactly as written to maintain the original conditional logic."
+"3.2","Rationale For Study Design And Control Group","Synopsis","Industry Literature, Guidelines, Investigators Brochure","","1.1, 3.3","Provide a rationale for the selected study design and comparator group(s) chosen.
+In addition to the type of control, other critical design features that may need discussion are the use of a cross-over design and the selection of subjects with particular prior history, such as response or non-response to a specific drug or member of a drug class.
+Consider the following questions:
+- What are the primary questions that the study will be designed to answer?
+- Will the study design support the intended labeling?
+- Why was the design chosen?
+- What were the designs that were rejected, and why?
+- What are the potential benefits of the test product over the comparator or standard treatment?  
+- Were any regulatory guidelines used in the study design?
+- How does the study meet these guidelines?
+- If applicable, Why does this study use a specific control group and substance?
+- Why has the study population for this study been chosen?
+
+For any choices or selections made for the trial design, you MUST provide a justification or rationale or explanation. Each of these choices/selections in the trial design must be substantiated with an explanation/rationale/justification/reasoning behind its selection based on evidence. Briefly summarize the basis for the dose of study drug(s) that was chosen (i.e., nonclinical data, previous clinical trials, current clinical practice).
+Do not discuss randomization or stratification in previous clinical trials except if a previous trial used exactly the same randomization method and stratification factors. Do not discuss sample size calculations. In the rationale for the control group, do not discuss the non-control group(s).","","",""
+"3.3","Justification For Dose","Synopsis","Investigators Brochure, Industry Literature","","","Provide a justification for the dose(s) that was chosen for each drug administered in this study.
+Provide a justification for the route of administration and dosing regimen, including starting dose, of the study intervention(s) and control product(s).
+This should put the selected dose of study drug(s) into historical and scientific context of the previous uses of this study drug. 
+
+If this is a first-in-human study, the rationale and calculation of the human equivalent dose should go here. Otherwise, put the dose being administered in this study in the context of the maximum dose that has been previously administered to humans. 
+Include information about exposure to different doses, if available.","","",""
+"3.4","Study Duration","Synopsis","","","3.1","Insert the following text:
+""A subject is considered to have completed the study if he or she has completed all phases of the study including the last visit or the last scheduled procedure shown in the schedule of events in Appendix 1.
+The end of the study is defined as completion of the last visit or procedure shown in the schedule of events in the trial globally.""","","",""
+"4","STUDY POPULATION SELECTION","Synopsis","","Heading","","","","",""
+"4.1","Inclusion Criteria","Synopsis","","","","Insert the list of inclusion criteria. Inclusion criteria should be taken from the protocol synopsis, without any change.
+Use a numbered list for the inclusion criteria.
+Precede the numbered list of inclusion criteria with the following text: ""Each participant must meet the following criteria to be enrolled in this study:""","","",""
+"4.2","Exclusion Criteria","Synopsis","","","","Insert the list of exclusion criteria. Exclusion criteria should be taken from the protocol synopsis, without any change.
+Use a numbered list for the exclusion criteria.
+Precede the numbered list of exclusion criteria with the following text: ""Participants who meet any of the following criteria will be excluded from the study:""","","",""
+"4.3","Screen Failures","Synopsis","","","","Example text provided as a guide, customize as needed:
+[Screen failures are defined as subjects who consent to participate in the clinical trial but are not subsequently randomly assigned to the study intervention or entered in the study. A minimal set of screen failure information is required to ensure transparent reporting of screen failure subjects, to meet the Consolidated Standards of Reporting Trials (CONSORT) publishing requirements and to respond to queries from regulatory authorities. Minimal information includes demography, screen failure details, eligibility criteria, and any serious adverse event (SAE).
+Individuals who do not meet the criteria for participation in this trial (screen failure) because of a <specify modifiable factor> may be rescreened. Rescreened subjects should be assigned the same subject number as for the initial screening.]
+","","",""
+"4.4","Strategies for Recruitment and Retention","Synopsis","","","","Identify general strategies for subject recruitment and retention. This section may refer to a separate detailed recruitment and retention plan in the manual of procedures (MOP) and site-specific plans could be included in a site-specific standard operating procedure (SOP). Consider inclusion of the information below either in this section or the MOP.
+Target study sample size by gender, race and ethnicity, and age; identify anticipated number to be screened including women and minorities in order to reach the target enrollment (should be consistent with information contained in Section 9.2, Determination of Sample Size).
+Anticipated accrual rate.
+Anticipated number of sites and subjects to be enrolled from the US and outside the US.
+Source of subjects (eg, inpatient hospital setting, outpatient clinics, student health service, or general public).
+Recruitment venues.
+How potential subjects will be identified and approached.
+Types of recruitment strategies planned (eg subject advocacy groups, national newspaper, local flyers; social media, specific names of where advertisements may be planned are not needed).
+If the study requires long-term participation, describe procedures that will be used to enhance subject retention (eg, multiple methods for contacting subjects, visit reminders, incentives for visit attendance).
+If applicable, specific strategies that will be used to recruit and retain historically under-represented populations in order to meet target sample size and conform with the NIH Policy on Inclusion of Women and Minorities as Subjects In Research Involving Human Subjects. Include the number of women and minorities expected to be recruited, or provide justification on those rare occasions where women and/or minorities will not be recruited.
+In addition, this section should address:
+If appropriate, include justification for inclusion of vulnerable subjects and recruitment strategy. Vulnerable subjects include, but are not limited to pregnant women, those who lack consent capacity, including the mentally ill, prisoners, cognitively impaired subjects, children, and employee volunteers. Include safeguards for protecting vulnerable populations. Please refer to OHRP guidelines when choosing the study population. Note that these regulations apply if any subjects are members of the designated population, even if it is not the target population (eg, if a subject becomes a prisoner during the study).
+If subjects will be compensated or provided any incentives (eg vouchers, gift cards,) for study participation, describe amount, form and timing of such compensation in relation to study activities (include financial and non-financial incentives). Describe who will receive incentives (if not the subject). For example, if minors, state whether the minor or the parent/guardian will receive the incentive. If incapacitated adults, state if payment will be provided to the subject or to a legally authorized representative or guardian.","","",""
+"5","STUDY TREATMENT(S)","Synopsis","","Heading","","","","",""
+"5.1","Description of Treatment(s)","Synopsis","","Heading","","","","",""
+"5.1.1","Study Drug","Synopsis","Investigators Brochure","","","Describe the study intervention(s).
+Product information can usually be obtained from the:
+IB for an investigational drug or biologic
+Package insert for a licensed or approved drug or biologic or device labeling for a licensed device
+Proposed labeling and/or material safety data sheet (MSDS) for an investigational device
+Final labeling for a marketed device.
+Study drug is the drug(s) being tested in the study. This section should describe the active study intervention(s) (drug/device/etc.) but not the placebo or control without going into too much detail about dosing/administration. Describe the class of the study drug(s)/device. Describe the composition of the drug(s)/components of the device. Describe the formulation (e.g., tablet for oral administration, lyophilized powder to be reconstituted with sterile water for injection, solution for IV administration), how much active substance is in the dosage unit (e.g., 5 mg of drug X), and what the excipients are (if any). Information should be provided for each drug under investigation in the study (active drug, placebo, co-administered treatments). 
+Do not include information about supportive treatments, such as pre- and post-medication for transplants. For each investigational drug administered/investigational device used in the study, this section should also contain information on how it is supplied: what kind of container, how much of the study intervention is in each container.
+Do not describe preparation and administration of the study drug(s). Do not describe the storage of the study drug(s). Do not describe the handling of the study drug(s). Do not describe doses or dose regimens for the study drug(s). Do not describe dose adjustments or dose modifications for the study drugs. Do not discuss previous clinical trials. Do not describe mechanism of action for the study drug(s). Do not describe contraindications for the study drug(s). Do not describe dosage and administration of the study drug(s).","","",""
+"5.1.2","Placebo or Control","Synopsis","Investigators Brochure","","","Describe the control product (placebo or active comparator).
+
+Product information can usually be obtained from the:
+IB for an investigational drug or biologic
+Package insert for a licensed or approved drug or biologic or device labeling for a licensed device
+Proposed labeling and/or material safety data sheet (MSDS) for an investigational device
+Final labeling for a marketed device.
+This section should describe the placebo or comparator without going into too much detail about dosing/administration. Describe the composition of the placebo or comparator drug/components of the placebo or comparator device. Describe the formulation of the placebo or comparator drug (e.g., tablet for oral administration, lyophilized powder to be reconstituted with sterile water for injection, solution for IV administration), how much active substance is in the dosage unit (e.g., 5 mg of drug X) and what  the excipients are (if any). Information should be provided for each placebo or control drug under investigation in the study (active drug, placebo, co-administered treatments). 
+Do not include information about supportive treatments, such as pre- and post-medication for transplants. For each placebo or comparator drug administered/placebo or comparator device used in the study, this section should also contain information on how it is supplied: what kind of container, how much of the placebo or comparator drug in each container.
+Do not describe investigational product that is administered only in the non-control arm of the study. Do not describe dose modifications or dose adjustments for the comparator drug . Do not describe doses or dose regimens for the comparator drug. Do not discuss previous clinical trials. Do not call an active comparator a placebo. Do not describe the study design. Do not describe study drug(s) or device(s) other than the comparator drug/device","","",""
+"5.2","Treatment Administered","Synopsis","Investigators Brochure","","3.1, 5.1.1, 5.1.2","Provide the following information:
+The trial treatment(s) to be administered, including the trade and generic names(s) of all the product(s), as well as the name(s) of active and inactive ingredients.
+The dose(s).
+The route/mode(s) of administration (eg, oral, nasal, intramuscular).
+The dosing schedule.
+The treatment period(s), including the follow-up period(s) for subjects for each IP treatment/trial treatment group/arm of the trial.
+The type of comparator(s) (eg, placebo, no treatment, active drug, dose-response) and study configuration (parallel, cross-over).
+Who will be responsible for dispensing study drug(s) or device(s). How to prepare study drug(s) or device(s).
+
+This section should contain the name of the study intervention(s) and instructions for administration of the study intervention(s) to the participant (e.g., oral administration, intramuscular injection into the deltoid region of the dominant arm, intravenous bolus, etc.). This section should include dose regimens (e.g., twice daily)/dosing intervals (e.g., every 12 hours) if there is more than one dose to be administered in the study, when the first dose is administered (generally Day 1), and for how long the treatment should be given (e.g., single dose, three 28-day cycles, etc.).
+This section should contain information about the investigational product, dose, route of administration, dosage and mode of administration of each drug.
+Do not describe storage of the study intervention(s). Do not describe the composition of the study intervention(s). Do not describe participant follow-up. Do not describe dose modifications or treatment continuation. Do not describe the class or mechanism of action of the study drug(s) or study device(s). Do not describe special precautions for handling study drug(s). Describe the preparation of the study drug(s). Do not describe supportive and rescue treatments. Do not describe missed or vomited doses of the study drug(s). Do not describe dose modifications of the study drug(s).","","",""
+"5.3","Selection and Timing of Dose for Each Subject","Synopsis","Investigators Brochure","","3.1","Provide the following information:
+Procedures for selecting each subjectâ€™s dose of test drug/IP and active control/comparator. These procedures can vary from simple random assignment to a selected fixed drug/dose regimen, to some specified titration procedure, to more elaborate response-determined selection procedures, eg, where dose is titrated upward at intervals until intolerance or some specified endpoint is achieved.
+Procedures for back-titration, if any.
+The timing (time of day, interval) of dosing and the relation of dosing to meals. If appropriate, state that there is no relationship to the timing of meals.
+Any specific instructions to be given to subjects about when or how to take the dose(s).
+Any requirements such as the need for previous fasting and the duration of this fasting. Also, specify if there is any particular meal restriction or meal composition that should or should not go with the treatment administration. It should also be considered if the patient needs to be in a specific position during the treatment administration.
+Do not describe dose modifications or treatment regimen modifications for the study drug(s). Do not describe administration of the study drug(s). Describe when the start of treatment and the end of treatment are. Do not describe what to do in case of a missed dose. When describing pharmacokinetics of a study drug, clearly indicate which drug is being discussed. Do not describe treatment schedule and monitoring. Do not describe supportive or rescue treatments. Do not describe participant positioning during study drug administration. Do not describe handling instructions for the study drug(s). Do not describe any product information.","","",""
+"5.4","Dose Escalation And Modification","Synopsis","Investigators Brochure","","3.1","If applicable, describe the dose escalation scheme (using exact dose, rather than percentages). State any minimum period required before a subjectâ€™s dose might be raised to the next higher dose or dose range. If applicable, the protocol should state the conditions under which a dose change will be made, particularly in regard to failure to respond or to toxic or untoward changes in stipulated indicators (eg, white blood cell count in cancer chemotherapy).
+Address dose modifications for specific abnormal laboratory values of concern or other adverse events (AEs) that are known to be associated with the planned study intervention. The protocol must state explicitly the dose-limiting effects that are anticipated. Provide criteria that will be used to determine dose escalations. If a subject is responding positively to the intervention, the protocol should specify whether study intervention administration would progress to still higher doses. If appropriate, provide a dose de-escalation schema with intervention modifications. Do not restate reasons for withdrawal of subjects. Cross-reference relevant sections, as appropriate. Describe treatment delays or interruptions.
+This section should not describe any information about treatment-emergent adverse events and how they will be assessed. This must include the criteria for any dose modification. Do not repeat the planned doses of study drug(s). Do not describe the schedule for administration of the study drug(s). If no dose modifications are planned for a specific study drug, clearly state that no dose modifications are planned. ","","",""
+"5.5","Missed Dose","Synopsis","Investigators Brochure","","3.1, 5.1.1, 5.1.2","Include any specific instructions about how delayed or missed doses should be handled. Do not describe visit scheduling flexibility.","","",""
+"5.6","Randomization and Blinding or Masking","Synopsis","Investigators Brochure","","3.1","This section should contain a description of randomization and blinding (or masking for vision studies) procedures (if applicable to the study design). It should include a description or a table that describes how study subjects will be assigned to study groups, without being so specific that blinding or randomization might be compromised (eg, the ratio between intervention and placebo groups may be stated). If adaptive randomization or other methods of covariate balancing/minimization are employed, include a cross link to the methods of analysis in Section 9, Planned Statistical Methods. In addition, details regarding the implementation of procedures to minimize bias should be included in this section. DO NOT include details that might compromise these strategies. Design techniques to avoid bias can be found in the ICH Guidance for Industry E9 Statistical Principles for Clinical Trials.
+Plans for the maintenance of trial randomization codes and appropriate blinding for the study should be discussed. The timing and procedures for planned and unplanned breaking of randomization codes should be included. Include a statement regarding when unblinding may occur and who may unblind. Provide the criteria for breaking the study blind or subject code. Discuss the circumstances in which the blind would be broken for an individual or for all subjects (eg, for SAEs). Indicate to whom the intentional and unintentional breaking of the blind should be reported.
+Sometimes blinding is attempted but is known to be imperfect because of obvious effects related to study intervention or control product in some subjects (eg, dry mouth, bradycardia, fever, injection site reactions, and changes in laboratory data). Such problems or potential problems should be identified and, if there are plans to assess the magnitude of the problem or manage it, these should be described (eg, having endpoint measurements carried out by study staff shielded from information that might reveal study group assignment).
+Explain whether blinding is considered unnecessary to reduce bias for some or all of the observations; eg, use of a random-zero sphygmomanometer eliminates possible observer bias in reading blood pressure and Holter tapes are often read by automated systems that are presumably immune to observer bias.
+Describe the reasons and implications if blinding is considered desirable but not feasible. Sometimes blinding is attempted even though it is known to be imperfect because of obvious drug effects in at least some subjects (eg, dry mouth, bradycardia, fever, injection site reactions, or changes in laboratory data). Identify such problems or potential problems and discuss whether there will be any attempts to assess the magnitude of the problem or to manage it (eg, by having some endpoint measurements carried out by people shielded from information that might reveal treatment assignment).
+Specify the method of assigning participants to different treatment arms (e.g., assigned a treatment number in the order in which they are enrolled, an interactive response system, randomized in blocks, incomplete blocks, stratified by age group/sex/previous treatment received) and in what ratio they will be assigned to each group (e.g., 2:1 active drug:placebo). Any table here should include the planned number of participants per group, the ratio of active-treated vs. placebo-treated participants, and possibly the treatment kit numbers assigned to each group. 
+
+The calculation of sample size should not be in this section.
+Describe how the study is blinded (e.g., single- or double-blinded) if applicable, how the study drug and placebo are blinded (e.g., tablets with the same appearance, placebo over encapsulated to match the active drug's appearance, opaque syringes), and how the blind is maintained (e.g., sealed envelopes, interactive system). Specify which clinical study staff are unblinded and what the unblinded study team will be responsible for/involved in (e.g., the unblinded staff will have no participant contact).
+
+In ophthalmological studies, use the term """"masked"""" instead of """"blinded.""""
+
+Provide details about lifting the blind during the study, including the circumstances under which treatment assignment can be unblinded, who has the authority to unblind the study (usually just the investigator), and how the blind will be lifted.","","",""
+"5.7","Concomitant Therapy","Synopsis","Investigators Brochure","","4.1, 4.2","Include content in this section if applicable, otherwise note as not applicable.
+Insert the following text at the beginning of this section:
+""For this protocol, a prescription medication is defined as a medication that can be prescribed only by a properly authorized/licensed clinician. Medications to be reported in the electronic case report form (eCRF) are concomitant prescription medications, over-the-counter medications, and supplements.""
+In addition, provide the following information:
+-Which medication(s)/treatment(s) will be permitted during the study (including rescue medication),
+-Any other specific rules and procedures related to permitted or forbidden concomitant therapy, eg, whether specific concomitant medications would result in a subjectâ€™s discontinuation from the study.
+-Identify and specify concomitant medications that may cause pharmacokinetic interactions, particularly those involving CYP isozymes and transporter proteins. If a specific enzyme or transporter plays a key role in the metabolism of the study drug(s), list activators and inhibitors of that enzyme or transporter as restricted or prohibited.
+-Include a list of medication classes that could interfere with study assessments. For example, cognitive assessment studies may need to exclude drugs that impact cognition, while anticoagulants may need to be restricted in studies involving drugs with anticoagulant properties.
+-Add any prohibited/permitted concomitant treatment information from the inclusion/exclusion criteria of the synopsis.
+-Include any expressly prohibited/permitted concomitant surgeries from the inclusion/exclusion criteria of the synopsis.
+-Include any expressly prohibited/permitted concomitant other medical procedures from the inclusion/exclusion criteria of the synopsis.
+Do not describe the study drug(s). Do not describe prior therapy, treatment, or medications. Do not describe dosage modifications and delays for the study drug(s). Describe supportive and rescue treatments. Do not describe treatment interruptions. Do not describe any procedures that are prohibited before study drug administration. Do not discuss exclusion criteria that do not mention a prohibited concomitant drug or prohibited concomitant other medical procedure.","","",""
+"5.8","Restrictions","Synopsis","Investigators Brochure","","3.1, 4.2","Include content in this section if applicable, otherwise note as not applicable.
+Describe any restrictions during any parts of the study pertaining to lifestyle and/or diet (eg, food and drink restrictions, timing of meals relative to dosing, intake of caffeine, alcohol, or tobacco, or limits on activity), and considerations for household contacts. Describe what action will be taken if prohibited medications, treatments or procedures are indicated for care (eg, early withdrawal). Information on the restrictions in place during the study may be found in the inclusion/exclusion criteria (Sections 4.1 and 4.2). More infrequently, some restrictions may apply during certain efficacy or safety assessments (Section 6.3 and 6.4)
+Describe if these restrictions (pertaining to lifestyle and/or diet (eg, food and drink restrictions, heavy exertion/strenuous, timing of meals relative to dosing, intake of caffeine, alcohol, or tobacco, or limits on activity), and considerations for household contacts) apply during all the protocol or for a certain period of time. If applicable, state quantities that are allowed or prohibited. Define measures to take if a participant breaks a restriction or takes a prohibited medication, such as withdrawal from the study, discontinuation of further sample collection, cessation of further study drug administration, or other measures as determined by the Sponsor.
+For considerations for household contacts, include content only if participants are being administered an infectious agent. Specify measures to prevent contagion to household members, including precautions around immunocompromised individuals or unvaccinated infants.","","",""
+"5.8.1","Prior Therapy","Synopsis","Investigators Brochure","","4.1, 4.2, 6.3, 6.4","Include content in this section if applicable, otherwise note as not applicable.
+Describe prior therapy subjects may have undergone or were not allowed to have prior to enrollment in the study. Do not describe any treatments that are prohibited or permitted after study drug administration.
+If applicable, state that medications mentioned in the inclusion/exclusion criteria are restricted as outlined in those criteria. List any other prohibited medications or treatments not mentioned in the inclusion/exclusion criteria, specifying the time period for which they are prohibited (e.g., active vaccines are prohibited within 14 days before Day 1). Do not describe documentation of anything other than prior treatments. Describe any restrictions on surgery prior to the study drug administration. Describe any restrictions on other medical procedures prior to study drug administration. Do not describe treatment-specific considerations for the study drug(s). Describe all restrictions on prior therapy and prohibited prior therapy together, including prior therapies excluded by the exclusion criteria. Do not describe prior medical conditions. Do not describe timing of study drug(s) administration.","","",""
+"5.8.2","Fluid and Food Intake","Synopsis","Investigators Brochure","","4.2, 5.3, 6.3, 6.4","Specify any requirements or restrictions for fasting or for fluid and food intake during the study with respect to the study drug(s) and to the study procedure(s). Information on food and drink restrictions in place during the study may be found in the inclusion/exclusion criteria (Sections 4.1 and 4.2) and the conditions surrounding study drug administration (Section 5.3). More infrequently, some restrictions may apply during certain efficacy or safety assessments (Section 6.3 and 6.4).
+Do not describe participant follow-up. Do not describe requirements other than those for fluid and food intake. Do not describe supportive medications. Do not describe monitoring of fluid and food intake. Do not describe instructions related to vomiting after study drug administration. Do not describe missed doses of study drug(s). Do not provide instructions on how to take the study drug(s). Do not describe the overall timing of administration of study drug(s). If there are no restrictions on fluid or food intake in the inclusion or exclusion criteria, do not repeat this fact.","","",""
+"5.8.3","Subject Activity Restrictions","Synopsis","Investigators Brochure","","4.2, 5.3, 6.3, 6.4","Specify any requirements or restrictions for subject physical activities (such as staying in a supine position for a period of time after study drug(s) administration, avoiding direct exposure to sunlight) or confinement during the study. Information on physical activity restrictions in place during the study may be found in the inclusion/exclusion criteria (Sections 4.1 and 4.2) and the conditions surrounding study drug administration (Section 5.3). More infrequently, some restrictions may apply during certain efficacy or safety assessments (Section 6.3 and 6.4). Do not describe the efficacy or safety assessments themselves.
+Do not describe reproductive restrictions. Do not describe medication and treatment restrictions. Do not describe surgical restrictions. Do not describe treatment administration timing. Do not describe monitoring of restrictions. Do not describe treatment delays or interruptions. Do not describe fluid or food restrictions. Do not describe how the participant should or should not handle the study drug(s). Describe participant positioning for study drug administration. Do not describe participant positioning for study procedure(s) including adverse reaction assessments. Do not describe the focus of the protocol. Do not describe potential adverse reactions to study drug(s).","","",""
+"5.9","Treatment Compliance","Synopsis","Investigators Brochure","","3.1","Describe how compliance with study treatments will be assessed. Do not describe compliance with any other aspects of the protocol. Include a description of what documents are mandatory to complete (eg, subject drug log) and what source documents/records will be used to calculate study intervention compliance.
+Describe the measures that will be taken to ensure and document compliance with study dosing regimen, eg, drug accountability, diary cards, any assays.
+Describe measures for monitoring treatment compliance. For a single-dose trial, state that the participants were administered the drug under the supervision of the investigator/other qualified clinical staff. Mention the route of administration only when describing how the staff is going to check that the full dose is administered (e.g., after IV bolus administration, qualified clinical staff will check the syringe for any residual drug product and if the full dose was not administered, this will be noted in the CRF). If study drug(s) will be taken at home, describe how compliance will be assessed. 
+Do not include any details about frequency or duration of administration of the study drug(s). Do not describe timing of administration of the study drug(s). Do not describe doses of the study drug(s). Do not describe how the study drug(s) will be administered. Do not describe the follow-up schedule. Describe how the treatment compliance will be recorded in the eCRF. Do not describe protocol adherence. Do not describe DSMB or other committee meetings. Do not describe treatment delays. Do not discuss missed doses. Do not describe visit windows. Do not discuss the schedule of assessments or the scheduled visits. Do not discuss inclusion criteria. Do not discuss if the study drug(s) should be taken with food or not. Do not discuss if the study drugs should be crushed, split, or chewed. 
+Do not describe any assessments not specified as being compliance measures in the synopsis. Do not describe assessments of efficacy or effectiveness. Do not describe precautions for handling of study drug(s). Do not discuss supportive treatments. Do not describe TEAE reporting. Do not describe SAE reporting. Do not discuss efficacy endpoints or assessments. Do not discuss safety endpoints or assessments. Do not discuss dose adjustments. Do not discuss treatment discontinuation. Only provide information about compliance with the study drug(s). ","","",""
+"5.1","Packaging and Labeling","Synopsis","Investigators Brochure","","","Provide details of the packaging (such as vials, bottles, or blister packs). Provide the quantity of study drug(s) per package. Provide the text of the label(s) of the study drug(s).
+For studies that are blinded, describe how any comparator(s) will be made to look like the study drug(s).
+Describe how the label will be attached to the study drug(s) and comparator(s) and whether the label will be removed from the source for attachment to the CRF.
+Do not describe storage of the study drug(s). Do not describe preparation of the study drug(s). Do not describe the treatment regimen. Do not repeat the blinding considerations from Section 5.6. Do not describe the dosage form(s) of the study drug(s). ","","",""
+"5.11","Storage and Accountability","Synopsis","","Heading","","","","",""
+"5.11.1","Storage","Synopsis","Investigators Brochure","","","Example text provided as a guide, customize as needed:
+[Drug supplies must be stored in a secure, limited-access location under the storage conditions specified on the label: <insert storage conditions from IB if available>. Refer to the Pharmacy Manual for additional guidance on study drug storage.]
+Describe storage conditions for all study drug(s) that are administered in this study according to the synopsis. Do not describe handling precautions for the study drug(s). Do not describe what the study drug(s) are.
+","","",""
+"5.11.2","Accountability","Synopsis","Investigators Brochure","","","Example text provided as a guide, customize as needed:
+[The Investigator or his/her designee will maintain accurate records of the receipt of all study drugs. In addition, accurate records will be kept regarding when and how much of each study drug is dispensed, used and unused by each study subject. Study center personnel should not dispose of any used or unused study drug until drug accountability is performed by the Sponsor or its designee. At the conclusion of the study, any unused study drug will be returned to the Sponsor or destroyed by the site pursuant to written authorization by the Sponsor and applicable federal and state regulations.]","","",""
+"5.11.3","Dispensing Study Drug","Synopsis","Investigators Brochure","","5.2","Insert the following text with no changes at the beginning of this section:
+""Instructions for preparation of the study drug are provided in Section 5.2.""
+Qualified clinical staff at each study site will be responsible for receiving, preparing, dispensing, and maintaining accurate records of study drug administration. These designated personnel should be trained on the specific handling requirements for all study drugs. Qualified clinical staff at each study site will be responsible for documenting drug accountability, including receipt, dispensation, return, and destruction of unused study medication, in compliance with Good Clinical Practice (GCP) guidelines and applicable regulatory requirements.""
+
+Describe the procedures to be followed for dispensing the study drug. Describe the instructions for safe handling and safe disposal, when applicable.
+Do not describe storage conditions for the study drug(s). Do not discuss administration procedures or schedules of the study drug(s). Do not describe dosage of the study drug(s). Do not describe supportive treatments. Do not describe treatment regimen(s). Do not describe duration of treatment.","","",""
+"5.11.4","Investigational Product Retention at Study Site","Synopsis","Guidelines","","3.1","Insert the following text with no changes:
+""If applicable, adequate supplies of the study drug(s) will be kept in order to comply with the retention and testing requirements in the FDA Guidance for Industry: Handling and Retention of Bioavailability BA and Bioequivalence BE Testing Samples (2024).""
+
+Do not add any other text. Do not describe the study drug(s). Do not describe the treatment regimen(s). Do not describe the study drug(s) administration. Describe retention requirements for all study drug(s) administered in the study. 
+","","",""
+"6","STUDY PROCEDURES","Synopsis","","Heading","","","","",""
+"6.1","Informed Consent","Synopsis","","","","Insert the following text without any changes:
+""Informed consent is a process that is initiated prior to the individualâ€™s agreeing to participate in the study and continues throughout the individualâ€™s study participation. Consent forms will be IRB/IEC-approved and the subject will be asked to read and review the document. The Investigator will explain the research study to the subject and answer any questions that may arise. A verbal explanation will be provided in terms suited to the subjectâ€™s comprehension of the purposes, procedures, and potential risks of the study and of their rights as research participants. Subjects will have the opportunity to carefully review the written consent form and ask questions prior to signing. The subjects should have the opportunity to discuss the study with their family or surrogates or think about it prior to agreeing to participate. The subject will sign the informed consent document prior to any procedures being done specifically for the study. Subjects must be informed that participation is voluntary and that they may withdraw from the study at any time, without prejudice. A copy of the informed consent document will be given to the subjects for their records. The informed consent process will be conducted and documented in the source document (including the date), and the form signed, before the subject undergoes any study-specific procedures. The rights and welfare of the subjects will be protected by emphasizing to them that the quality of their medical care will not be adversely affected if they decline to participate in this study.""
+","","",""
+"6.2","Screening and Baseline Assessments","Synopsis","","","3.1, 4.1, 4.2","Describe the procedures or assessments to be done at Screening and Baseline as applicable to the study. This includes assessments used to evaluate participant eligibility (some of the criteria in Section 4.1 and Section 4.2 will inform which assessments are needed for ascertaining eligibility, e.g., diagnostic tests for a disease, labs, vital signs, ECG, performance status). Add subsections after 6.2.1 Medical History for each subtype of screening/baseline assessment, e.g., Demographics, Disease Characteristics, etc. and describe the assessments (e.g., demographic parameters, imaging or other diagnostic techniques)
+Do not describe contraception requirements. Do not discuss the exclusion criteria. Do not describe assessments that will take place during the treatment phase. Do not describe efficacy measurements that will take place after screening and baseline assessments.","","",""
+"6.2.1","Medical History","Synopsis","","","3.1","If medical history has already been described in Section 6.2, leave this section blank.
+If medical history has not been described in Section 6.2, use the following instructions.
+Provide the following information:
+The means for collecting and recording medical history information,
+The type of information to be collected and any timeframe for the history relative to study screening or startup, if applicable,
+A list of medications/treatments that will be permitted or must be discontinued within a certain time period before randomization or the start of study therapy,
+Whether and how prior/ongoing therapies will be recorded, and
+Any other specific rules and procedures related to permitted or forbidden prior/ongoing therapy.
+Note: In most instances, prior therapies (taken before randomization or start of study therapy) should be differentiated from concomitant therapies (taken after start of study therapy) to facilitate understanding of any AEs that occur after the start of study therapy.
+Do not discuss assessments that are not medical history and medication history. Do not describe treatment regimen(s). Do not describe permitted or prohibited medications, drugs, or treatments. Do not describe prohibited or permitted procedures.","","",""
+"6.3","Efficacy Assessments","Synopsis","","","3.1","Describe the assessments for which efficacy endpoints will be calculated. Define the efficacy endpoints. Separate the assessments under subheadings as necessary. Do not describe follow-up. Do not describe statistical analyses. Do not describe timing of statistical analyses. Do not describe quality of life or healthcare utilization assessments. Do not describe the time points for collecting efficacy endpoints. Do not describe visit windows.","","",""
+"6.4","Safety Assessments","Synopsis","","","3.1","Summarize the planned safety assessments briefly without going into details. Do not describe immunological assessments. Do not describe efficacy assessments. Do not describe screening assessments. Do not describe baseline assessments. Do not describe efficacy assessments. Do not describe disease status assessments. Mention all safety assessments that will be performed measured but do not list vital signs parameters, do not list laboratory parameters, do not list physical examination parameters. Do not describe statistical analyses. Do not describe visit windows. Do not describe quality of life assessments.","","",""
+"6.4.1","Physical Examination","Synopsis","","","3.1","Provide the following information:
+-The person(s) responsible for performing a physical examination of the subject: the Investigator or medically qualified designee.
+-Whether the examination should be a complete or targeted physical examination; whether additional examinations (eg, motor assessment, visual assessment, other functional abilities) will be performed
+-Whether the examination will include height, weight, body mass index, etc.
+If additional examinations (eg, motor, visual, other) are planned, briefly describe these examinations.
+Do not describe vital signs assessments. Do not describe laboratory assessments. Do not describe electrocardiogram assessments. List the body systems that will be included in the physical examination: general appearance; eyes, ears, nose and throat, head and neck; chest and lungs; cardiovascular; abdomen; musculoskeletal; lymphatic; dermatologic; neurologic and extremities. Do not describe the purpose of each part of the physical examination.
+","","",""
+"6.4.2","Vital Signs","Synopsis","","","3.1","Provide the following information:
+-Qualified clinical site personnel will measure the subject's vital signs.
+-Which assessments will be performed to monitor vital signs, ie, systolic blood pressure, diastolic blood pressure, heart rate, respiratory rate, temperature, and/or oxygen saturation, and
+-The method for consistent monitoring of vital signs, including:
+-The blood pressure should be measured using the same arm and/or the same equipment each time, and/or
+-Any mechanical devices that will be used to monitor vital signs, and whether and how they are calibrated for consistency across sites.
+
+If orthostatic assessments are included in the synopsis, the protocol should include a definition of orthostatic hypotension (SBP and DBP criteria) and abnormal HR increase. If the synopsis does not indicate that orthostatic vital signs will be measured, do not mention orthostatic vital signs. 
+
+The subject will have to rest in a supine position for at least 5 minutes before each vital signs measurement.
+Insert the following text at the end of the section: ""After study drug administration, if any results falling outside the normal ranges are deemed clinically significant by the Investigator or appropriately qualified designee, they will be recorded as an AE/SAE.""
+
+Do not describe safety monitoring by the DSMB or other committee. Do not describe exclusion or inclusion criteria. Do not describe visit windows. Do not describe screening or baseline assessments. Do not describe AE or SAE reporting methods or timing.","","",""
+"6.4.3","Electrocardiography and Continuous Telemetry Monitoring","Synopsis","","Heading","","","","",""
+"6.4.3.1","12 Lead Electrocardiograms","Synopsis","","","3.1","Specify if the electrocardiogram (ECG) is for screening purposes only. Include any specific instructions for the collection and interpretation of the ECG (eg, time points relative to dosing with study intervention or other evaluations, whether the ECG will be single recordings or triplicate recodrings). If ECGs will be analyzed at a central laboratory, instructions for the collection (eg, equipment), transmission and archiving of the ECG data should be summarized. If the ECG will be read locally, indicate how these will be handled and in what format (eg, digital or paper), as well as instructions with respect to local review. List the ECG parameters to be assessed, and, if QTc is being calculated, state which formula (usually Bazett's - QTcB -  or Fridericia's - QTcF) will be used to calculate QTc. 
+
+Insert the following text at the end of the section: ""The ECGs will be assessed by the Investigator or qualified designee. After study drug administration, any results falling outside the normal ranges and deemed clinically significant by the Investigator or appropriately qualified designee will be recorded in the eCRF as an AE/SAE."" If no ECGs will be performed after study drug administration, do not discuss TEAEs, AEs, or SAEs.
+Do not describe safety monitoring by the DSMB or other committee. Do not describe exclusion or inclusion criteria. Do not discuss eligibility requirements. Do not describe visit windows. Do not describe the specific visits at which ECGs will be performed, instead refer to the Assessment Schedule.","","",""
+"6.4.3.2","Continuous Holter Monitoring","Synopsis","","","3.1","If the synopsis mentions continuous ECG monitoring (Holter), include any specific instructions for the collection and interpretation of the continuous ECG (Include any specific instructions for the collection and interpretation of the ECG (eg, time points relative to dosing with study intervention or other evaluations, duration of continuous recording).  If continuous ECGs will be analyzed at a central laboratory, instructions for the collection (eg, equipment), transmission and archiving of the ECG data should be summarized. If the ECG will be read locally, indicate how these will be handled and in what format (eg, digital or paper), as well as instructions with respect to local review. List the ECG parameters to be assessed, and, if QTc is being calculated, state which formula (usually Bazett's - QTcB -  or Fridericia's - QTcF) will be used to calculate QTc.
+End the section with the sentence: ""After study drug administration, any results falling outside the normal ranges and deemed clinically significant by the Investigator or appropriately qualified designee will be recorded in the eCRF as an AE/SAE.""
+If the protocol does not include continuous ECG recording, insert only the following text: ""Not applicable.""","","",""
+"6.4.4","Clinical Laboratory Tests","Synopsis","","Heading","","","","",""
+"6.4.4.1","Laboratory Parameters","Synopsis","","","3.1","Example text provided as a guide, customize as needed:
+[Subjects will be in a seated or supine position during blood collection. Clinical laboratory tests will include the following parameters listed in Table 1. Additional samples may be collected at the Investigatorâ€™s discretion. Only abnormal laboratory values and diagnostic findings considered to be clinically significant by the Investigator will be reported as an AE/SAE.] 
+In addition,  include estimated volume (if available) and type of specimens (eg, blood, urine) needed for each test. Specify laboratory methods to provide for appropriate longitudinal and cross-sectional comparison (eg, use of consistent laboratory method throughout study, use of single, central laboratory for multi-site studies). If more than one laboratory will be used, specify which evaluations will be done by each laboratory. In addition, compliance with Clinical Laboratory Improvement Amendments (CLIA) of 1988 should be addressed if applicable. In addition, if any laboratory tests (eg, diagnostics) that will be used are being developed concurrently, this should be specified. Describe:
+-The type of clinical laboratory tests to be performed at any time during the study. This information can be presented concisely in a tabular format.
+-Whether any laboratory parameters will be defined by the Sponsor as â€œclinically significant,â€ based on a predetermined range of laboratory values which will also be provided in this section.
+-The conditions under which laboratory testing will occur, eg, timing in relation to meals and study dosing and frequency.
+Then insert the table below, including only the parameters that will be measured in the present study.
+[Table X 	Clinical Laboratory Parameters
+
+Measurement                             Tests to be Performed
+
+Hematology                              Hematocrit (Hct)
+                                        Hemoglobin (Hgb)
+                                        Mean corpuscular hemoglobin (MCH)
+                                        Mean corpuscular hemoglobin concentration (MCHC)
+                                        Mean corpuscular volume (MCV)
+                                        Platelet count
+                                        Red blood cell (RBC) count
+                                        White blood cell (WBC) count with differential
+Urinalysis                              Appearance
+                                        Bilirubin
+                                        Color
+                                        Glucose
+                                        Ketones
+                                        Microscopic examination of sediment
+                                        Nitrite
+                                        Occult blood
+                                        pH
+                                        Protein
+                                        Specific gravity
+                                        Urobilinogen
+                                        24-hour urine for creatinine clearance
+                                        Urine human chorionic gonadotropin (hCG) (only for females who are not diagnosed as postmenopausal)
+Serum Chemistry                         Albumin (ALB)
+                                        Alkaline phosphatase (ALK-P)
+                                        Alanine aminotransferase (ALT)
+                                        Aspartate aminotransferase (AST)
+                                        Blood urea nitrogen (BUN)
+                                        Calcium (Ca)
+                                        Carbon dioxide (CO2)
+                                        Chloride (Cl)
+                                        Creatinine
+                                        Creatine kinase and subtypes
+                                        Gamma-glutamyl transferase (GGT)
+                                        Globulin
+                                        Glucose
+                                        Lactate dehydrogenase (LDH)
+                                        Phosphorus
+                                        Potassium (K)
+                                        Sodium (Na)
+                                        Total bilirubin
+                                        Direct bilirubin
+                                        Total cholesterol
+                                        Total protein
+                                        Triglycerides
+                                        Troponins
+                                        Uric acid
+Virus Testing                           HBsAg, HCV, and HIV
+Coagulation                             Prothrombin time (PT)
+                                        Activated partial thromboplastin time (aPTT)
+
+Abbreviations: <define abbreviations in table>]  
+This section SHOULD focus on safety laboratory testing. It should not describe pharmacokinetic testing nor  biomarker testing. You should ALSO add a list of  parameters for safety laboratories.  If there is no safety laboratory testing in the study, you SHOULD state it here.  If the information is available, you should ALSO specify whether samples will be analyzed by a local or a central  laboratory. Do not describe immunological measurements. Do not describe efficacy measurements. Do not describe response criteria. Do not describe disease assessments. Do not describe visit windows. Do not describe DSMB or other committee review.","","",""
+"6.4.4.2","Sample Collection, Storage, and Shipping","Synopsis","","","6.4.4.1","Special instructions for the preparation, handling, storage, and shipment of specimens should be briefly explained in this section.
+Provide the following information:
+The person(s) responsible for collecting laboratory samples,
+The name and address of the laboratory that will process the samples, and
+Any special sample handling, labeling, or shipping procedures required.
+Special instructions for the preparation, handling, storage, and shipment of specimens should be briefly explained in this section with detailed discussion in the studyâ€™s MOP.
+Provide the following information:
+The person(s) responsible for collecting laboratory samples,
+The name and address of the laboratory that will process the samples, and
+Any special sample handling, labeling, or shipping procedures required.
+This section should address ONLY the collection, storage, and shipping of safety laboratory samples. Handling of PK and biomarker/PD/efficacy samples should be in the respective sections for PK and biomarker/PD/efficacy assessments.
+Do not describe storage of the study drug(s). Do not list the laboratory parameters. ","","",""
+"6.4.5","Pregnancy Testing","Synopsis","","","3.1, 4.1, 4.2","If the study includes women of childbearing potential (WOCBP) (see inclusion/exclusion criteria, Sections 4.1 and 4.2), include the defined timepoints for pregnancy testing in WOCBP. Timepoints should be based upon a risk assessment of the potential for genotoxicity and teratogenicity/fetotoxicity of the intervention(s) in the study. Risk should be determined for each intervention with input from the companyâ€™s nonclinical safety assessment group. Determination of risk for a marketed compound should also consider the risks outlined in the product label. Further guidance can be found in ICH Guideline M3(R2) and Clinical Trial Facilitation Group (CTFG). As a minimum, a pregnancy test should be performed at screening to confirm absence of pregnancy and at the end of relevant systemic exposure. Additional testing may be required between the screening visit and the first dose of study intervention on Day 1. Consider additional pregnancy testing if the interval is:
+-â‰¤ 4 days, a repeat highly sensitive serum pregnancy test usually is not required
+-> 4 days, a repeat serum pregnancy test should be obtained
+For studies that have requirements for multiple pregnancy tests, add additional criteria as needed (eg, if there is a requirement for a test to be performed within a proximal timeframe prior to first dose, specify as inclusion criteria; if at a specified visit, or at the end of study intervention, note in the SOE and provide any necessary details here).
+A serum pregnancy test may diagnose pregnancy ~6 to 10 days after fertilization; a urine pregnancy test, because it is less sensitive, will diagnose pregnancy a few days after a serum pregnancy test. As serum pregnancy tests have a lower detection limit and will detect pregnancy closer to the date of conception, serum testing is the preferred test if there is a requirement to know pregnancy status within a few days of the first dose of study intervention.
+Decide if local or central testing will be standard for the protocol. Highly sensitive serum testing is mandatory if required by local regulations or the IRB/IEC, or to resolve an indeterminate test or confirm a positive urine test.
+The minimum content that this section should have are the time points at which pregnancy testing will be performed according to the Assessment Schedule. Do not describe visit windows. Do not describe contraception requirements. Do not describe inclusion or exclusion criteria related to pregnancy. Do not describe the follow-up schedule.
+
+Do not describe pregnancy reporting. 
+Insert the following text at the end of the section: ""See Section [Pregnancy Reporting] for information on the time allowed for pregnancy reporting."" 
+If the study population does not include WOCBP (see inclusion/exclusion criteria, Sections 4.1 and 4.2), delete this section.","","",""
+"6.5","Adverse Events","Synopsis","","","","This section should contain the following information verbatim. 
+
+Â´Adverse Event Definition
+An AE is any untoward medical occurrence in a subject administered a pharmaceutical product, regardless of whether the event is considered treatment related. An AE can therefore be any unfavorable and unintended sign (including an abnormal laboratory finding), symptom, or disease concurrent with the use of the study drug, whether or not related to the study. This includes any newly occurring event, or a pre-existing condition judged by the Investigator to have increased in severity or frequency since the administration of study drug. Any medical condition that is present at the time that the participant is screened will be considered as baseline and not reported as an AE; however, if the trial participantâ€™s condition worsens at any time during the trial, it will be recorded as an AE.
+
+Severity Assessment of Adverse Events
+The severity of AEs will be graded using the National Cancer Institute (NCI) Common Terminology Criteria for Adverse Events (CTCAE) V5.0. For AEs not included in the CTCAE V5.0 grading system, the following guidelines will be used to describe severity:
+Mild â€“ Events require minimal or no treatment and do not interfere with the subjectâ€™s daily activities.
+Moderate â€“ Events result in a low level of inconvenience or concern with the therapeutic measures. Moderate events may cause some interference with functioning.
+Severe â€“ Events interrupt a subjectâ€™s usual daily activity and may require systemic drug therapy or other treatment. Severe events are usually potentially life-threatening or incapacitating. Of note, the term â€œsevereâ€ does not necessarily equate to â€œseriousâ€.
+
+Relationship of Adverse Events to Study Treatment
+All AEs must have their relationship to study intervention assessed by the clinician who examines and evaluates the subject based on temporal relationship and his/her clinical judgment. The degree of certainty about causality will be graded using the categories below. In a clinical trial, the study product must always be suspect.
+Related â€“ The AE is known to occur with the study intervention, there is a reasonable possibility that the study intervention caused the AE, or there is a temporal relationship between the study intervention and event. Reasonable possibility means that there is evidence to suggest a causal relationship between the study intervention and the AE.
+Not Related â€“ There is not a reasonable possibility that the administration of the study intervention caused the event, there is no temporal relationship between the study intervention and event onset, or an alternate etiology has been established.
+
+Outcome of Adverse Events
+The investigator will assess the outcome of all unsolicited AEs (including SAEs) recorded during the study as: 
+Recovered/resolved. 
+
+Recovering/resolving. 
+
+Not recovered/not resolved. 
+
+Recovered with sequelae/resolved with sequelae. 
+
+Fatal. 
+
+Expectedness of Adverse Events
+The Investigator will be responsible for determining whether an AE is expected or unexpected. An AE will be considered unexpected if the nature, severity, or frequency of the event is not consistent with the risk information previously described for the study intervention.Â´","","",""
+"6.5.1","Time Period And Frequency For Collecting Adverse Event Information","Synopsis","","","3.1","Example text provided as a guide, customize as needed:
+[The occurrence of an AE or SAE may come to the attention of study personnel during study visits and interviews of a study subject presenting for medical care, or upon review by a study monitor.
+All AEs including local and systemic reactions not meeting the criteria for SAEs will be captured on the appropriate CRF. Information to be collected includes event description, time of onset, clinicianâ€™s assessment of severity, relationship to study product (assessed only by those with the training and authority to make a diagnosis), and time of resolution/stabilization of the event. All AEs occurring while on study must be documented appropriately regardless of relationship. All AEs will be followed to adequate resolution.
+Any medical condition that is present at the time that the subject is screened will be considered as baseline and not reported as an AE. However, if the study subjectâ€™s condition worsens at any time during the study, it will be recorded as an AE.
+Changes in the severity of an AE will be documented to allow an assessment of the duration of the event at each level of severity to be performed. AEs characterized as intermittent require documentation of onset and duration of each episode. 
+<Insert role or name> will record all reportable events with start dates occurring any time after informed consent is obtained until <insert length of AE recording after last visit> (for non-serious AEs) or <insert length of SAE recording after last visit> (for SAEs) after the last day of study participation. At each study visit, the Investigator will inquire about the occurrence of AE/SAEs since the last visit. Events will be followed for outcome information until resolution or stabilization.]
+The minimum content of this section are the start and end dates or visits in which a collection of AEs and SAEs will be conducted. Take into consideration the following as examples of describing the information on the timeframes to collect AEs and SAEs: ""solicited AEs to be collected from dosing to 7 days after dosing"", ""unsolicited AEs to be collected from dosing to 30 days after dosing"" or ""SAEs to be collected from screening until end of the study"".
+This section SHOULD not contain information about the most commonly reported AEs by previous studies for the same intervention.","","",""
+"6.5.2","Method of Detecting Adverse Events and Serious Adverse Events","Synopsis","","","3.1, 4.1, 4.2","Insert the following text, customize as needed:
+""Care will be taken not to introduce bias when detecting AEs and/or SAEs. Open-ended and non-leading verbal questioning of the subject is the preferred method to inquire about AE occurrences.""
+Modify example text using the following information: Any methods used to determine that an AE has occurred in a participant should be included here, including non-leading questions (unsolicited AEs), specifically solicited reactions where the clinical staff specifically asks the participant if they have had for example fever, headache, abdominal pain (solicited AEs), participant diaries. If the synopsis does not mention solicited AEs, do not mention solicited AEs. If the synopsis does not mention participant diaries, do not mention participant diaries. If the synopsis does not specify the method for AE collection, the method to detect AEs will be non-leading questions. 
+In studies with participants under the age of 18 years, note that for pediatric participants, the clinical staff may ask the participant and/or their parent/guardian/legally authorized representative for any new health information since the participant's last visit. In studies with only participants over 18 years of age, do not mention pediatric participants. Do not describe the schedule of assessments. Do not describe the duration of AE follow-up. Do not list laboratory parameters. Do not describe quality of life measurements. Do not describe SAE reporting. Do not describe immune monitoring. DO not describe DSMB activities. Do not describe randomization. Do not describe stratification.
+","","",""
+"6.5.3","Follow-up Of Adverse Events And Serious Adverse Events","Synopsis","","","3.1","Insert the following text, customize as needed:
+""After the initial AE/SAE report, the Investigator is required to proactively follow each subject at subsequent visits/contacts. All SAEs (and adverse events of special interest [AESIs]) will be followed until resolution, stabilization, the event is otherwise explained, or the subject is lost to follow-up.""
+You SHOULD only describe AE and SAE follow-up requirements and no AE and SAE reporting requirements. 
+If information is available, describe the regulations applicable for the follow-up requirements.
+The length of follow-up should be a defined time period (for example, 30 days after the end of the study) or an event (for example, the resolution of an AE).
+Do not describe statistical analyses. Do not describe interim analyses. Do not describe sample collection and assessment. Do not describe endpoint definitions. Do not describe visit windows. Do not describe disease follow-up. Do not describe DSMB or other committee activities. Do not describe adverse event severity grading. Do not mention the timing or procedures for SAE reporting. Do not describe the follow-up visits. Do not describe safety assessments other than adverse events.","","",""
+"6.5.4","Reporting Serious Adverse Events","Synopsis","","","","The instructions in this section should be in line with local reporting regulations to IRB/IEC and regulatory authorities - different countries may allow a different amount of time before mandatory reporting of certain SAEs. 
+Insert the following text:
+""The study clinician will immediately report to the Sponsor any SAE, whether or not considered study intervention related, including those listed in the protocol or Investigator brochure and must include an assessment of whether there is a reasonable possibility that the study intervention caused the event. Study endpoints that are SAEs (eg, all-cause mortality) must be reported in accordance with the protocol unless there is evidence suggesting a causal relationship between the study intervention and the event (eg, death from anaphylaxis). In that case, the Investigator must immediately report the event to the Sponsor.
+All SAEs will be followed until satisfactory resolution or until the site Investigator deems the event to be chronic or the subject is stable. Other supporting documentation of the event may be requested by the Data Coordinating Center (DCC)/study Sponsor and should be provided as soon as possible.
+The study Sponsor will be responsible for notifying the Food and Drug Administration (FDA) of any unexpected fatal or life-threatening suspected adverse reaction as soon as possible, but in no case later than 7 calendar days after the Sponsor's initial receipt of the information. In addition, the Sponsor must notify FDA and all participating Investigators in an Investigational New Drug (IND) safety report of potential serious risks, from clinical trials or any other source, as soon as possible, but in no case later than 15 calendar days after the Sponsor determines that the information qualifies for reporting.""
+","","",""
+"6.5.5","Institutional Review Board And Independent Ethics Committee Notification","Synopsis","","","","Insert the following text, customize as needed.
+[The Investigator must report all SAEs (including follow-up information) to the IRB/IEC in accordance with IRB/IEC requirements. Copies of each report and documentation of IRB/IEC notification and receipt will be kept in the siteâ€™s Regulatory Binder.]
+Do not describe DSMB or other committee activities. Do not add any other text.","","",""
+"6.5.6","Clinical Significance","Synopsis","","","","Example text provided as a guide, customize as needed.
+[The Investigator and/or qualified designee are responsible for monitoring AEs/SAEs and determining clinical significance using Common Terminology Criteria for Adverse Events (CTCAE) grading. Each AE/SAE will be evaluated as described in Section 6.5.]","","",""
+"6.5.7","Clinical Laboratory Adverse Events","Synopsis","","","","Specify whether abnormal laboratory test results will be considered to be AEs, and if so, define the cut-off values or other conditions under which they will be considered AEs, eg, they are associated with clinical signs and symptoms, they require treatment or diagnostic procedures, they result in discontinuation from the study, or they are associated with death or an SAE. Do not describe DSMB or other committee activities. Do not describe SAE reporting. Do not list the laboratory parameters. Do not describe where the laboratory evaluations will be performed.","","",""
+"6.5.8","Serious Adverse Events","Synopsis","","","","Insert the following text:
+""An SAE is any unfavorable medical occurrence reported at any dose if it:
+-Results in death.
+-Is life-threatening. The term â€œlife-threateningâ€ in the definition of â€œseriousâ€ refers to an event in which the participant was at risk of death at the time of the event. It does not refer to an event that hypothetically might have caused death if it were more severe.
+-Requires inpatient hospitalization or prolongation of existing hospitalization. Planned hospitalization for a pre-existing condition, or a procedure required by the protocol, without serious deterioration in health, is not considered an SAE.
+-Results in persistent or significant disability/incapacity. The term disability means a substantial disruption of a personâ€™s ability to conduct normal life functions. This definition is not intended to include experiences of relatively minor medical significance such as uncomplicated headache, nausea, vomiting, diarrhea, influenza-like illness, and accidental trauma (e.g., sprained ankle) that may interfere or prevent everyday life functions but that do not constitute a substantial disruption.
+-Is a congenital anomaly/birth defect.
+Important medical events that may not result in death, be life-threatening, or require hospitalization may be considered an SAE when, based upon appropriate medical judgment, they may jeopardize the participant and may require medical or surgical intervention to prevent one of the outcomes listed in this definition. Examples of such medical events include allergic bronchospasm requiring intensive treatment in an emergency department or at home, blood dyscrasias or convulsions that do not result in inpatient hospitalization, or the development of substance dependency or substance abuse.""","","",""
+"6.5.9","Treatment Emergent Adverse Events","Synopsis","","","","Insert the following text:
+""TEAEs are defined as an event that emerges during treatment, having been absent pretreatment, or worsens relative to the pretreatment state.""
+","","",""
+"6.5.10","Adverse Events Of Special Interest","Synopsis","","","","Include content in this section if applicable, otherwise note as not applicable.
+AEs considered of special interest in the study should be defined/listed here. If there are no AESIs defined for the study, this section can be marked not applicable - the Sponsor should provide the information as to whether there are any AESIs and what they are. 
+Do not describe the safety monitoring framework. Do not describe collection of TEAEs. Do not describe any safety monitoring other than the safety monitoring planned for AESIs.","","",""
+"6.5.11","Suspected Unexpected Serious Adverse Reactions","Synopsis","","","","Insert the following text without any changes or additional text:
+""The study Sponsor is required to inform FDA of any of any suspected unexpected serious adverse reaction (SUSAR). Unexpected AEs are those that are not identified in nature, severity, or frequency in the current Investigatorâ€™s Brochure, protocol, or informed consent form. All SUSARs will be the subject of expedited reporting. The reporting timeline for a SUSAR that has occurred inside or outside the US is as follows:
+-When it is neither fatal nor life-threatening, within 15 days after becoming aware of the information.
+-When it is fatal or life-threatening, immediately if possible and, in any event, within 7 days after becoming aware of the information.
+Further, within 8 days of having informed FDA of a fatal or life-threatening SAE, the Sponsor must submit as complete a report as possible, to include an assessment of the importance and implication(s) of any findings. Follow-up reports of fatal or life-threatening reactions must include an assessment of the importance and implication of the findings, including relevant previous experience with the same or similar drugs.
+Any relevant follow-up information is communicated within an additional 15 calendar days after becoming aware of the information.""
+
+Do not repeat the reporting requirements for a SUSAR. Do not describe DSMB or other committee activities.","","",""
+"6.6","Pregnancy Reporting","Synopsis","","","4.1, 4.2, 6.4.5","Include content in this section if applicable (see Sections 4.1 and 4.2 for inclusion/exclusion criteria: this section will be applicable if: women of childbearing potential are included in the study; the study has contraception requirements for female and/or male subjects; and/or pregnancy is exclusionary) , otherwise note as not applicable.  Insert the following text and modify as needed for the study:
+""Should a female subject or female partner of a male subject become pregnant at any time during the study, the Investigator must notify the Sponsor within 24 hours after learning about the pregnancy. The Sponsor will request follow-up information regarding the course of the pregnancy and its outcome. Voluntary consent must be obtained from a female subject or female partner of a male subject (and/or legally authorized representative if the subject is mentally incompetent or physically incapacitated) before any pregnancy-related follow-up is obtained.
+Pregnancy, in and of itself, is not considered an AE, unless there is suspicion that the study product may have interfered with the effectiveness of a contraceptive medication or method. However, any pregnancy complication or elective termination of a pregnancy for medical reasons will be recorded as an AE or SAE and will be followed accordingly. A spontaneous abortion is an SAE.""
+This section should state whether or not pregnancy is considered an AE or SAE, and whether pregnancy complications/termination are considered AEs/SAEs - this information should come from the Sponsor. If additional consent is required from the female partner of a male participant to follow her pregnancy, this should be stated. This section should also contain pregnancy reporting requirements, which should be in line with local regulations. Do not describe pregnancy testing or monitoring. Do not discuss inclusion or exclusion criteria. Do not discuss contraception requirements.","","",""
+"6.7","Definition of Overdose and Reporting of Overdose","Synopsis","Investigators Brochure","","3.1, 5.2","Insert the following text:
+""For the purposes of this study, an overdose of <insert study drug name> will be defined as any dose of more than <insert the maximum dose administered in the protocol>. No specific information is available on the treatment of overdose of <insert study drug name>/ OR <describe treatment for overdose if known>. In the event of an overdose, the subject should be observed closely for signs of toxicity. Appropriate supportive treatment should be provided if clinically indicated.
+All reports of overdose with and without an AE must be reported within 24 hours to the Sponsor.""
+You SHOULD state the definition of an overdose for this clinical trial describing also how to treat an overdose and the overdose reporting requirements.
+You SHOULD NOT describe any information about general study safety follow-up or dose modifications. Describe overdosage for all study drug(s). Do not describe study drug administration. Describe only the maximum protocol-allowed dose of each study drug. Do not describe DSMB or other committee activities. Do not describe the minimum allowed dose of study drug(s). Do not describe how study drug(s) are supplied.","","",""
+"6.8","Concomitant Medication Assessments","Synopsis","","","5.7","This section should only contain the timing and method for recording concomitant medications. The person responsible for recording the concomitant medications is qualified clinical site staff. Measures to be taken in case a participant takes a prohibited medication should be stated here. Do not list prohibited concomitant medications. Do not describe visit windows. Do not discuss SAE reporting. Do not repeat the visit schedule.
+","","",""
+"6.9","Removal Of Subjects From The Trial Or Study Drug","Synopsis","","","","Example text provided as a guide, customize as needed:
+[A subject may choose to discontinue study treatment and/or withdraw from the study at any time. Withdrawal of consent will not affect the subjectâ€™s future care by the Investigator or study site. In the absence of a medical contraindication, every effort should be made by the Investigator to encourage subjects who prematurely discontinue treatment to remain in the study as appropriate and, at a minimum, follow the subject for safety data collection.]","","",""
+"6.9.1","Discontinuation of Study Drug","Synopsis","","","4.1","Insert the following text (note: remove ""Positive pregnancy test"" if women of childbearing potential are not included in the study according to the inclusion criteria):
+""Discontinuation from study intervention does not mean discontinuation from the study, and remaining study procedures should be completed as indicated by the study protocol. If a clinically significant finding is identified after enrollment (including, but not limited to changes from baseline), the Investigator or qualified designee will determine if any change in subject management is needed. Any new clinically relevant finding will be reported as an AE.
+The data to be collected at the time of study intervention discontinuation will include the results of the assessments planned for the final study visit.
+
+An Investigator may discontinue or withdraw a subject from the study for the following reasons:
+-Completion of study intervention.
+-Disease progression which requires discontinuation of the study intervention.
+-If any clinical AE, laboratory abnormality, or other medical condition or situation occurs such that continued participation in the study would not be in the best interest of the subject.
+-Investigator discretion.
+-Positive pregnancy test.
+-Subject unable to receive <insert study intervention> for [x] days/weeks.""
+This section should indicate that discontinuing the study intervention does not mean discontinuing the study and participants can still continue to be followed up if they stop taking the study intervention. It should indicate what data should be collected at the time of discontinuation, and the possible reasons for the investigator to discontinue a participant's treatment on-study.
+For Early Termination: Should be a specific visit. Only applicable when a participant discontinues study participation (not just study drug discontinuation) early. If there is specific data to be collected due to discontinuation of study drug, this must be discussed.","","",""
+"6.9.2","Withdrawal From The Study","Synopsis","","","","Insert the following text:
+""The Investigator may withdraw a subject from the study for any of the following reasons:
+-A protocol violation occurs.
+-A serious or intolerable AE occurs.
+-A clinically significant change in a laboratory parameter occurs.
+-The Sponsor or Investigator terminates the study.
+-The subject requests to be discontinued from the study.
+Subjects who withdraw or are withdrawn from the study prematurely should be contacted at the earliest opportunity to: 1) complete an early termination evaluation (review of AEs, concomitant therapies, etc.) and 2) undergo lab testing for safety monitoring purposes (as outlined in the other study visits).
+The reason for subject discontinuation or withdrawal from the study will be recorded on the eCRF. Subjects who sign the informed consent form and are randomized but who do not receive the study intervention may be replaced. Subjects who sign the informed consent form, and who are randomized and receive the study intervention, and who subsequently withdraw, or are withdrawn or discontinued from the study, <may or will not> be replaced.""
+","","",""
+"6.9.3","Lost To Follow-up","Synopsis","","","","Example text provided as a guide, customize as needed:
+[A subject will be considered lost to follow-up if he or she fails to return for <specify number of visits> scheduled visits and is unable to be contacted by the site staff.
+The following actions must be taken if a subject fails to return to the clinic for a required study visit:
+-The site will attempt to contact the subject and reschedule the missed visit <specify time frame> and counsel the subject on the importance of maintaining the assigned visit schedule and ascertain if the subject wishes to and/or should continue in the study.
+-Before a subject is deemed lost to follow-up, the Investigator or designee will make every effort to regain contact with the subject (where possible, 3 telephone calls and, if necessary, a certified letter to the subjectâ€™s last known mailing address or local equivalent methods). These contact attempts should be documented in the subjectâ€™s medical record or study file.
+-Should the subject continue to be unreachable, he or she will be considered to have withdrawn from the study with a primary reason of lost to follow-up.]
+This section should NOT contian any information about historical rates of loss to follow-up, study duration, impact on study continuation, or follow-up procedures (once lost to follow-up, the participant is discontinued from the study for good and will not receive any follow-up). ","","",""
+"6.1","Study Stopping Rules","Synopsis","","","","Example text provided as a guide, customize as needed:
+[This study may be temporarily suspended or prematurely terminated if there is sufficient reasonable cause. Written notification, documenting the reason for study suspension or termination, will be provided by the suspending or terminating party to <study subjects, Investigator, funding agency, the IND or Investigational Device Exemption (IDE) Sponsor and regulatory authorities>. If the study is prematurely terminated or suspended, the Principal Investigator (PI) will promptly inform study subjects, the IRB, and Sponsor and will provide the reason(s) for the termination or suspension. Study subjects will be contacted, as applicable, and be informed of changes to the study visit schedule.
+Circumstances that may warrant termination or suspension include, but are not limited to:
+-Determination of unexpected, significant, or unacceptable risk to subjects.
+-Demonstration of efficacy that would warrant stopping.
+-Insufficient compliance to protocol requirements.
+-Data that are not sufficiently complete and/or evaluable.
+-Determination that the primary endpoint has been met.
+-Determination of futility.
+The study may resume once concerns about safety, protocol compliance, and data quality are addressed, and satisfy the Sponsor, IRB and/or FDA/other Health Authority.]
+
+Do not describe efficacy/futility stopping rules in this section. Only describe stopping rules associated with data and safety signals.","","",""
+"6.11","Other Study Procedures","Synopsis","","","3.1, 6.3, 6.4, 6.2","In a Phase 2/3 study, this section may contain pharmacokinetics, pharmacodynamics, biomarkers, or quality of life (QoL) questionnaires, etc.
+This section is study-specific. It should only contain assessments that are not directly related to screening and baseline assessments, safety, or efficacy (e.g., pharmacogenetics/genomics, various patient-reported questionnaires). Do not describe assessments related to screening/baseline assessments, safety, and efficacy in this section. 
+Describe assessments that are mentioned in the synopsis but are not previously described in Section 6.2, Section 6.3. or Section 6.4. Do not describe any of the screening or baseline assessments described in Section 6.2, including pharmacogenetic/genomic testing/typing or sequencing. Do not describe any of the medical history or immunological parameters described in Section 6.2. Do not describe any of the efficacy assessments and any of the immunogenicity, immune monitoring, immune profiling, immunes responses, or other immune biomarker assessments described in Section 6.3. Do not describe any of the safety assessments described in Section 6.4. Do not describe any assessments that are not defined in the synopsis. If healthcare utilization is not mentioned in the synopsis, do not describe healthcare utilization. Do not describe the assessment schedule. Do not describe visit windows. Do not describe the visit schedule. Do not describe the length of participant follow-up. Do not describe laboratory methods. Do not describe any of the assessments performed at screening for eligibility assessment. Do not describe stratification. Do not describe DSMB or other committee activities. Do not describe the visit schedule. Do not describe the length of participant follow-up. Do not describe the long-term follow-up visit schedule. ","","",""
+"6.12","Appropriateness of Measurements","Synopsis","Industry Literature","","3.1","Explain the appropriateness of measures to be used. If any of the safety assessments are not standard, ie, widely used and generally recognized as reliable, accurate, and relevant (able to discriminate between effective and ineffective agents), describe the measurementâ€™s reliability, accuracy, and relevance. It may be helpful to describe alternatives that were considered but rejected.
+Provide justification if a surrogate endpoint (a laboratory measurement or physical measurement or sign that is not a direct measure of clinical benefit) will be used as a study endpoint, eg, by reference to clinical data, publications, guidelines, or previous actions by regulatory authorities.
+This section SHOULD be straightforward.  You SHOULD NOT describe the assessments or the statistical analysis. You SHOULD indicate which assessments are validated or are the standard for the study. If available, provide support for the use of any unvalidated or non-standard assessment.
+Do not describe any methods or assays that are not explicitly mentioned in the synopsis.","","",""
+"7","STUDY ACTIVITIES","Synopsis","","","3.1","In this section, if it is included:
+Indicate that a study events table is presented in an appendix to the protocol.
+List the study procedures to be performed and the timing of those procedures for each study activity.
+Make sure that the timing of events in this section matches the SOE exactly.
+Provide a concise outline of the procedure(s) that will be performed at each visit, by time.
+Use consistent terminology when referring to procedures, visits, and times, eg, â€œVisit 1,â€ â€œDay 1,â€ or â€œWeek 1.â€
+Describe the acceptable or unacceptable limits for visit windows.
+List specific timing for procedures in relation to meals or study treatment administration, if applicable, eg, 30 minutes before study treatment is given or within 10 minutes after study treatment is given.
+Modify these suggested subheadings as applicable for the study.
+Screening Visit (Days â€“XX to -1)
+Describe the acceptable length of time for the screening period in addition to the instructions listed above.
+
+Clinic Admission (Day -1)
+
+Treatment Period (Day 1 to Day XX)
+Visit 1 (Day 1) Procedures
+
+
+
+
+
+Visit 2 (Day XX) Procedures
+
+
+
+
+
+Day XX or Early Termination Procedures
+List the procedures to be performed for early termination assessments, if there are differences in the procedures to be performed when the subject is not completing the study. Otherwise, list the procedures in the final visit section if the same procedures apply.
+Describe actions (if any) that the study site personnel should take to track subjects after the study.
+Indicate what Sponsor notification procedures are to be followed in the event that a subject withdraws or is withdrawn from the study.
+
+
+
+
+Follow-up Visit (Day XX Â± X)
+Describe the follow-up procedures and time period for subjects withdrawn from the trial and/or IP(s) treatment.
+Define any safety testing and follow-up of AEs that result in discontinuing the subject from the study or from the study drug, eg, until resolution, until the event has stabilized, or until the event has been determined to be caused by an agent other than the study drug.
+Note: Include a description of how the Sponsor plans to continue to monitor any discontinued subjects who become pregnant during the study and the newborn, if applicable.
+
+If this section is included, it should be separated into either sub-sections for study visits or study periods (or both - e.g., you can have visits and a follow-up period, or a lead-in period between screening and the first administration of the study intervention), and generally give a bulleted lists of the assessments performed at each visit/during each study period. It should exactly recapitulate what is in the schedule of events, just broken out into bullet points instead of in a table. The titles for each sub-section should contain the timepoint (Day/Week/Month/etc.) of the visit/study period and any applicable windows (e.g., ""End of Study Visit - Day 30 +/- 2 days). Nomenclature for the visits should be consistent with the schedule of events. If there are multiples of the same assessment during one period (e.g., PK blood sample collection), the time points should be listed in the bullet point for that assessment. No need to describe the evaluations.
+Ensure that the headers and subheaders of this section follow the structure""week/period - Week X (day X Â± X Days).  For instance: Â´Baseline - Week 0 (Day 0)Â´, Â´Week 2 (Day 14 Â± 3 Days)Â´ , Â´Week 4 (Day 28 Â± 3 Days)Â´","","",""
+"8","QUALITY CONTROL AND ASSURANCE","Synopsis","","","","Insert the following text:
+""Each site will perform internal quality management of study conduct, data and biological specimen collection, documentation and completion. An individualized quality management plan will be developed to describe a siteâ€™s quality management.
+Quality control (QC) procedures will be implemented beginning with the data entry system and data QC checks that will be run on the database will be generated. Any missing data or data anomalies will be communicated to the site(s) for clarification/resolution.
+Following written standard operating procedures (SOPs), the  will verify that the clinical trial is conducted, data are generated, and biological specimens are collected, documented (recorded), and reported in compliance with the protocol, International Council for Harmonization (ICH) Good Clinical Practice (GCP), and applicable regulatory requirements (eg, Good Laboratory Practice [GLP], Good Manufacturing Practice [GMP]).
+The site will provide direct access to all trial-related sites, source data/documents, and reports for the purpose of monitoring and auditing by the Sponsor, and inspection by local and regulatory authorities.""
+Any content regarding statistical analysis should be removed from this section. While this section should have information about data management procedures/considerations (e.g., who will enter data into the data capture system, training on the data capture system, data queries, how corrections should be made to the data in the data capture system if necessary, source data verification, data cleaning procedures,etc.), there should be no section combining data management and statistical anaylsis.
+This section SHOULD NOT contain information on the study product itself, the accountability or the different assays. 
+This section SHOULD contain information about quality assurance/control for the conduct of the study and the data obtained during the study.
+","","",""
+"9","PLANNED STATISTICAL METHODS","Synopsis","","Heading","","","","",""
+"9.1","General Considerations","Synopsis","","","3.1","Provide the following information:
+Who will have responsibility for statistical analyses,
+The statistical methods to be employed, including timing of any planned interim analyses,
+The level of significance to be used,
+The method/software to be used for performing the analyses,
+Any definitions needed to explain the analyses, eg, baseline or change from baseline,
+Procedures for accounting for missing, unused, and spurious data,
+Procedures for reporting any deviation(s) from the original statistical plan, and
+Criteria for termination of the trial.
+Do not describe analysis populations.
+Do not describe reporting of protocol deviations.
+Do not define endpoints.","","",""
+"9.2","Determination Of Sample Size","Synopsis","","","3.1","Describe the number of subjects planned for enrollment and the number projected for each trial site.
+State the reason for choice of sample size, including reflections on (or calculations of) the power of the trial and clinical justification.
+Provide the planned sample size and the basis for it, such as statistical considerations or practical limitations.
+For a positive control study intended to show that a new therapy is at least as effective as the standard therapy, the sample size determination should specify the difference between treatments that would be considered unacceptably large and, therefore, the difference the study is designed to be able to exclude.
+This section details the methods used for the determination of the sample size and a reference to tables or software used to carry out the calculations. Sufficient information should be provided so that the sample size calculation can be reproduced or described. 
+
+If the sample size is not derived statistically, this should be explicitly stated along with a rationale for the intended sample size.
+
+This information is taken from the synopsis or other document provided by the Biostatistician which summarizes the sample size calculations and explorations.
+Do not describe the rationale for treatment effect. Do not discuss the timing of analyses.","","",""
+"9.3","Analysis Populations","Synopsis","","","3.1","Define the populations to be analyzed in the study.
+Define the selection of subjects to be included in the analyses (eg, all randomized subjects, all dosed subjects, all eligible subjects, and/or evaluable subjects).
+Describe any reasons why subjects for whom data are available might be excluded from the analysis.
+Identify any subgroups whose results are to be examined separately.
+Describe the way in which subject replacement will be addressed for the analysis (if applicable).
+If analysis sets (or analysis populations) are defined in the synopsis, then they should be pulled in here. If there are no sets/populations defined in the synopsis, then typical sets/populations can be pre-defined (and manually reviewed by the Biostat for manipulation/customization). The typical sets are:
+
+Insert the following text:
+""Intent-to-Treat (ITT) Analysis Set:
+The ITT Analysis Set includes all randomized [participants/subjects/patients] in the groups to which they were randomly assigned, regardless of their adherence with the study eligibility criteria, the intervention they actually received, or subsequent withdrawal from intervention of deviation from the protocol.
+
+Safety Analysis Set:
+The Safety Analysis Set includes all [participants/subjects/patients] who received any study product. [Participants/Subjects/Patients] in this set are classified according to the actual intervention received, not necessarily the intervention to which they were randomized.""
+
+If the study drug(s) is a vaccine and the study has immunogenicity objectives/endpoints, insert the following text:
+'Immunogenicity Analysis Set:
+The Immunogenicity Analysis Set includes all randomized [participants/subjects/patients] who received all pertinent vaccinations. [Participants/Subjects/Patients] in this set are classified according to the actual intervention received.""
+
+Do not describe inclusion criteria. Do not describe exclusion criteria. Do not discuss stratification. Do not describe the safety, efficacy, or immunogenicity analyses. Do not define any of the study endpoints. Do not discuss demographics and baseline characteristics. Do not describe the population size.","","",""
+"9.4","Demographics and Baseline Characteristics","Synopsis","","","3.1, 6.2","Describe the method for analysis of demographic and baseline characteristic data. Do not describe the need for repeat baseline assessments. Do not describe the schedule of assessments. Do not describe the visits at which demographic data will be collected. Do not define endpoints. Do not describe the sample size. Do not describe the treatment regimen(s). Do not describe or define the demographic and baseline characteristics that will be collected. Do not define the treatment groups. Do not discuss pregnancy testing. Do not describe randomization. Do not describe stratification factors. Do not define the baseline characteristics. Do not describe the study population.","","",""
+"9.5","Efficacy Analysis","Synopsis","","","3.1, 6.3","First, specify which of the defined analysis populations will be used for the analyses of the efficacy and/or immunogenicity endpoints (such as ITT population, Immunogenicity population). Do not define which participants will be in the specified analysis population. Do not define how many participants will be in the specified analysis population. Do not discuss analysis populations that will only be used for safety analyses.
+Specify the study method or measurement that will be used to collect the data needed to determine whether the efficacy endpoints have been achieved. Define categorical responses (global scales, severity scores, responses of a certain size) that are to be used in analyzing responses (if any).
+Describe the statistical method that will be used to calculate and summarize each endpoint variable.
+Describe whether individual endpoints will be summarized and provided in tables, and if so, what will be included in those tables.
+Specify the particular measurements (eg, average of several measurements over the entire study, values at particular times, values only from study completers, or last on-therapy value) planned as the basis for comparison of test drug/IP and control, if critical measurements are to be made more than once.
+Similarly, identify the planned approach if more than one analytical approach is plausible, eg, changes from baseline response, slope analysis, life table analysis.
+Specify whether the primary analysis is to include adjustment for covariates.
+If immunogenicity is included in the efficacy assessments in Section 6.2, describe the statistical analyses planned for the immunogenicity endpoints.
+Do not describe efficacy and/or immunogenicity assessments. Do not describe the laboratory methods used to obtain the efficacy and/or immunogenicity data. Do not describe the assays that will be used to obtain the efficacy and/or immunogenicity data. Do not describe the methods for obtaining efficacy and/or immunogenicity data. Do not describe how efficacy and/or immunogenicity data will be collected. Do not describe how efficacy and/or immunogenicity endpoints will be reported. Do not mention the treatment groups that are being compared. Do not describe sample collection. Do not describe the schedule of assessments. Do not define treatment responses. Do not define disease response criteria. Do not define efficacy and/or immunogenicity responses. Do not describe the follow-up period. Do not describe randomization. Do not discuss sample size calculations. Do not describe analyses of endpoints that are not efficacy and/or immunogenicity endpoints. Do not provide definitions of the efficacy and/or immunogenicity endpoints. Do not describe the statistical power of the analyses.","","",""
+"9.6","Safety Analysis","Synopsis","","","3.1, 6.4, 6.5","Specify which analysis population will be used for safety analyses.
+Include the coding dictionary to be used for AEs (eg, MedDRA, COSTART).
+Specify the study method or measurement that will be used to collect the data needed to determine whether the safety endpoints have been achieved.
+Describe the statistical methods that will be used to calculate and summarize each safety endpoint: AEs, safety laboratory parameters, vital signs, ECGs, and all other safety endpoints described in Section 6.4. Do discuss statistical analysis of AEs and all safety endpoints described in Section 6.4. Do not list the specific hematology, chemistry, urinalysis, or coagulation parameters.
+Do not describe the methods for collection of safety data. Do not describe the AE severity grading system. Do not describe the assessment of AE relationship to study drug(s). Do not describe the assessment of AE outcomes. Do not describe the schedule of events. Do not mention specific visits. Do not mention endpoints that are not safety endpoints. Do not define the safety analysis population. Do not describe SAE reporting. Do not describe dose adjustments for the study drug(s). Do not describe the length of AE follow-up. Do not describe DSMB or other committee activities.","","",""
+"9.7","Other Assessments Or Analyses","Synopsis","","","3.1, 6.3, 6.4, 6.2, 6.11","Describe only the planned statistical analyses for the assessments described in Section 6.11, eg, quality of life assessments.
+Do not describe the screening or baseline assessments defined in Section 6.2. Do not discuss the efficacy assessments defined in Section 6.3. If the efficacy assessments include any immunological assessments, do not describe any immunological assessments in this section. Do not describe disease status. Do not describe the safety assessments defined in Section 6.4. Do not describe the primary analyses. Do not discuss efficacy testing. Do not discuss the sample size calculations. Do not discuss the analysis of the primary or secondary endpoints. Do not describe assessments not specified in the synopsis. Do not describe severity grading of AEs.","","",""
+"9.8","Interim Analysis","Synopsis","","","3.1","Describe the frequency and nature of any planned interim analyses, any specified circumstances in which the study would be terminated, and any statistical adjustments to be employed because of interim analyses.
+This section describes any interim analyses and criteria for stopping or adapting the trial. The description should inclue, but is not limited to, the following:
+- Any interim analysis plan, even if it is only to be performed at the request of an oversight body, such as an IDMC or DSMB.
+- Describe and reference the applied statistical method (e.g., group sequential test, spending function)
+- Who will perform the analyses
+- When they will be conducted (timing and/or triggers)
+- The decision criteria (statistical or other) that will be adopted to judge the interim results as part of a guideline for early stopping or other adaptations
+- Who will see the outcome data while the trial is ongoing
+- Whether these individuals will remain blinded to trial groups
+- How the integrity of the trial implementation will be protected when any adaptations to the trial are made
+- Who has the ultimate authority to stop or modify the trial (e.g., investigator, PI, IDMC, DSMB, sponsor)
+- The stopping guidelines
+- The pre-specified interim analyses are to be used for other trial adaptations such as sample size re-estimation, alteration to the proportion of participants allocated to each trial group, and changes to eligibility criteria. 
+Do not describe safety monitoring and reporting. Do not discuss sample size calculations. Do not describe dose adjustments for the study drug(s). Do not describe the number of participants. Do not discuss the overall study design. Do not discuss the length of participant follow-up. Do not describe the time of study termination. Do describe reporting to the DSMB.","","",""
+"10","ADMINISTRATIVE CONSIDERATIONS","Synopsis","","Heading","","","","",""
+"10.1","Investigators And Study Administrative Structure","Synopsis","","","","Insert a table to provide the name and contact information of the PrincipaI or Coordinating Investigator and the Medical Monitor as follows:
+""|Principal or Coordinating Investigator|Medical Monitor|
+|-----------------------------------------------------------|--------------------------|
+|Principal or Coordinating Investigator's Name, degree, title|Medical Monitor's Name, degree, title|
+|Principal or Coordinating Investigator's Institution Name|Medical Monitor's Institution Name| 
+|Principal or Coordinating Investigator's Address|Medical Monitor's Address|
+|Principal or Coordinating Investigator's Phone Number|Medical Monitors' Phone Number|
+|Principal or Coordinating Investigator's Email|Medical Monitor's Email|""
+First, provide information about the Principal or Coordinating Investigator(s) and the Medical Monitor.
+In addition, briefly describe any study leadership committees (eg, Steering Committee, Executive Committee, Subcommittee) and their roles. Note that it is not necessary to list specific members. Also, describe country-specific administrative requirements or functions that materially affect the conduct of the study. The MOP should include a list of study team roles and responsibilities of those involved in the conduct, management, or oversight of the trial.
+List the name, title, address, and phone number of the principal or coordinating Investigator who is responsible for overseeing the conduct of the trial. If multiple Investigators participated, this information may be placed in an appendix to this protocol.
+List the name, title, address, and telephone number of the qualified physician (or dentist, if applicable) who is responsible for all trial site-related medical decisions (if this person is different from the Principal or Coordinating Investigator).
+List the names and addresses of the clinical laboratories and other medical or technical departments or institutions involved in the trial.
+List the names, titles, addresses, and other relevant contact information not described above (eg, for any steering committee, data monitoring committee, contract research organization, or clinical trial supply management source).
+Note that the participantâ€™s primary care physician may be notified of study participation.
+Do not discuss randomization. Do not discuss historical data about where the study drug has been studied previously.
+Do not discuss participant follow-up. Do not discuss SAE reporting. Do not describe what the DSMB or other committee(s) will do during the study. Do not describe the purpose of the study. Do not describe the study endpoints. Do not describe the assessments to be performed in the study. Do not list laboratory parameters. Do not describe administration or dosage of study drug(s). Do not describe dose modifications. Do not discuss inclusion criteria and exclusion criteria. Do not discuss informed consent. Do not describe the Principal or Coordinating Investigator's responsibilities related to study assessments including laboratory assays. 
+Do not copy the synopsis in this section.","","",""
+"10.2","Institutional Review Board or Independent Ethics Committee Approval","Synopsis","","","","Example text provided as a guide, customize as needed:
+[Federal regulations and the ICH guidelines require that approval be obtained for each clinical site from an <IRB/IEC> before participation of human subjects in research studies. Before study onset, the protocol, informed consent form, and any other written information regarding this study to be provided to the subject or the subjectâ€™s legal guardian must be approved by the <IRB/IEC>, and written confirmation of such approval must be received by the site. Documentation of all approvals and of the <IRB/IEC> compliance with ICH Guidelines for GCP E6 (R3) will be maintained by the site and will be available for review by the Sponsor or its designees.
+All approvals should be signed by the <IRB/IEC> chair or designee and must identify the <IRB/IEC> by name and address, the clinical protocol by title or protocol number or both, and the date approval or favorable opinion was granted.]
+
+Update <IRB/IEC> placeholder based on country(ies) where study will be conducted: 
+- IRB(s) (sites US)
+- IEC(s) (sites EU and other)
+- REB(s) (sites Canada)","","",""
+"10.3","Ethical conduct of the study","Synopsis","","","","Example text provided as a guide, customize as needed:
+[The Investigators will ensure that this study is conducted in full conformity with the Declaration of Helsinki, the ICH GCP regulations and guidelines, principles of The Belmont Report: Ethical Principles and Guidelines for the Protection of Human Subjects of Research, National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research (April 18, 1979), and codified in the United States (US) Code of Federal Regulations (CFR), title 45 CFR 46, 21 CFR 50 and 56, and ICH E6 (R3); 62 Federal Regulations 25692 (1997), as applicable.]","","",""
+"10.4","Subject Information and Consent","Synopsis","","","4.1","Example text provided as a guide, customize as needed (remove ""and assent form (as applicable)""/""and assent form""/""or assent (for subjects < 18 years old)"" if the study does not include minors):
+
+[Each subject will be provided a written informed consent form (ICF) <and assent form (as applicable)>, describing this study and providing sufficient information to make an informed decision about participation in this study.
+A copy of the proposed ICF <and assent form> must be submitted to the Sponsor and/or designee for review prior to submission to the reviewing <IRB/IEC>. The ICF <and assent form> must be approved by the <IRB/IEC> and must contain all elements required by federal, state, local, and institutional regulations or requirements. Institutions in the US must be in compliance with Health Insurance Portability and Accountability Act of 1996 (HIPAA) with regard to obtaining authorizations for use and disclosure of Protected Health Information.
+The study, including its goals, methods, expected benefits, and potential hazards will be completely explained to each prospective study subject. It will also be explained to subjects that they are free to refuse entry or to withdraw from the study at any time without prejudice to future treatment. Voluntary informed consent <or assent (for subjects < 18 years old)> must be obtained from each eligible subject (and/or legally authorized representative if the subject is mentally incompetent or physically incapacitated) before any protocol-defined procedures are performed.
+The subjectâ€™s willingness to participate in this study will be documented on the <IRB/IEC>-approved ICF <and assent form> (as applicable) which must be signed and dated by the subject or legally acceptable surrogate, and the physician Investigator (Principal or sub-Investigator). The Investigator will keep the original ICF <and assent form (as applicable)> and a copy will be given to the subject. The process for obtaining informed consent should also be noted in the subjectâ€™s source documentation.]
+
+Update <IRB/IEC> placeholder based on: 
+- IRB(s) (sites US)
+- IEC(s) (sites EU and other)
+- REB(s) (sites Canada)
+","","",""
+"10.5","Subject Confidentiality","Synopsis","","","","Example text provided as a guide, customize as needed:
+
+[Subject confidentiality and privacy is strictly held in trust by the participating Investigators, their staff, and the Sponsor(s) and their interventions. This confidentiality is extended to cover testing of biological samples and genetic tests in addition to the clinical information relating to subjects. Therefore, the study protocol, documentation, data, and all other information generated will be held in strict confidence. No information concerning the study, or the data will be released to any unauthorized third party without prior written approval of the Sponsor.
+All research activities will be conducted in as private a setting as possible.
+The study monitor, other authorized representatives of the Sponsor, representatives of the IRB/IEC, regulatory agencies or pharmaceutical company supplying study product may inspect all documents and records required to be maintained by the Investigator, including but not limited to, medical records (office, clinic, or hospital) and pharmacy records for the subjects in this study. The clinical study site will permit access to such records.
+The study subjectsâ€™ contact information will be securely stored at each clinical site for internal use during the study. At the end of the study, all records will continue to be kept in a secure location for as long a period as dictated by the reviewing IRB/IEC, institutional policies, or Sponsor requirements.
+Study subject research data, which is for purposes of statistical analysis and scientific reporting, will be transmitted to and stored at the <specify name of DCC>. This will not include the subjectsâ€™ contact or identifying information. Rather, individual subjects and their research data will be identified by a unique study identification number. The study data entry and study management systems used by clinical sites and by <specify name of DCC> research staff will be secured and password-protected. At the end of the study, all study databases will be de-identified and archived at the <specify name of DCC>.]
+","","",""
+"10.6","Study Monitoring","Synopsis","","","","Example text provided as a guide, customize as needed:
+
+[Clinical site monitoring is conducted to ensure that the rights and well-being of trial subjects are protected, that the reported trial data are accurate, complete, and verifiable, and that the conduct of the trial is in compliance with the currently approved protocol/amendment(s), with ICH GCP, and with applicable regulatory requirement(s).
+Monitoring for this study will be performed by <enter monitoring entity>.
+<Monitoring entity> will be provided copies of monitoring reports within <x> days of a monitoring visit.
+Details of clinical site monitoring are documented in a Clinical Monitoring Plan (CMP). The CMP describes in detail who will conduct the monitoring, at what frequency monitoring will be done, at what level of detail monitoring will be performed, and the distribution of monitoring reports.
+Independent audits <will/will not> be conducted by <enter auditing entity> to ensure monitoring practices are performed consistently across all participating sites and that monitors are following the CMP.]
+Describe monitoring of the clinical site(s) using the example text above. Do not describe safety monitoring. Do not describe SAE reporting and AE reporting. Do not describe the visit schedule. Do not describe long-term follow-up. Do not describe DSMB or other committee activities. Do no describe collection of AEs, TEAEs, or SAEs.","","",""
+"10.7","Data Collection And Management Responsibilities","Synopsis","","","","Example text provided as a guide, customize as needed:
+[Data collection is the responsibility of the clinical trial staff at the site under the supervision of the site Investigator. The Investigator is responsible for ensuring the accuracy, completeness, legibility, and timeliness of the data reported.
+All source documents should be completed in a neat, legible manner to ensure accurate interpretation of data.
+Hardcopies of the study visit worksheets will be provided for use as source document worksheets for recording data for each subject enrolled in the study. Data recorded in the electronic case report form (eCRF) derived from source documents should be consistent with the data recorded on the source documents.
+Clinical data (including AEs, concomitant medications, and expected adverse reactions data) and clinical laboratory data will be entered into <specify name of data capture system>, a 21 CFR Part 11-compliant data capture system provided by the <specify DCC>. The data system includes password protection and internal quality checks, such as automatic range checks, to identify data that appear inconsistent, incomplete, or inaccurate. Clinical data will be entered directly from the source documents.]
+","","",""
+"10.8","Case Report Forms and Study Records","Synopsis","","","","Example text provided as a guide, customize as needed:
+[All eCRFs will be completed according to eCRF completion guidelines. The Investigator must electronically sign and date a declaration on the eCRF attesting to his/her responsibility for the quality of all data recorded and that the data represent a complete and accurate record of each subjectâ€™s participation in the study. An electronic copy of the completed eCRF will then be sent to the Investigator to be retained for their records.]
+
+Describe case report forms and study records using the example text above. This section should NOT enumerate the different types of data to be captured during the study except in the context of data transfer specifications (e.g., ECG data will be transferred to Central Reading Lab X). This section should NOT contain information about clinical staff training or quality management systems, or monitoring of study data. This section should NOT contain details of procedures and should not contain anything about sample handling/processing. Retention of data should not be described here. Anything relating to Quality assurance should NOT go in this section. Do not list laboratory parameters. Do not list efficacy parameters.","","",""
+"10.9","Data Monitoring Committee","Synopsis","","","","Example text provided as a guide, customize as needed:
+[Safety oversight will be under the direction of a <Data and Safety Monitoring Board (DSMB)> composed of individuals with the appropriate expertise, including <list expertise>. Members of the <DSMB> should be independent from the study conduct and free of conflict of interest, or measures should be in place to minimize perceived conflict of interest. The <DSMB> will meet at least semiannually to assess safety and efficacy data on each arm of the study. The <DSMB> will operate under the rules of an approved charter that will be written and reviewed at the organizational meeting of the <DSMB>. At this time, each data element that the <DSMB> needs to assess will be clearly defined. The <DSMB> will provide its input to <specify the study Sponsor/National Institutes of Health staff/other>.]
+
+If there is no data oversight committee, mark this section as not applicable. If the committee is called something else (eg, Safety Review Commitee (SRC), Data Monitoring Committee (DMC), Independent Data Monitoring Committee (IDMC)), replace ""DSMB"" in this section with the appropriate committee name.","","",""
+"10.1","Protocol Violations And Deviations","Synopsis","","","","Example text provided as a guide, customize as needed:
+[A protocol deviation is any noncompliance with the clinical trial protocol requirements. The noncompliance may committed by the subject, the Investigator, or the study site staff. As a result of deviations, corrective actions are to be developed by the site and implemented promptly.
+These practices are consistent with ICH GCP E6 (R3):
+-2.5 Compliance with Protocol.
+-3.11 Quality Assurance and QC.
+-3.12 Noncompliance.
+It is the responsibility of the site Investigator to use continuous vigilance to identify and report deviations within <specify number> working days of identification of the protocol deviation, or within <specify number> working days of the scheduled protocol-required activity. All deviations must be addressed in study source documents, and reported to <specify DCC or Sponsor>. Protocol deviations must be sent to the reviewing IRB per their policies. The site Investigator is responsible for knowing and adhering to the reviewing IRB requirements. Further details about the handling of protocol deviations will be included in the Manual of Procedures.]
+
+","","",""
+"10.11","Access to Source Documentation","Synopsis","","","","Example text provided as a guide, customize as needed:
+[Source documents provide evidence for the existence of the subject and substantiate the integrity of the data collected. Source documents including web-based documentation are to be filed at the study site.
+Data reported and entered in the eCRF that are transcribed from source documents must be consistent with the source documents or the discrepancies must be explained. The Investigator may need to request previous medical records or transfer records, depending on the study. Also, current medical records must be available for all data collected in the eCRF.
+For eCRFs that are direct data entry, the eCRFs will serve as the source document.
+Refer to the Monitoring Plan for source data verification review and requirements.
+Source documents are subject to inspection by the Sponsor or regulatory agencies including FDA. During audits and inspections, the Investigator must permit direct access to all of the source documentation and other documents pertinent to this study.]","","",""
+"10.12","Data Generation and Analysis","Synopsis","","","","Use following text:
+
+[The Investigators or his/her delegate will record and submit to the Sponsor the data collected under this protocol in the appropriate eCRFs via the EDC system. The Investigator or delegate shall satisfactorily resolve any data queries, errors, and omissions without undue
+delay.
+The database will be managed, audited, and locked for analysis in accordance with the Sponsorâ€™s clinical data management procedures and plans.]","","",""
+"10.13","Retention of Data","Synopsis","","","","Use following text:
+[Study documents should be retained for a minimum of 2 years after the last approval of a marketing application in an ICH region and until there are no pending or contemplated marketing applications in an ICH region or until at least 2 years have elapsed since the formal discontinuation of clinical development of the study intervention. These documents should be retained for a longer period, however, if required by local regulations. No records will be destroyed without the written consent of the Sponsor, if applicable. It is the responsibility of the Sponsor to inform the Investigator when these documents no longer need to be retained.]","","",""
+"10.14","Financial Disclosure","Synopsis","","","","Example text provided as a guide, customize as needed:
+[Investigators and sub-investigators will provide the Sponsor with sufficient, accurate financial information, as requested, to allow the Sponsor to submit complete and accurate financial certification or disclosure statements to the appropriate regulatory authorities. Investigators are responsible for providing information on financial interests during the study and for 1 year after completion of the study. ]","","",""
+"10.15","Publication and Disclosure Policy","Synopsis","","","","Use the following example text without any changes:
+[The Sponsor retains ownership of all data. All proposed publications based on this study must be approved by the Sponsor. 
+The study will be registered in (an) international registry(ies) and the results will be loaded into the registry(ies) at the end of the study.]
+
+This section should NOT contain information regarding the length of the follow-up. 
+Do not describe safety reporting. Do not describe data collection and management. Do not discuss study endpoints (efficacy, safety, and other).","","",""
+"11","REFERENCE LIST","Synopsis","","Heading","","","","",""
+"Appendix 1","Appendix 1 Schedule of Events","Synopsis","","","","The study events table is intended as an aid for study site personnel and must therefore accurately reflect the type and timing of all study events.
+
+The following table is provided as a sample study events table. Modify the content and add or delete rows as applicable for the protocol.
+
+With studies that require frequent measurements, the Study Events Table may be best displayed on a landscaped page.
+
+| Evaluation | Screening Days \-x to \-1 | Visit 1; Day 1 | Treatment Period |  |  |  |  |  | Follow-up |
+| :---- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+|  |  |  | **Visit 2;Day x Â± x** | **Visit 3;Day x Â± x** | **Visit 4;Day x Â± x** | **Visit 5;Day x Â± x** | **Visit 6;Day x Â± x** | **Visit 7;Day x Â± x** | **Visit 8;Day x Â± x** |
+| Informed Consent | X |  |  |  |  |  |  |  |  |
+| Inclusion/Exclusion Criteria | X |  |  |  |  |  |  |  |  |
+| Demographics | X |  |  |  |  |  |  |  |  |
+| Medical History1 | X | X |  |  |  |  |  |  |  |
+| Physical Examination | X2,3 | X4 |  |  |  |  |  |  | X2 |
+| Urine Drug Screen5 | X | X |  |  |  |  |  |  |  |
+| Pregnancy Test6 | X | X |  |  |  |  |  |  |  |
+| Laboratory Tests7 | X |  |  |  | X |  |  |  | X |
+| Randomization |  | X |  |  |  |  |  |  |  |
+| Vital Signs8 | X | X |  |  | X | X |  | X | X |
+| 12-Lead ECG | X | X | X | X | X | X |  | X | X |
+| Drug Administration |  | X | X | X | X | X | X |  |  |
+| Drug Accountability |  |  |  |  |  |  |  | X |  |
+| AE Assessment |  | X | X | X | X | X | X | X | X |
+| Conmed Assessment |  | X | X | X | X | X | X | X | X |
+| Include a review of previous/ongoing medications. Complete examination, including assessments of the skin, head, eyes, ears, nose, throat, neck, thyroid, lungs, heart, abdomen, lymph nodes, extremities, and body weight. Height will be measured at screening only. Partial examination, to update findings from the examination performed at screening. Includes amphetamines, barbiturates, cocaine metabolites, opiates, benzodiazipines, cannabinoids, and cotinine. Only for female subjects who are not diagnosed as postmenopausal. Include serum chemistry, hematology (including coagulation), and urinalysis. Include blood pressure, pulse, respiratory rate, and oral temperature. |  |  |  |  |  |  |  |  |  |
+","","",""
+"Appendix 2","Study Drug Preparation and Dispensing Instructions","Synopsis","","","","This Appendix should only be included if the study drug preparation and dispensing instructions are highly complex and no Pharmacy Manual is planned for the study. Instructions should be provided by the Sponsor and inserted verbatim. If this appendix is not used, delete it.","","",""
+"Appendix 3","Adverse Events: Definitions And Procedures For Recording, Evaluating, Follow-up and Reporting","Synopsis","Investigators Brochure, Industry Literature, Guidelines","","","Insert the following text without making any changes.
+Adverse Event Definition
+An AE is any untoward medical occurrence in a subject administered a pharmaceutical product, irrespective of the whether the event is considered treatment related. An AE can therefore be any unfavorable and unintended sign (including an abnormal laboratory finding), symptom, or disease concurrent with the use of the study drug, whether or not related to the study. This includes any newly occurring event, or a pre-existing condition judged by the Investigator to have worsened in severity or frequency since the administration of study drug. Any medical condition that is present at the time that the participant is screened will be considered as baseline and not reported as an AE; however, if the trial participantâ€™s condition worsens at any time during the trial, it will be recorded as an AE.
+Severity Assessment of Adverse Events
+For AEs not included in the protocol-defined grading system, the following guidelines will be used to describe severity:
+-Mild â€“ Events require minimal or no treatment and do not interfere with the subjectâ€™s daily activities.
+-Moderate â€“ Events result in a low level of inconvenience or concern with the therapeutic measures. Moderate events may cause some interference with functioning.
+-Severe â€“ Events interrupt a subjectâ€™s usual daily activity and may require systemic drug therapy or other treatment. Severe events are usually potentially life-threatening or incapacitating. Of note, the term â€œsevereâ€ does not equate to â€œseriousâ€.
+Relationship of Adverse Events to Study Treatment
+All AEs must have their relationship to study intervention assessed by the clinician who examines and evaluates the subject based on temporal relationship and his/her clinical judgment. The degree of certainty about causality will be graded using the categories below. In a clinical trial, the study product must always be suspect.
+-Related â€“ The AE is known to occur with the study intervention, there is a reasonable possibility that the study intervention caused the AE, or there is a temporal relationship between the study intervention and event. Reasonable possibility means that there is evidence to suggest a causal relationship between the study intervention and the AE.
+-Not Related â€“ There is not a reasonable possibility that the administration of the study intervention caused the event, there is no temporal relationship between the study intervention and event onset, or an alternate etiology has been established.
+OR
+-Definitely Related â€“ There is clear evidence to suggest a causal relationship, and other possible contributing factors can be ruled out. The clinical event, including an abnormal laboratory test result, occurs in a plausible time relationship to study intervention administration and cannot be explained by concurrent disease or other drugs or chemicals. The response to withdrawal of the study intervention (dechallenge) should be clinically plausible. The event must be pharmacologically or phenomenologically definitive, with use of a satisfactory rechallenge procedure if necessary.
+-Probably Related â€“ There is evidence to suggest a causal relationship, and the influence of other factors is unlikely. The clinical event, including an abnormal laboratory test result, occurs within a reasonable time after administration of the study intervention, is unlikely to be attributed to concurrent disease or other drugs or chemicals, and follows a clinically reasonable response on withdrawal (dechallenge). Rechallenge information is not required to fulfill this definition.
+-Possibly Related â€“ There is some evidence to suggest a causal relationship (eg, the event occurred within a reasonable time after administration of the trial medication). However, other factors may have contributed to the event (eg, the subjectâ€™s clinical condition, other concomitant events). Although an AE may rate only as â€œpossibly relatedâ€ soon after discovery, it can be flagged as requiring more information and later be upgraded to â€œprobably relatedâ€ or â€œdefinitely relatedâ€, as appropriate.
+-Unlikely to be related â€“ A clinical event, including an abnormal laboratory test result, whose temporal relationship to study intervention administration makes a causal relationship improbable (eg, the event did not occur within a reasonable time after administration of the study intervention) and in which other drugs or chemicals or underlying disease provides plausible explanations (eg, the subjectâ€™s clinical condition, other concomitant treatments).
+-Not Related â€“ The AE is completely independent of study intervention administration, and/or evidence exists that the event is definitely related to another etiology. There must be an alternative, definitive etiology documented by the clinician.
+Expectedness of Adverse Events
+The Investigator will be responsible for determining whether an AE is expected or unexpected. An AE will be considered unexpected if the nature, severity, or frequency of the event is not consistent with the risk information previously described for the study intervention.""
+<Insert previous AEs reported for the study intervention from the Investigator's Brochure and/or previous clinical trials>
+Treatment-Emergent Adverse Events
+TEAEs are defined as an event that emerges during treatment, having been absent pretreatment, or worsens relative to the pretreatment state.
+Serious Adverse Event Definition
+An SAE is any unfavorable medical occurrence reported at any dose if it:
+-Results in death.
+-Is life-threatening. The term â€œlife-threateningâ€ in the definition of â€œseriousâ€ refers to an event in which the participant was at risk of death at the time of the event. It does not refer to an event that hypothetically might have caused death if it were more severe.
+-Requires inpatient hospitalization or prolongation of existing hospitalization. Planned hospitalization for a pre-existing condition, or a procedure required by the protocol, without serious deterioration in health, is not considered an SAE.
+-Results in persistent or significant disability/incapacity. The term disability means a substantial disruption of a personâ€™s ability to conduct normal life functions. This definition is not intended to include experiences of relatively minor medical significance such as uncomplicated headache, nausea, vomiting, diarrhea, influenza-like illness, and accidental trauma (e.g., sprained ankle) that may interfere or prevent everyday life functions but that do not constitute a substantial disruption.
+-Is a congenital anomaly/birth defect.
+Important medical events that may not result in death, be life-threatening, or require hospitalization may be considered an SAE when, based upon appropriate medical judgment, they may jeopardize the participant and may require medical or surgical intervention to prevent one of the outcomes listed in this definition. Examples of such medical events include allergic bronchospasm requiring intensive treatment in an emergency department or at home, blood dyscrasias or convulsions that do not result in inpatient hospitalization, or the development of substance dependency or substance abuse.
+Serious Adverse Event Follow-Up
+ The Investigator must respond to all queries received from the Sponsor and must submit follow-up reports for all SAEs to the Sponsor or Sponsorâ€™s designee regarding the subjectâ€™s subsequent course. All SAEs must be followed until:
+-The SAE is resolved, or
+-Stabilized (eg, in the case of persistent impairment), or
+-Subject death, or
+-Subject is lost to follow-up.
+SAE follow-up information should be recorded in the source documents and SAE/CRF forms as applicable.""","","",""
+"Appendix 4","Prohibited Concomitant Medications","Synopsis","Investigators Brochure, Industry Literature, Guidelines","","","Include a table of prohibited concomitant medications as an appendix if the list is long and if there is a potential for error. Do not mention whether the protocol includes an appendix with a prohibited medications table. Do not mention interactions with drugs that are not administered as part of the protocol.
+Sample text follows (table to be completed using source documents):
+The following medications are prohibited during the study:
+|Trade Name                  |   Trade Name(s) |
+|Generic Name                |                 | 
+-----------------------------------------------
+|Antibiotics                 |                 |
+...
+...","","",""
+"Appendix 5","Contraceptive and Barrier Guidance","Synopsis","Industry Literature, Guidelines","","","Insert the following text verbatim:
+""Definitions
+Woman of Childbearing Potential (WOCBP)
+Women in the following categories are considered WOCBP (fertile):
+-Following menarche
+-From the time of menarche until becoming postmenopausal unless permanently sterile (see below)
+-A postmenopausal state is defined as no menses for 12 months without an alternative medical cause.
+-A high follicle-stimulating hormone (FSH) level in the postmenopausal range may be used to confirm a postmenopausal state in women not using hormonal contraception or hormonal replacement therapy (HRT). However, in the absence of 12 months of amenorrhea, confirmation with more than one FSH measurement <[insert threshold if required (> 40 IU/L or mIU/mL) or remove to allow for flexibility with different local thresholds for defining postmenopausal state> is required.
+-Female subjects on HRT and whose menopausal status is in doubt will be required to use one of the nonestrogen hormonal highly effective contraception methods if they wish to continue their HRT during the study. Otherwise, they must discontinue HRT to allow confirmation of postmenopausal status before study enrollment.
+-Permanent sterilization methods (for the purpose of this study) include:
+-Documented hysterectomy.
+-Documented bilateral salpingectomy.
+-Documented bilateral oophorectomy.
+-For individuals with permanent infertility due to an alternate medical cause other than the above, (eg, Mullerian agenesis, androgen insensitivity, gonadal dysgenesis), Investigator discretion should be applied to determining study entry.
+Note: Documentation can come from the site personnelâ€™s review of the subjectâ€™s medical records, medical examination, or medical history interview.
+-If fertility is unclear (eg, amenorrhea in adolescents or athletes) and a menstrual cycle cannot be confirmed before the first dose of study intervention, additional evaluation should be considered.
+Contraceptive Guidance
+Table 2 	Contraceptives Allowed During Study Participation
+CONTRACEPTIVES ALLOWED DURING THE STUDY INCLUDE:
+Highly Effective Methodsb That Have Low User Dependency
+-Implantable progestogen-only hormone contraception associated with inhibition of ovulation.
+-Intrauterine device.
+-Intrauterine hormone-releasing systemc.
+-Bilateral tubal occlusion.
+-Azoospermic partner (vasectomized or due to a medical cause).
+Azoospermia is a highly effective contraceptive method provided that the partner is the sole sexual partner of the WOCBP and the absence of sperm has been confirmed. If not, an additional highly effective method of contraception should be used. Spermatogenesis cycle is approximately 90 days.
+Note: documentation of azoospermia for a male subject can come from the site personnelâ€™s review of the subjectâ€™s medical records, medical examination, or medical history interview.
+Highly Effective Methodsb That Are User Dependent
+-Combined (estrogen- and progestogen-containing) hormonal contraception associated with inhibition of ovulation:
+-Oral.
+-Intravaginal.
+-Transdermal.
+-Injectable.
+Progestogen-only hormone contraception associated with inhibition of ovulationc:
+-Oral.
+-Injectable.
+-Sexual abstinence.
+Sexual abstinence is considered a highly effective method only if defined as refraining from heterosexual intercourse during the entire period of risk associated with the study intervention. The reliability of sexual abstinence needs to be evaluated in relation to the duration of the study and the preferred and usual lifestyle of the subject.
+-Contraceptive use by men or women should be consistent with local regulations regarding the use of contraceptive methods for those participating in clinical studies.
+-Failure rate of < 1% per year when used consistently and correctly. Typical use failure rates differ from those when used consistently and correctly.
+-Male condoms must be used in addition to hormonal contraception. If locally required, in accordance with Clinical Trial Facilitation Group (CTFG) guidelines, acceptable contraceptive methods are limited to those which inhibit ovulation as the primary mode of action.
+Note: Periodic abstinence (calendar, symptothermal, postovulation methods), withdrawal (coitus interruptus), spermicides only, and lactational amenorrhea method are not acceptable methods of contraception for this study. Male condom and female condom should not be used together (due to risk of failure from friction).""","","",""
+"Appendix 6","European Union Specific Regulatory Considerations","Synopsis","","","","Insert the following text:
+""Note: if the study does not involve any clinical sites in the EU, this appendix can be deleted or marked ""Not Applicable.""
+General Considerations
+The study will be conducted in accordance with the protocol, European Union (EU) Regulation 536/2014 (Clinical Trials Regulation [CTR]) and Good Clinical Practice (GCP).
+EU Trial Number
+The study has been registered in the EU under EU Trial Number <insert EU trial number>.
+Subject Data Protection
+In accordance with GCP and with national data protection laws, all information concerning the subjects in the clinical trial must be treated as strictly confidential by all persons involved in the clinical trial. All activities related to EU citizen data will be conducted in accordance with the applicable requirements of the EU 2016/679 General Data Protection Regulation (GDPR) and regional data protection requirements. Data collected in the clinical trial will be recorded and forwarded to the Sponsor or its designee as per applicable law. The site shall grant access to subjectsÂ´ data to participating IECs, authorized sponsor representatives (such as monitors and auditors) and regulatory authorities, for auditing and regulatory purposes as required by applicable law.
+The Investigator and the Sponsor will ensure that the collection, use, storage and disclosure of protected health and personal information obtained during a clinical trial complies with all applicable EU Member State privacy laws and regulations, including but not limited to the EU GDPR. Data protection in accordance with EU GDPR is applicable even if EU citizen data are transferred to other countries outside EU. Authorization is required from each research subject (i.e., specific permission granted by an individual for the use or disclosure of an individualâ€™s protected personal or health information) as per applicable law.""
+","","",""
+"Appendix 7","Sponsor Signatures","Synopsis","","","","Example text provided as a guide, customize as needed:
+[Study Title:	<study title>Study Number:	<study number>Final Date:<final protocol date>	
+
+This clinical study protocol was subject to critical review and has been approved by the Sponsor. The following personnel contributed to writing and/or approving this protocol:
+
+Signed:			Date:		
+<enter name and credentials>
+<enter title>
+<enter affiliation>
+
+
+Signed:			Date:		
+<enter name and credentials>
+<enter title>
+<enter affiliation>
+
+
+Signed:			Date:		
+<enter name and credentials>
+<enter title>
+<enter affiliation>]","","",""
+"Appendix 8","Investigator's Signature","Synopsis","","","","Example text provided as a guide, customize as needed:
+[Study Title:	<study title>Study Number:	<study number>Final Date:<final protocol date>	
+
+I have read the protocol described above. I agree to comply with all applicable regulations and to conduct the study as described in the protocol. <enter additional text>
+
+Signed:			Date:		
+<enter name and credentials>
+<enter title>
+<enter affiliation>
+<enter address>
+<enter phone number>]","","",""

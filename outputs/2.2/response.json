@@ -1,0 +1,6 @@
+```json
+{
+  "transformed_instruction": "PIPELINE: TEXT_MANIPULATION\n\nFormat the secondary objectives and their corresponding endpoints from the Protocol into a table with the following structure:\n\n| Objective(s) | Endpoint(s) |\n| :---- | :---- |\n|  |  |\n|  |  |\n|  |  |\n\n- Copy all secondary objectives and endpoints exactly as stated in the Protocol\n- Include only secondary objectives in this table\n- Exclude primary objectives and exploratory objectives from this section",
+  "reasoning": "The input instruction consists solely of an empty table template with headers 'Objective(s)' and 'Endpoint(s)' and three empty rows. Since this is section 2.2 'Secondary Objective(s) and Endpoint(s)' based on the section context, I transformed this into a directive to populate the table with secondary objectives from the Protocol. I preserved the exact table format including the column alignment syntax (:----). I added explicit instructions to copy content from the Protocol source and included boundary conditions to exclude primary and exploratory objectives to prevent content duplication across sections 2.1 and 2.3. The TEXT_MANIPULATION pipeline was selected because this involves copying structured content from a source document (Protocol) into a predefined table format without requiring synthesis or authoring of new content."
+}
+```

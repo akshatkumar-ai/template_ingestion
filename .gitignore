@@ -1,0 +1,23 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Outputs and cache
+outputs/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+*.log

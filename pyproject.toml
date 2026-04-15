@@ -1,0 +1,10 @@
+[project]
+name = "automation-template-ingestion"
+version = "0.1.0"
+description = "Transform raw section instructions via AWS Bedrock (Claude)"
+requires-python = ">=3.10"
+
+dependencies = [
+    "boto3>=1.42",
+    "python-dotenv>=1.0",
+]

@@ -1,0 +1,12 @@
+"Example text provided as a guide, customize as needed:
+[Discontinuation from <study intervention> does not mean discontinuation from the study, and remaining study procedures should be completed as indicated by the study protocol. If a clinically significant finding is identified after enrollment (including, but not limited to changes from baseline), the Investigator or qualified designee will determine if any change in subject management is needed. Any new clinically relevant finding will be reported as an AE.
+The data to be collected at the time of study intervention discontinuation will include the following:
+Describe the procedures and data to be collected, as well as any follow-up evaluations
+An Investigator may discontinue or withdraw a subject from the study for the following reasons:
+Completion of study intervention.
+Disease progression which requires discontinuation of the study intervention.
+If any clinical AE, laboratory abnormality, or other medical condition or situation occurs such that continued participation in the study would not be in the best interest of the subject.
+Investigator discretion.
+Positive pregnancy test.
+Subject unable to receive <study intervention> for [x] days/weeks.]
+"
