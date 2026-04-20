@@ -17,29 +17,62 @@ for this authoring mode:
 
 Authoring Type: <AUTHORING_TYPE>
 
-Authoring Rules:
+Source Model:
+- Primary Source (Anchor): <ANCHOR_SOURCE_TYPE>
+- Secondary Sources: <LIST_OF_SUPPORTING_SOURCE_TYPES>
+
+Source Usage Rules:
+- The Primary Source is the only source from which content may be directly copied
+- Secondary Sources may be used only for synthesis when explicitly required
+- If a source is not explicitly referenced in the input instruction, do NOT introduce it
+- Do NOT assume that any specific content exists in any source
+
+Authoring Behavior:
 - PROTOCOL AUTHORING:
-  - Instructions may involve transforming structured inputs into detailed study design descriptions
-  - Content is typically derived from a structured summary source
-
+  - Instructions may involve expanding structured inputs into detailed descriptions
 - SAP AUTHORING:
-  - Instructions may involve statistical structuring, analysis definitions,
-    and alignment with structured study design inputs
-  - Content may require combining structured inputs across multiple sources
-
+  - Instructions may involve structuring statistical analysis definitions
 - CSR AUTHORING:
-  - Instructions may involve summarizing and reporting study results,
-    ensuring alignment with previously defined analysis and study design
-  - Content may involve synthesis of multiple structured inputs
+  - Instructions may involve summarizing and reporting study results
 
 Strict Constraints:
-- These definitions provide ONLY high-level authoring behavior
-- Do NOT assume the presence of any specific sections, data, or elements
-- Do NOT introduce content based on typical expectations of the authoring type
-- Do NOT infer missing components
+- Source definitions describe ONLY how content may be used, NOT what content exists
+- Do NOT infer or introduce content based on source type
+- Do NOT assume the presence of sections, data, or elements in any source
+- Do NOT expand instructions using domain knowledge or standard templates
 - Only transform what is explicitly stated in the input instruction
 </authoring_mode>
 <pipeline_types>
+Every output instruction must begin with a pipeline declaration on its own line:
+  PIPELINE: TEXT_MANIPULATION
+  PIPELINE: RAG
+  PIPELINE: HYBRID
+Definitions:
+1. TEXT_MANIPULATION
+   - The section content is produced by copying, lightly editing, or wrapping
+     existing text from a known input source (e.g. a clinical protocol synopsis,
+     a sponsor-provided boilerplate paragraph, an IB extract).
+   - No authoring or synthesis from multiple references is required.
+   - Typical signals: "copy from", "use the standard boilerplate",
+     "insert verbatim", "paste the criteria", "convert to past tense".
+   - Use this pipeline when the AI's job is text manipulation only —
+     copy, paste, reformat, tense-convert, or fill placeholders.
+2. RAG (Retrieval-Augmented Generation)
+   - The section content must be authored or synthesised from multiple source
+     documents or knowledge references (e.g. published literature, IB, protocol,
+     safety database).
+   - The AI must retrieve relevant information and compose original prose.
+   - Typical signals: "summarise the background", "describe the mechanism of
+     action", "provide a rationale", "describe prior studies".
+   - Use this pipeline when the AI must generate new content grounded in
+     retrieved references rather than copying a fixed source.
+3. HYBRID
+   - The section contains both a TEXT_MANIPULATION component (e.g. a boilerplate
+     block or a direct copy from a source) AND a RAG component (e.g. authored
+     narrative or synthesised summary).
+   - Use this pipeline when neither TEXT_MANIPULATION nor RAG alone covers the
+     full instruction.
+</pipeline_types>
 Every output instruction must begin with a pipeline declaration on its own line:
   PIPELINE: TEXT_MANIPULATION
   PIPELINE: RAG
@@ -181,6 +214,25 @@ IMPORTANT: The 'reasoning' should explain the generation logic of the instructio
    - This block must never reference section numbers using invented or
      inferred numbering — use only the exact section numbers and titles as
      they appear in the <toc_context>.
+
+14. COPY DIRECTIVE ONLY FOR EXPLICIT INSERTION VERBS
+   - Use the "Copy [content] from [source document]" directive format ONLY
+     when the original instruction explicitly uses insertion or copying verbs
+     such as "insert", "copy", "include verbatim", "add from", or
+     "take from" in reference to a source document.
+   - Do NOT convert instructions that use authoring or generative verbs —
+     such as "state", "provide the following information", "describe", "explain", "summarise",
+     "discuss", "mention", or "outline" — into "copy from" directives,
+     even if a source document is referenced alongside those verbs.
+   - For authoring verbs, retain the original verb and express the directive
+     in RAG or synthesis form (e.g., "Summarize [topic] using [source]",
+     "Describe [content] as stated in [source]"), preserving the intent
+     that the AI must compose or synthesise, not copy.
+   - The pipeline classification (TEXT_MANIPULATION, RAG, or HYBRID) must
+     reflect this distinction: sections driven entirely by authoring verbs
+     cannot be classified as TEXT_MANIPULATION solely because a source
+     document is named.
+
 </transformation_rules>
 <example>
 <input>
@@ -222,7 +274,7 @@ Current section: 1.1 Background and Rationale
 </section_context>
 <output>
 {
-  "transformed_instruction": "PIPELINE: HYBRID\n\n- State the disease area and describe the associated unmet medical need\n- Summarize the mechanism of action and pharmacological profile of the\n  investigational drug\n- Provide a brief summary of relevant prior preclinical and clinical studies\n  supporting the rationale for this study\n- Include prior study outcomes only if results are available in the Investigator's\n  Brochure or referenced input documents; exclude if not available\n\nBOILERPLATE\nDrug supplies must be stored in a secure, limited-access location under the\nstorage conditions specified on the label: <insert storage conditions from\nInvestigator's Brochure, Section [Storage and Handling]; if not available,\ninsert \"refer to product label\">. Refer to the Pharmacy Manual for additional\nguidance on study drug storage.\nEND BOILERPLATE\n\n- Copy the Inclusion Criteria and Exclusion Criteria from the Protocol\n  (Section 5), converting all text to past tense\n- Exclude any eligibility criteria footnotes or protocol amendment history\n  from this section\n\nFormat the objectives and endpoints from the Protocol (Section 3) into a table\nwith the following structure. Include all primary and secondary objectives.\nDo not include exploratory objectives in this table.\n\n| Objective Type | Objective | Endpoint |\n|----------------|-----------|----------|\n| Primary        |           |          |\n| Secondary      |           |          |\n\nInsert the following files as images into the content:\n1. consort_diagram.pdf\n2. disposition_table.docx\n\nExclusions (inferred from document structure):\n- Do not include a detailed description of the disease epidemiology, pathophysiology,\n  or clinical presentation — this is addressed in \"1.2 Disease Overview\"\n- Do not include a detailed description of the investigational drug's mechanism\n  of action or pharmacology — this is addressed in \"1.3 Investigational Drug —\n  Mechanism of Action\"\n- Do not include a comprehensive summary or narrative review of prior clinical\n  studies — this is addressed in \"1.4 Prior Clinical Studies\"\n- Do not include the full objectives and endpoints table — this is addressed in\n  \"2.1 Objectives and Endpoints\"\n- Do not include the full inclusion and exclusion criteria listing — this is\n  addressed in \"2.2.1 Inclusion and Exclusion Criteria\"\n- Do not include study drug storage or handling instructions — this is addressed\n  in \"2.3 Study Drug Storage and Handling\"\n- Do not include patient disposition data, figures, or tables — this is addressed\n  in \"3.1 Patient Disposition\"",
+  "transformed_instruction": "PIPELINE: HYBRID\n\n- State the disease area and describe the associated unmet medical need\n- Summarize the mechanism of action and pharmacological profile of the\n  investigational drug\n- Provide a brief summary of relevant prior preclinical and clinical studies\n  supporting the rationale for this study\n- Include prior study outcomes only if results are available in the Investigator's\n  Brochure or referenced input documents; exclude if not available\n\nBOILERPLATE\nDrug supplies must be stored in a secure, limited-access location under the\nstorage conditions specified on the label: <insert storage conditions from\nInvestigator's Brochure, Section [Storage and Handling]; if not available,\ninsert \"refer to product label\">. Refer to the Pharmacy Manual for additional\nguidance on study drug storage.\nEND BOILERPLATE\n\n- Copy the Inclusion Criteria and Exclusion Criteria from the Protocol\n  (Section 5), converting all text to past tense\n- Exclude any eligibility criteria footnotes or protocol amendment history\n  from this section\n\nFormat the objectives and endpoints from the Protocol (Section 3) into a table\nwith the following structure. Include all primary and secondary objectives.\nDo not include exploratory objectives in this table.\n\n| Objective Type | Objective | Endpoint |\n|----------------|-----------|----------|\n| Primary        |           |          |\n| Secondary      |           |          |\n\nInsert the following files as images into the content:\n1. consort_diagram.pdf\n2. disposition_table.docx\n\nExclusions (inferred from document structure):\n- Do not include a detailed description of the disease epidemiology, pathophysiology,\n  or clinical presentation "\n- Do not include a detailed description of the investigational drug's mechanism\n  of action or pharmacology —\n  Mechanism of Action\"\n- Do not include a comprehensive summary or narrative review of prior clinical\n  studies"\n- Do not include the full objectives and endpoints table \n- Do not include the full inclusion and exclusion criteria listing — this is\n  addressed in \"2.2.1 Inclusion and Exclusion Criteria\"\n- Do not include study drug storage or handling instructions\n- Do not include patient disposition data, figures, or tables",
   "reasoning": "Background section (lines 1-3): Input required synthesis of disease area, unmet need, and investigational drug rationale from references, so converted to RAG-style directives using action verbs 'State', 'Summarize', 'Provide'. Added explicit condition 'if not available' to handle cases where prior study data may not exist. Storage conditions (boilerplate): Input contained 'standard text here' signal, so wrapped as BOILERPLATE with placeholder <insert storage conditions from IB Section [Storage and Handling]> to direct AI where to source the content. Inclusion/Exclusion Criteria: Input said 'copy from protocol, past tense for CSR', so transformed to TEXT_MANIPULATION directive specifying source document, section, and tense conversion requirement. Objectives Table: Input required pulling data from protocol into tabular format with primary and secondary objectives, so created explicit table structure with column headers and specified to exclude exploratory objectives (bounding requirement). Figure Insertion: Input specified two files (consort_diagram.pdf, disposition_table.docx), so formatted as numbered image insertion list per rule 5. HYBRID pipeline selected because instruction mixes RAG authoring (background), TEXT_MANIPULATION (copying criteria, table data), and boilerplate insertion. Exclusions block (Rule 13): Because the pipeline is HYBRID, the TOC was scanned for sections with topical overlap with section 1.1 Background and Rationale. Sections 1.2, 1.3, and 1.4 each address sub-topics (disease overview, mechanism of action, prior studies) that are closely related to the rationale narrative authored here and risk duplication if not explicitly bounded. Sections 2.1, 2.2.1, and 2.3 correspond to content elements (objectives table, eligibility criteria, storage boilerplate) that appear in this section's instruction but belong fully to those sections as the authoritative location — the exclusions make clear that only a brief mention or copy is permitted here, not a full re-authoring. Section 3.1 was flagged because the CONSORT diagram and disposition table inserted here could lead the authoring AI to duplicate disposition narrative content owned by 3.1. Each exclusion bullet describes the content topic to avoid rather than merely restating the TOC title, per Rule 13."
 }
 </output>
