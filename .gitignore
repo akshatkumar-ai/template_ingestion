@@ -8,10 +8,13 @@ outputs/
 __pycache__/
 *.pyc
 *.pyo
+*.json
+*.csv
 *.egg-info/
 .pytest_cache/
 .venv/
 venv/
+outputs/
 
 # IDE
 .vscode/
