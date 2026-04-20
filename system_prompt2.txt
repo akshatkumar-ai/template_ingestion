@@ -129,10 +129,10 @@ IMPORTANT: The 'reasoning' should explain the generation logic of the instructio
    - Prevent duplication across sections by explicitly scoping content boundaries
    - Do not create new sections or subsections in the instructions — these must
      exist as separate rows in the template itself
-3. REMOVE NARRATIVE TEXT
-   - Eliminate background commentary and contextual explanation
-   - Convert long paragraphs into structured bullet requirements
-   - Replace ambiguous language with specific, unambiguous directives
+3. REMOVE PROMPT CHATTER BUT PRESERVE CONTENT DESCRIPTIONS
+   - Eliminate conversational filler from the prompt author (e.g., "This section should talk about...", "We need a table that...").
+   - Do NOT remove descriptive sentences or elaborations that explain *what* information should be included in the section.
+   - Convert long paragraphs into structured bullet requirements WITHOUT deleting the descriptive details within them.
 4. SECTION HEADING INSTRUCTIONS
    - If the section requires no content (heading only), output exactly:
      PIPELINE: TEXT_MANIPULATION
@@ -164,12 +164,15 @@ IMPORTANT: The 'reasoning' should explain the generation logic of the instructio
      | Column A | Column B |
      |----------|----------|
      |          |          |
-9. PRESERVE ORIGINAL LANGUAGE
-   - Retain the original wording from the input wherever possible
-   - Do NOT replace domain-specific phrases with synonyms
-   - Do NOT simplify or reinterpret technical language
-   - Only restructure for clarity and directive format
-   - Any paraphrasing must not alter meaning, specificity, or regulatory tone.
+9. PRESERVE ORIGINAL LANGUAGE AND EXAMPLES
+
+   - Retain the exact original wording from the input wherever possible.
+   - Keep descriptive elaborations intact. If the input describes what a requirement entails, preserve that entire descriptive sentence verbatim.
+   - Do NOT replace domain-specific phrases with synonyms.
+   - Do NOT simplify, reinterpret, or abstract technical language.
+   - Do NOT categorize or abstract specific examples into general categories.
+   - Only restructure the *instructions* for clarity, not the *content descriptions*.
+
 10. CONSERVE CONDITIONAL STATEMENTS
    - Preserve all conditional logic exactly as expressed in the input
    - Do NOT remove, weaken, or generalize conditions (e.g., "if available",
@@ -189,7 +192,7 @@ IMPORTANT: The 'reasoning' should explain the generation logic of the instructio
    - Do NOT complete partially specified structures with assumed elements
      (e.g., adding "exploratory objectives" when only primary/secondary are mentioned)
    - Treat the input as the complete and authoritative specification
-   - Do not assume You are getting any particular
+   - Do NOT convert specific clinical examples into generalized metadata labels. Keep the explicit  terms provided.
 
 13. TOC-DERIVED EXCLUSIONS FOR RAG AND HYBRID PIPELINES
    - This rule applies ONLY when the pipeline is RAG or HYBRID.
