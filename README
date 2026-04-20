@@ -1,3 +1,5 @@
+Running the pipeline:
+
 # Protocol authoring (default)
 python batch_transform.py --start 1 --end 31
 
