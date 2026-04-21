@@ -1,6 +1,0 @@
-```json
-{
-  "transformed_instruction": "PIPELINE: RAG\n\n- Describe the mechanism of action of the investigational product if known\n- Include information only if mechanism of action data is available in the Investigator's Brochure or referenced input documents\n- Exclude if mechanism of action information is not available",
-  "reasoning": "The input instruction requires describing the investigational product's mechanism of action 'if known', which indicates conditional content inclusion based on availability. This was transformed into a RAG directive using the action verb 'Describe' to tell the AI what to do rather than what the section is about. The original conditional language 'if known' was preserved and expanded into explicit conditions specifying where to source the information (Investigator's Brochure or referenced input documents) and what to do if the information is not available (exclude it). Since this requires synthesis and authoring of mechanism of action content from source documents rather than copying existing text, RAG pipeline was selected. The instruction was kept self-contained within the current section without adding cross-references or expanding beyond what was explicitly stated in the input."
-}
-```

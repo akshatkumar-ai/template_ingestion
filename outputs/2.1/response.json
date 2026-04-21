@@ -1,6 +1,0 @@
-```json
-{
-  "transformed_instruction": "PIPELINE: TEXT_MANIPULATION\n\n- Copy the primary objective(s) and corresponding endpoint(s) from the Synopsis\n- Format the content as a table with two columns: \"Objective(s)\" and \"Endpoint(s)\"\n- Present each objective using the format \"To evaluate...\" as applicable to the study\n- Include all primary objectives and their corresponding endpoints in separate rows\n- Use the following table structure:\n\n| Objective(s) | Endpoint(s) |\n| :---- | :---- |\n|  |  |\n|  |  |\n|  |  |",
-  "reasoning": "The input instruction specifies copying objectives and endpoints in tabular format, which is a TEXT_MANIPULATION task involving copying and formatting existing content. The instruction preserves the exact table structure provided in the input (including the column headers and formatting with colons and dashes). The phrase 'as applicable to the study' was retained to preserve the original conditional language. The format requirement 'To evaluate...' was maintained exactly as specified. Since this is section 2.1 focusing on Primary Objectives, the instruction was scoped to primary objectives only, with the Synopsis identified as the primary source per the authoring mode rules. The table structure with empty rows was preserved to show the expected format for the AI system."
-}
-```

@@ -1,6 +1,0 @@
-```json
-{
-  "transformed_instruction": "PIPELINE: TEXT_MANIPULATION\n\nCopy the secondary objectives and their corresponding endpoints from the Synopsis, formatting them as a table with the following structure:\n\n| Objective(s) | Endpoint(s) |\n| :---- | :---- |\n|  |  |\n|  |  |\n|  |  |\n\n- Include all secondary objectives listed in the Synopsis\n- Exclude primary objectives and exploratory objectives from this section\n- Maintain the exact wording of objectives and endpoints as stated in the Synopsis",
-  "reasoning": "The input instruction shows an empty table template with columns for 'Objective(s)' and 'Endpoint(s)' with three empty rows. This is a clear TEXT_MANIPULATION task as it requires copying specific content (secondary objectives and endpoints) from the Synopsis into a predefined table format. I preserved the exact table structure from the input, including the column headers and formatting. I added directive instructions to copy from the Synopsis (the primary source) and specified that only secondary objectives should be included, excluding primary and exploratory objectives to prevent content duplication across sections 2.1, 2.2, and 2.3. The instruction maintains the table structure exactly as provided in the input while adding clear sourcing and scoping directives."
-}
-```
