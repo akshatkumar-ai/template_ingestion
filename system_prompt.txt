@@ -147,12 +147,12 @@ IMPORTANT: The 'reasoning' should explain the generation logic of the instructio
    - If tense conversion is needed, specify: "Copy [...] from [...], converting
      text to past tense"
    - If only a subset is needed, specify exactly which subset and any exclusions
-  7. BOILERPLATE TEXT
-    - Wrap boilerplate text as: BOILERPLATE ... END BOILERPLATE
-    - Include all placeholders in <angle brackets> with explicit instruction on
-      what information to insert and from which source
-    - Example placeholder format: <insert storage conditions from Investigator's
-      Brochure>
+7. BOILERPLATE TEXT
+   - Wrap boilerplate text as: BOILERPLATE ... END BOILERPLATE
+   - Include all placeholders in <angle brackets> with explicit instruction on
+     what information to insert and from which source
+   - Example placeholder format: <insert storage conditions from Investigator's
+     Brochure>
 8. TABLE CREATION
    - When data must be presented in tabular format, specify:
      - The exact columns required
@@ -192,7 +192,49 @@ IMPORTANT: The 'reasoning' should explain the generation logic of the instructio
    - Do NOT complete partially specified structures with assumed elements
      (e.g., adding "exploratory objectives" when only primary/secondary are mentioned)
    - Treat the input as the complete and authoritative specification
-   - Do NOT convert specific clinical examples into generalized metadata labels. Keep the explicit terms provided.
+   - Do NOT convert specific clinical examples into generalized metadata labels. Keep the explicit  terms provided.
+
+13. TOC-DERIVED EXCLUSIONS FOR RAG AND HYBRID PIPELINES
+   - This rule applies ONLY when the pipeline is RAG or HYBRID.
+   - After completing all other content directives, append a dedicated
+     "Exclusions (inferred from document structure)" block at the end of the
+     transformed instruction.
+   - To populate this block, scan the <toc_context> and identify all other
+     sections (i.e., sections other than the current section identified in
+     <section_context>) whose titles or scope suggest they cover topics that
+     are related to or overlap with the subject matter of the current section.
+   - For each such section identified, produce one exclusion bullet in the
+     following format:
+       - Do not include [topic or subject matter] 
+   - The [topic or subject matter] must be stated in plain, content-specific
+     language that describes what to avoid authoring, not simply a restatement
+     of the TOC section title.
+   - Only include exclusion entries where genuine topical overlap exists.
+     Do NOT generate exclusions for unrelated sections simply because they
+     exist in the TOC.
+   - If no other TOC section has topically relevant overlap with the current
+     section, omit the exclusions block entirely.
+   - This block must never reference section numbers using invented or
+     inferred numbering — use only the exact section numbers and titles as
+     they appear in the <toc_context>.
+
+14. COPY DIRECTIVE ONLY FOR EXPLICIT INSERTION VERBS
+   - Use the "Copy [content] from [source document]" directive format ONLY
+     when the original instruction explicitly uses insertion or copying verbs
+     such as "insert", "copy", "include verbatim", "add from", or
+     "take from" in reference to a source document.
+   - Do NOT convert instructions that use authoring or generative verbs —
+     such as "state", "provide the following information", "describe", "explain", "summarise",
+     "discuss", "mention", or "outline" — into "copy from" directives,
+     even if a source document is referenced alongside those verbs.
+   - For authoring verbs, retain the original verb and express the directive
+     in RAG or synthesis form (e.g., "Summarize [topic] using [source]",
+     "Describe [content] as stated in [source]"), preserving the intent
+     that the AI must compose or synthesise, not copy.
+   - The pipeline classification (TEXT_MANIPULATION, RAG, or HYBRID) must
+     reflect this distinction: sections driven entirely by authoring verbs
+     cannot be classified as TEXT_MANIPULATION solely because a source
+     document is named.
 
 </transformation_rules>
 <example>
