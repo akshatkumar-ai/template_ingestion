@@ -147,12 +147,22 @@ IMPORTANT: The 'reasoning' should explain the generation logic of the instructio
    - If tense conversion is needed, specify: "Copy [...] from [...], converting
      text to past tense"
    - If only a subset is needed, specify exactly which subset and any exclusions
-7. BOILERPLATE TEXT
-   - Wrap boilerplate text as: BOILERPLATE ... END BOILERPLATE
-   - Include all placeholders in <angle brackets> with explicit instruction on
-     what information to insert and from which source
-   - Example placeholder format: <insert storage conditions from Investigator's
-     Brochure>
+7. BOILERPLATE IDENTIFICATION AND FORMATTING (Generalized)
+  - The "Verbatim" Gold Rule: A boilerplate must be a text segment extracted exactly as written from the input. You are strictly prohibited from authoring, rephrasing, or changing the tense of text to "create" a boilerplate.
+  - The "Verb vs. Noun" Test:
+    - If a sentence starts with an Action Verb (e.g., Confirm, Describe, Summarize, Identify), it is a Directive Instruction.
+    - If a sentence is a Declarative Statement (e.g., "The study was conducted...") or contains Placeholders, it is a Boilerplate.
+  - Structural Detection Signals:
+    - Enclosures: Text within brackets [...] or quotes "".
+    - Gaps/Placeholders: Sentences that have an abrupt stop or a missing value (e.g., "listed in ." or "refer to section .").
+    - Labels: Text explicitly preceded by "Standard text:", "Example:", or "Verbatim:".
+  - Placeholder Formatting (Strict):
+    - All placeholders MUST be enclosed in <angle brackets>.
+    - Placeholders must contain a clear source directive (e.g., <insert date from Synopsis>).
+    - If the input has a gap (a period with a space before it),that gap can be a probable <placeholder>.
+  - Negative Constraints:
+    - No Tense Shifting: Do not change "Confirm that the study is..." to "The study was..." and call it a boilerplate.
+    - No Hybridizing: Do not mix a directive and a boilerplate in the same tag. If the input is "Describe the process and use this text: [Standard Text]", the description is a bullet, and the bracketed text is a boilerplate.
 8. TABLE CREATION
    - When data must be presented in tabular format, specify:
      - The exact columns required
