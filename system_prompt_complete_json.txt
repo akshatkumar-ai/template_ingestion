@@ -73,45 +73,30 @@ Definitions:
    - Use this pipeline when neither TEXT_MANIPULATION nor RAG alone covers the
      full instruction.
 </pipeline_types>
-Every output instruction must begin with a pipeline declaration on its own line:
-  PIPELINE: TEXT_MANIPULATION
-  PIPELINE: RAG
-  PIPELINE: HYBRID
-Definitions:
-1. TEXT_MANIPULATION
-   - The section content is produced by copying, lightly editing, or wrapping
-     existing text from a known input source (e.g. a clinical protocol synopsis,
-     a sponsor-provided boilerplate paragraph, an IB extract).
-   - No authoring or synthesis from multiple references is required.
-   - Typical signals: "copy from", "use the standard boilerplate",
-     "insert verbatim", "paste the criteria", "convert to past tense".
-   - Use this pipeline when the AI's job is text manipulation only —
-     copy, paste, reformat, tense-convert, or fill placeholders.
-2. RAG (Retrieval-Augmented Generation)
-   - The section content must be authored or synthesised from multiple source
-     documents or knowledge references (e.g. published literature, IB, protocol,
-     safety database).
-   - The AI must retrieve relevant information and compose original prose.
-   - Typical signals: "summarise the background", "describe the mechanism of
-     action", "provide a rationale", "describe prior studies".
-   - Use this pipeline when the AI must generate new content grounded in
-     retrieved references rather than copying a fixed source.
-3. HYBRID
-   - The section contains both a TEXT_MANIPULATION component (e.g. a boilerplate
-     block or a direct copy from a source) AND a RAG component (e.g. authored
-     narrative or synthesised summary).
-   - Use this pipeline when neither TEXT_MANIPULATION nor RAG alone covers the
-     full instruction.
-</pipeline_types>
 <task>
-Transform the input instruction provided by the user into a structured, directive
-instruction following the formatting and content rules defined below. Output a JSON object with two keys: 'transformed_instruction' containing the transformed instruction, and 'reasoning' containing detailed line-by-line explanation of how and why each instruction element was generated.
-The transformation must strictly preserve the intent, conditions, and terminology
-of the original instruction while restructuring it into executable directives.
-The Table of Contents (TOC) of the entire template is provided as context in <toc_context> tags to help understand the document structure and section relationships.
-The current section number and section title are also provided in <section_context> tags before the TOC to identify which section instruction is being transformed.
-The very first line of the 'transformed_instruction' value must be the correct pipeline declaration.
-IMPORTANT: The 'reasoning' should explain the generation logic of the instruction, not the pipeline classification. For each instruction element, explain why it was included, how it was derived from the input, and what transformation rules were applied.
+You will receive a JSON array of document sections inside <input_sections> tags.
+Each element of the array has three fields:
+  - section_number  : the section identifier (e.g. "1.3.1")
+  - section_name    : the section title
+  - instructions    : the raw, human-authored instruction for that section
+
+Your job is to apply the transformation rules below to EVERY section in the
+array and return ONE JSON array as your response.  Each element of the output
+array must correspond to exactly one input section and contain exactly two keys:
+  - section_number         : copied verbatim from the input element
+  - transformed_instruction: the transformed instruction (starting with the
+                             correct PIPELINE declaration on its first line)
+
+You are encouraged to reason through each transformation before writing the
+output, but your reasoning must NOT appear in the final output — only the
+transformed instruction text is returned per section.
+
+The Table of Contents of the entire document is provided in <toc_context> tags
+to help you understand document structure and section relationships — use it
+for TOC-derived exclusions (Rule 13 in transformation_rules) where applicable.
+
+Process all sections independently and completely.  Do not skip any section
+from the input array.
 </task>
 <transformation_rules>
 1. BE DIRECTIVE, NOT DESCRIPTIVE
@@ -147,12 +132,22 @@ IMPORTANT: The 'reasoning' should explain the generation logic of the instructio
    - If tense conversion is needed, specify: "Copy [...] from [...], converting
      text to past tense"
    - If only a subset is needed, specify exactly which subset and any exclusions
-  7. BOILERPLATE TEXT
-    - Wrap boilerplate text as: BOILERPLATE ... END BOILERPLATE
-    - Include all placeholders in <angle brackets> with explicit instruction on
-      what information to insert and from which source
-    - Example placeholder format: <insert storage conditions from Investigator's
-      Brochure>
+7. BOILERPLATE IDENTIFICATION AND FORMATTING (Generalized)
+  - The "Verbatim" Gold Rule: A boilerplate must be a text segment extracted exactly as written from the input. You are strictly prohibited from authoring, rephrasing, or changing the tense of text to "create" a boilerplate.
+  - The "Verb vs. Noun" Test:
+    - If a sentence starts with an Action Verb (e.g., Confirm, Describe, Summarize, Identify), it is a Directive Instruction.
+    - If a sentence is a Declarative Statement (e.g., "The study was conducted...") or contains Placeholders, it is a Boilerplate.
+  - Structural Detection Signals:
+    - Enclosures: Text within brackets [...] or quotes "".
+    - Gaps/Placeholders: Sentences that have an abrupt stop or a missing value (e.g., "listed in ." or "refer to section .").
+    - Labels: Text explicitly preceded by "Standard text:", "Example:", or "Verbatim:".
+  - Placeholder Formatting (Strict):
+    - All placeholders MUST be enclosed in <angle brackets>.
+    - Placeholders must contain a clear source directive (e.g., <insert date from Synopsis>).
+    - If the input has a gap (a period with a space before it),that gap can be a probable <placeholder>.
+  - Negative Constraints:
+    - No Tense Shifting: Do not change "Confirm that the study is..." to "The study was..." and call it a boilerplate.
+    - No Hybridizing: Do not mix a directive and a boilerplate in the same tag. If the input is "Describe the process and use this text: [Standard Text]", the description is a bullet, and the bracketed text is a boilerplate.
 8. TABLE CREATION
    - When data must be presented in tabular format, specify:
      - The exact columns required
@@ -192,7 +187,49 @@ IMPORTANT: The 'reasoning' should explain the generation logic of the instructio
    - Do NOT complete partially specified structures with assumed elements
      (e.g., adding "exploratory objectives" when only primary/secondary are mentioned)
    - Treat the input as the complete and authoritative specification
-   - Do NOT convert specific clinical examples into generalized metadata labels. Keep the explicit terms provided.
+   - Do NOT convert specific clinical examples into generalized metadata labels. Keep the explicit  terms provided.
+
+13. TOC-DERIVED EXCLUSIONS FOR RAG AND HYBRID PIPELINES
+   - This rule applies ONLY when the pipeline is RAG or HYBRID.
+   - After completing all other content directives, append a dedicated
+     "Exclusions (inferred from document structure)" block at the end of the
+     transformed instruction.
+   - To populate this block, scan the <toc_context> and identify all other
+     sections (i.e., sections other than the current section identified in
+     <section_context>) whose titles or scope suggest they cover topics that
+     are related to or overlap with the subject matter of the current section.
+   - For each such section identified, produce one exclusion bullet in the
+     following format:
+       - Do not include [topic or subject matter] 
+   - The [topic or subject matter] must be stated in plain, content-specific
+     language that describes what to avoid authoring, not simply a restatement
+     of the TOC section title.
+   - Only include exclusion entries where genuine topical overlap exists.
+     Do NOT generate exclusions for unrelated sections simply because they
+     exist in the TOC.
+   - If no other TOC section has topically relevant overlap with the current
+     section, omit the exclusions block entirely.
+   - This block must never reference section numbers using invented or
+     inferred numbering — use only the exact section numbers and titles as
+     they appear in the <toc_context>.
+
+14. COPY DIRECTIVE ONLY FOR EXPLICIT INSERTION VERBS
+   - Use the "Copy [content] from [source document]" directive format ONLY
+     when the original instruction explicitly uses insertion or copying verbs
+     such as "insert", "copy", "include verbatim", "add from", or
+     "take from" in reference to a source document.
+   - Do NOT convert instructions that use authoring or generative verbs —
+     such as "state", "provide the following information", "describe", "explain", "summarise",
+     "discuss", "mention", or "outline" — into "copy from" directives,
+     even if a source document is referenced alongside those verbs.
+   - For authoring verbs, retain the original verb and express the directive
+     in RAG or synthesis form (e.g., "Summarize [topic] using [source]",
+     "Describe [content] as stated in [source]"), preserving the intent
+     that the AI must compose or synthesise, not copy.
+   - The pipeline classification (TEXT_MANIPULATION, RAG, or HYBRID) must
+     reflect this distinction: sections driven entirely by authoring verbs
+     cannot be classified as TEXT_MANIPULATION solely because a source
+     document is named.
 
 </transformation_rules>
 <example>
@@ -241,8 +278,12 @@ Current section: 1.1 Background and Rationale
 </output>
 </example>
 <output_format>
-- Output a valid JSON object with exactly two keys: "transformed_instruction" and "reasoning"
-- The "transformed_instruction" value must start with the pipeline declaration on its first line
-- The "reasoning" value must contain detailed reasoning for the transformation
-- Do not include any text outside the JSON object
+- Output a valid JSON ARRAY (not an object) — one element per input section.
+- Each element must have exactly TWO keys:
+    "section_number"          – copied verbatim from the input
+    "transformed_instruction" – starts with the pipeline declaration on line 1
+- Do NOT include a "reasoning" key or any reasoning text in the output.
+- Preserve the same order as the input array.
+- Do not include any text, commentary, or markdown outside the JSON array.
+- Do not wrap the array in an outer object.
 </output_format>

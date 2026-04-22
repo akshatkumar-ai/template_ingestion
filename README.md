@@ -4,7 +4,6 @@ Running the pipeline:
 python batch_transform.py --start 1 --end 31
 
 # CSR authoring
-python batch_transform.py --authoring_type csr --start 1 --end 31
-
+aut
 # SAP authoring
 python batch_transform.py --authoring_type sap --start 1 --end 31

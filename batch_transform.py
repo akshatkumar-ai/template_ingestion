@@ -1,40 +1,74 @@
 """
 batch_transform.py
 ------------------
-Reads the system prompt from .txt file and processes rows n1 to n2 in the
-'section_instructions' column of a CSV file sequentially as input instructions,
-running the template-instruction transformation via AWS Bedrock (Claude).
-Appends the transformed output to a new 'transformed_output' column and the
-reasoning to a new 'reasoning' column in the CSV.
+Reads the system prompt from a .txt file and processes entries n1 to n2
+from a JSON file that follows the nested section-instructions schema.
+
+The JSON file must have the structure::
+
+    {
+      "sections": [
+        {
+          "section_number": "1",
+          "section_name": "INTRODUCTION",
+          "instructions": "...",
+          "subsections": [ ... ]
+        },
+        ...
+      ]
+    }
+
+The script flattens all sections and subsections recursively, treating each
+node as one "row" to process.  The three fields used for instruction
+generation are:
+
+    JSON key          Role (equivalent CSV column)
+    ──────────────    ─────────────────────────────
+    section_number    section_number
+    section_name      section_title
+    instructions      template_instructions
+
+After transformation the result is written back into the same JSON node as:
+    transformed_output   – the Claude-generated instruction
+    reasoning            – the model's reasoning
+
 Also reads TOC.md and includes it as context in each prompt.
-Caches the final prompt and JSON response in outputs/section_number/ folder.
+Caches the final prompt and JSON response in outputs/<section_number>/.
 
 Usage
 -----
-    python batch_transform.py \
-        --system_prompt system_prompt.txt \
-        --csv "Protocol Ph2-3 Veriscribe Template Mar 2026 (1) - section-config-extract 1.csv" \
-        [--start 1] [--end 10] \
-        [--authoring_type protocol|csr|sap] \
+    python batch_transform.py \\
+        --system_prompt system_prompt.txt \\
+        --json section_instructions.json \\
+        [--start 1] [--end 10] \\
+        [--section 1.3.1] \\
+        [--list] \\
+        [--authoring_type protocol|csr|sap] \\
         [--model_id <bedrock-model-arn>]
 
 Arguments
 ---------
---system_prompt       Path to the .txt file containing the full system prompt
-                      (role, task, transformation_rules, example, output_format).
---csv                 Path to the CSV file containing section instructions.
-                      The file will be modified in place with new 'transformed_output' and 'reasoning' columns.
---start               (Optional) Starting row number (1-based) to process. Defaults to 1.
---end                 (Optional) Ending row number (1-based) to process. Defaults to all rows.
---authoring_type      (Optional) Type of authoring: 'protocol', 'csr', or 'sap'. 
-                      Determines which source documents are used as anchor and secondary sources.
-                      Defaults to 'protocol'.
+--system_prompt       Path to the .txt file containing the full system prompt.
+--json                Path to the JSON file containing section instructions.
+                      The file will be updated in place with new
+                      'transformed_output' and 'reasoning' fields.
+--start               (Optional) Starting flat index (1-based). Defaults to 1.
+                      Use --list to discover the flat index of any section.
+--end                 (Optional) Ending flat index (1-based). Defaults to all.
+--section             (Optional) Process exactly ONE section identified by its
+                      section_number string (e.g. --section 1.3.1).
+                      Mutually exclusive with --start / --end.
+--list                (Optional) Print the full flat index of all sections
+                      (number, index, name) and exit without calling Bedrock.
+                      Use this to find the flat index you need for --start/--end.
+--authoring_type      (Optional) Type of authoring: 'protocol', 'csr', or 'sap'.
+                      Determines which source documents are used as anchor and
+                      secondary sources. Defaults to 'protocol'.
 --model_id            (Optional) AWS Bedrock model ARN / inference-profile ID.
                       Defaults to the Claude Sonnet 4 inference profile.
 """
 
 import argparse
-import csv
 import json
 import os
 import sys
@@ -162,7 +196,7 @@ def build_prompt(
     """
     # Get authoring sources for the given type
     sources = AUTHORING_SOURCES.get(authoring_type.lower(), AUTHORING_SOURCES["protocol"])
-    
+
     # Replace placeholders in system prompt
     prompt_with_authoring = system_prompt.replace(
         "<AUTHORING_TYPE>", authoring_type
@@ -171,7 +205,7 @@ def build_prompt(
     ).replace(
         "<LIST_OF_SUPPORTING_SOURCE_TYPES>", sources["secondary"]
     )
-    
+
     return (
         prompt_with_authoring.rstrip()
         + "\n\n<section_context>\n"
@@ -185,6 +219,55 @@ def build_prompt(
 
 
 # ---------------------------------------------------------------------------
+# JSON helpers
+# ---------------------------------------------------------------------------
+
+# Sentinel values used to detect entries that should be skipped.
+_SKIP_INSTRUCTIONS = {"no instructions found", ""}
+
+
+def _is_skippable(instructions: str) -> bool:
+    """Return True when instructions carry no actionable content."""
+    return instructions.strip().lower() in _SKIP_INSTRUCTIONS
+
+
+def flatten_sections(node_list: list) -> list:
+    """
+    Recursively flatten a nested list of section nodes into a flat list.
+
+    Each element of the returned list is a *reference* to the original dict
+    in the loaded JSON object, so mutations (adding keys) propagate back.
+
+    Required keys per node: section_number, section_name, instructions.
+    Optional key           : subsections (list of child nodes).
+    """
+    flat = []
+    for node in node_list:
+        flat.append(node)
+        children = node.get("subsections", [])
+        if children:
+            flat.extend(flatten_sections(children))
+    return flat
+
+
+def load_json_file(path: str) -> dict:
+    if not os.path.isfile(path):
+        print(f"ERROR: JSON file not found: {path}", file=sys.stderr)
+        sys.exit(1)
+    with open(path, "r", encoding="utf-8") as fh:
+        try:
+            return json.load(fh)
+        except json.JSONDecodeError as exc:
+            print(f"ERROR: Failed to parse JSON file '{path}': {exc}", file=sys.stderr)
+            sys.exit(1)
+
+
+def save_json_file(data: dict, path: str) -> None:
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, indent=2, ensure_ascii=False)
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -193,43 +276,73 @@ DEFAULT_MODEL_ID = (
     "inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0"
 )
 DEFAULT_SYSTEM_PROMPT = "system_prompt.txt"
-DEFAULT_CSV = "temp_ingestion.csv"
+DEFAULT_JSON = "section_instructions.json"
 
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Batch transform section instructions from CSV using AWS Bedrock (Claude) and append to CSV."
+        description=(
+            "Batch transform section instructions from a JSON file using "
+            "AWS Bedrock (Claude) and write results back into the same JSON."
+        )
     )
     parser.add_argument(
         "--system_prompt",
         default=DEFAULT_SYSTEM_PROMPT,
-        help=f"Path to the .txt file containing the system prompt. "
-             f"Defaults to: {DEFAULT_SYSTEM_PROMPT}",
+        help=(
+            f"Path to the .txt file containing the system prompt. "
+            f"Defaults to: {DEFAULT_SYSTEM_PROMPT}"
+        ),
     )
     parser.add_argument(
-        "--csv",
-        default=DEFAULT_CSV,
-        help=f"Path to the CSV file containing section instructions. "
-             f"The file will be modified in place with new 'transformed_output' and 'reasoning' columns. "
-             f"Defaults to: {DEFAULT_CSV}",
+        "--json",
+        default=DEFAULT_JSON,
+        help=(
+            f"Path to the JSON file containing section instructions. "
+            f"The file will be updated in place with 'transformed_output' and "
+            f"'reasoning' fields. Defaults to: {DEFAULT_JSON}"
+        ),
     )
     parser.add_argument(
         "--start",
         type=int,
         default=1,
-        help="Starting row number (1-based) to process. Defaults to 1.",
+        help=(
+            "Starting flat index (1-based) to process. Defaults to 1. "
+            "Run --list first to see all flat indices."
+        ),
     )
     parser.add_argument(
         "--end",
         type=int,
         default=None,
-        help="Ending row number (1-based) to process. Defaults to all rows.",
+        help="Ending flat index (1-based) to process. Defaults to all entries.",
+    )
+    parser.add_argument(
+        "--section",
+        default=None,
+        metavar="SECTION_NUMBER",
+        help=(
+            "Process exactly one section by its section_number string "
+            "(e.g. --section 1.3.1). Mutually exclusive with --start / --end."
+        ),
+    )
+    parser.add_argument(
+        "--list",
+        action="store_true",
+        help=(
+            "Print the flat index of every section (index | section_number | "
+            "section_name) and exit. Use this to find what to pass to "
+            "--start / --end or --section."
+        ),
     )
     parser.add_argument(
         "--model_id",
         default=DEFAULT_MODEL_ID,
-        help=f"AWS Bedrock model ARN or inference-profile ID. "
-             f"Defaults to: {DEFAULT_MODEL_ID}",
+        help=(
+            f"AWS Bedrock model ARN or inference-profile ID. "
+            f"Defaults to: {DEFAULT_MODEL_ID}"
+        ),
     )
     parser.add_argument(
         "--authoring_type",
@@ -237,7 +350,14 @@ def parse_args():
         choices=["protocol", "csr", "sap"],
         help="Authoring type: 'protocol', 'csr', or 'sap'. Defaults to 'protocol'.",
     )
-    return parser.parse_args()
+
+    args = parser.parse_args()
+
+    # Validate: --section is mutually exclusive with --start / --end
+    if args.section and (args.start != 1 or args.end is not None):
+        parser.error("--section cannot be combined with --start or --end.")
+
+    return args
 
 
 def read_file(path: str, label: str) -> str:
@@ -248,75 +368,125 @@ def read_file(path: str, label: str) -> str:
         return f.read()
 
 
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
+def print_flat_index(all_nodes: list) -> None:
+    """Print a human-readable table of all flattened section nodes."""
+    col_w = max(len(str(n.get("section_number", ""))) for n in all_nodes) + 2
+    header = f"{'Index':>6}  {'Section Number':<{col_w}}  Section Name"
+    print(header)
+    print("-" * min(len(header) + 40, 100))
+    for i, node in enumerate(all_nodes, start=1):
+        num  = str(node.get("section_number", ""))
+        name = node.get("section_name", "")
+        skip = " [skip — no instructions]" if _is_skippable(node.get("instructions", "")) else ""
+        print(f"{i:>6}  {num:<{col_w}}  {name}{skip}")
+
+
 def main():
     args = parse_args()
 
-    system_prompt = read_file(args.system_prompt, "System prompt")
+    # ── Load JSON and flatten (needed for both --list and processing) ──────
+    data = load_json_file(args.json)
 
+    top_level_sections = data.get("sections")
+    if not isinstance(top_level_sections, list):
+        print(
+            "ERROR: JSON root must contain a 'sections' array.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    all_nodes = flatten_sections(top_level_sections)
+    total = len(all_nodes)
+
+    # ── --list: print flat index and exit (no Bedrock call) ───────────────
+    if args.list:
+        print(f"Flat index for: {args.json}  ({total} total nodes)\n")
+        print_flat_index(all_nodes)
+        print(
+            "\nTip: pass --section <section_number> to process one section, "
+            "or --start <n> --end <m> for a range."
+        )
+        sys.exit(0)
+
+    system_prompt = read_file(args.system_prompt, "System prompt")
     toc_content = read_file("TOC.md", "TOC")
 
     os.makedirs("outputs", exist_ok=True)
 
-    if not os.path.isfile(args.csv):
-        print(f"ERROR: CSV file not found: {args.csv}", file=sys.stderr)
-        sys.exit(1)
-
-    # Read all rows
-    rows = []
-    with open(args.csv, "r", encoding="utf-8", newline="") as csvfile:
-        reader = csv.DictReader(csvfile)
-        fieldnames = reader.fieldnames
-        for row in reader:
-            rows.append(row)
-
-    # Add new columns if not present
-    if "transformed_output" not in fieldnames:
-        fieldnames = list(fieldnames) + ["transformed_output"]
-    if "reasoning" not in fieldnames:
-        fieldnames = list(fieldnames) + ["reasoning"]
-
-    # Determine rows to process
-    start = max(1, args.start)  # Ensure at least 1
-    end = args.end
-    if end is not None and end < start:
-        print("ERROR: --end must be >= --start", file=sys.stderr)
-        sys.exit(1)
-    start_idx = start - 1  # 0-based
-    end_idx = min(end, len(rows)) if end is not None else len(rows)
-    rows_to_process = rows[start_idx:end_idx]
-
-    print(f"Processing rows {start} to {end_idx} (1-based)")
+    # ── Determine nodes to process ─────────────────────────────────────────
+    if args.section:
+        # --section: find the node whose section_number matches exactly
+        target = args.section.strip()
+        nodes_to_process = [
+            n for n in all_nodes
+            if str(n.get("section_number", "")).strip() == target
+        ]
+        if not nodes_to_process:
+            print(
+                f"ERROR: No section found with section_number '{target}'.\n"
+                f"Run with --list to see all available section numbers.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        print(f"Processing section '{target}' (1 node).")
+    else:
+        # --start / --end: flat positional range
+        start = max(1, args.start)
+        end   = args.end
+        if end is not None and end < start:
+            print("ERROR: --end must be >= --start", file=sys.stderr)
+            sys.exit(1)
+        start_idx = start - 1          # convert to 0-based
+        end_idx   = min(end, total) if end is not None else total
+        nodes_to_process = all_nodes[start_idx:end_idx]
+        print(f"Total flattened section nodes: {total}")
+        print(f"Processing flat indices {start} to {end_idx} (1-based).")
 
     client = get_bedrock_client()
 
-    # Process each selected row
-    for row in rows_to_process:
-        section_number = row.get("section_number", "").strip()
-        section_title = row.get("section_title", "").strip()
-        section_instructions = row.get("template_instructions", "").strip()
-        if not section_instructions:
-            row["transformed_output"] = ""
-            row["reasoning"] = ""
+    # ── Process each node ──────────────────────────────────────────────────
+    for node in nodes_to_process:
+        # Map JSON keys → roles previously filled by CSV columns
+        section_number: str = str(node.get("section_number", "")).strip()
+        section_title: str  = node.get("section_name", "").strip()     # was section_title
+        instructions: str   = node.get("instructions", "").strip()     # was template_instructions
+
+        if _is_skippable(instructions):
+            print(f"  Skipping section {section_number!r} (no actionable instructions).")
+            node["transformed_output"] = ""
+            node["reasoning"] = ""
             continue
 
-        print(f"\nProcessing section {section_number}...")
+        print(f"\nProcessing section {section_number!r}: {section_title}")
 
         section_context = (
             f"section_number: {section_number}\n"
             f"section_title: {section_title}"
         )
 
-        prompt = build_prompt(system_prompt, section_context, toc_content, section_instructions, args.authoring_type)
+        prompt = build_prompt(
+            system_prompt,
+            section_context,
+            toc_content,
+            instructions,
+            args.authoring_type,
+        )
         result = generate(prompt, args.model_id, client)
 
-        # Cache prompt and response
-        section_folder = f"outputs/{section_number}"
+        # Cache prompt and raw response
+        safe_number = section_number.replace("/", "_").replace("\\", "_")
+        section_folder = f"outputs/{safe_number}"
         os.makedirs(section_folder, exist_ok=True)
         with open(f"{section_folder}/prompt.txt", "w", encoding="utf-8") as f:
             f.write(prompt)
         with open(f"{section_folder}/response.json", "w", encoding="utf-8") as f:
             f.write(result)
 
+        # Parse the model response
         try:
             # Strip markdown code block wrapper if present
             clean_result = result.strip()
@@ -327,23 +497,20 @@ def main():
             if clean_result.endswith("```"):
                 clean_result = clean_result[:-3]  # Remove trailing ```
             clean_result = clean_result.strip()
-            
-            data = json.loads(clean_result)
-            row["transformed_output"] = data.get("transformed_instruction", "")
-            row["reasoning"] = data.get("reasoning", "")
+
+            parsed = json.loads(clean_result)
+            node["transformed_output"] = parsed.get("transformed_instruction", "")
+            node["reasoning"] = parsed.get("reasoning", "")
         except json.JSONDecodeError as e:
-            print(f"Error parsing JSON for section {section_number}: {e}")
-            row["transformed_output"] = result  # Fallback to raw result
-            row["reasoning"] = ""
-        print(f"Transformed section {section_number}")
+            print(f"  Warning: JSON parse error for section {section_number!r}: {e}")
+            node["transformed_output"] = result  # Fallback to raw text
+            node["reasoning"] = ""
 
-    # Write back to CSV
-    with open(args.csv, "w", encoding="utf-8", newline="") as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
-        writer.writeheader()
-        writer.writerows(rows)
+        print(f"  Transformed section {section_number!r}.")
 
-    print(f"\nUpdated CSV: {args.csv}")
+    # ── Write results back to the same JSON file ───────────────────────────
+    save_json_file(data, args.json)
+    print(f"\nUpdated JSON: {args.json}")
 
 
 if __name__ == "__main__":
