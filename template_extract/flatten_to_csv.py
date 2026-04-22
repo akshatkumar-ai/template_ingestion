@@ -28,7 +28,8 @@ def flatten_json_to_csv(json_path, csv_path, toc_path):
         section_number = section.get('section_number', '')
         instructions_map[section_number] = {
             'section_name': section.get('section_name', ''),
-            'instructions': section.get('instructions', '')
+            'instructions': section.get('instructions', ''),
+            'section_dependency': section.get('section_dependency', '')
         }
         
         # Add subsections
@@ -36,7 +37,8 @@ def flatten_json_to_csv(json_path, csv_path, toc_path):
             subsection_number = subsection.get('section_number', '')
             instructions_map[subsection_number] = {
                 'section_name': subsection.get('section_name', ''),
-                'instructions': subsection.get('instructions', '')
+                'instructions': subsection.get('instructions', ''),
+                'section_dependency': subsection.get('section_dependency', '')
             }
     
     # Create rows in TOC order
@@ -47,13 +49,16 @@ def flatten_json_to_csv(json_path, csv_path, toc_path):
         
         # Get instructions if available
         instructions = ''
+        dependencies = ''
         if section_no in instructions_map:
             instructions = instructions_map[section_no].get('instructions', '')
+            dependencies = instructions_map[section_no].get('section_dependency', '')
         
         row = {
             'section_no': section_no,
             'section_name': section_name,
-            'section_instructions': instructions
+            'section_instructions': instructions,
+            'section_dependency': dependencies
         }
         rows.append(row)
     
@@ -62,7 +67,8 @@ def flatten_json_to_csv(json_path, csv_path, toc_path):
         fieldnames = [
             'section_no',
             'section_name',
-            'section_instructions'
+            'section_instructions',
+            'section_dependency'
         ]
         
         with open(csv_path, 'w', newline='', encoding='utf-8') as csvfile:
