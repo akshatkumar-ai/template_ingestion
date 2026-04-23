@@ -95,29 +95,13 @@ def get_bedrock_client():
         raise ValueError("Error in loading BEDROCK client!")
 
 
-def generate_with_metrics(
-    system_prompt: str,
-    user_prompt: str,
-    model_id: str,
-    client,
-) -> tuple[str, dict]:
+def generate_with_metrics(prompt: str, model_id: str, client) -> tuple[str, dict]:
     """
-    Stream a request to Bedrock and return (response_text, usage_metrics).
+    Call the model using STREAMING and return (response_text, usage_metrics).
 
-    system_prompt  → passed via the dedicated top-level `system` field.
-                     The model treats this as persistent role/persona context
-                     that is always in scope, separate from the user turn.
-    user_prompt    → the actual task content (TOC + sections array).
-
-    Why separate system and user?
-    - Claude is specifically trained to distinguish system-level instructions
-      (rules, persona, output format) from user-level content (the data to
-      act on). Mixing them in one message reduces that separation.
-    - With the system field, the model never confuses the transformation rules
-      with the section instructions it is supposed to transform.
-    - This also sets up correct behaviour if prompt caching is enabled later:
-      the system prompt (which never changes between runs) can be cached
-      independently of the variable user turn.
+    Streaming (invoke_model_with_response_stream) is used instead of invoke_model
+    so that large bulk responses don't buffer silently and risk timing out.
+    Chunks arrive as they are generated, and progress is printed in real time.
 
     usage_metrics keys:
         input_tokens   – tokens consumed by the prompt
@@ -134,11 +118,10 @@ def generate_with_metrics(
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 64000,          # Claude Sonnet 4 ceiling
         "temperature": 0.1,
-        "system": system_prompt,      # ← dedicated system field, NOT in messages
         "messages": [
             {
                 "role": "user",
-                "content": [{"type": "text", "text": user_prompt.strip()}],
+                "content": [{"type": "text", "text": prompt.strip()}],
             }
         ],
     }
@@ -226,23 +209,23 @@ AUTHORING_SOURCES = {
 # ---------------------------------------------------------------------------
 
 def build_bulk_prompt(
+    system_prompt: str,
     toc_content: str,
     sections_payload: list[dict],
 ) -> str:
     """
-    Build the USER-TURN content only: TOC context + the JSON array of sections.
-
-    The system prompt (role, rules, authoring mode) is passed separately via
-    the `system` field in the Bedrock request and is NOT included here.
-    This keeps the user turn focused purely on the variable input data.
+    Build a single prompt that contains ALL rules, TOC, and sections at once.
 
     sections_payload is a list of dicts:
         [{"section_number": "1.1", "section_name": "...", "instructions": "..."}, ...]
+
+    The model is asked to return a JSON array with one result per section.
     """
     sections_json = json.dumps(sections_payload, indent=2, ensure_ascii=False)
 
     return (
-        "<toc_context>\n"
+        system_prompt.rstrip()
+        + "\n\n<toc_context>\n"
         + toc_content.strip()
         + "\n</toc_context>\n\n<input_sections>\n"
         + sections_json
@@ -317,7 +300,7 @@ DEFAULT_MODEL_ID = (
     "arn:aws:bedrock:us-east-1:533267065792:"
     "inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0"
 )
-DEFAULT_SYSTEM_PROMPT = "system_prompt2.txt"
+DEFAULT_SYSTEM_PROMPT = "system_prompt_complete_json.txt"
 DEFAULT_JSON         = "section_instructions.json"
 DEFAULT_OUTPUT       = "experiment_output.json"
 
@@ -401,7 +384,7 @@ def main():
     if skipped:
         print(f"  Skipped: {', '.join(skipped)}")
 
-    # ── Resolve authoring placeholders and split system / user turns ──────
+    # ── Resolve authoring placeholders and build the single prompt ─────────
     os.makedirs("outputs", exist_ok=True)
     sources = AUTHORING_SOURCES.get(args.authoring_type.lower(), AUTHORING_SOURCES["protocol"])
     resolved_system_prompt = (
@@ -411,23 +394,18 @@ def main():
         .replace("<LIST_OF_SUPPORTING_SOURCE_TYPES>", sources["secondary"])
     )
 
-    # User turn: only the variable data (TOC + section array)
-    user_prompt = build_bulk_prompt(toc_content, actionable)
+    # Build the full prompt (system rules + TOC + sections array)
+    prompt = build_bulk_prompt(resolved_system_prompt, toc_content, actionable)
 
+    # Save the exact text being passed to the LLM (with all placeholders filled)
     with open("outputs/experiment_prompt.txt", "w", encoding="utf-8") as fh:
-        fh.write("=== SYSTEM PROMPT (sent via `system` field) ===\n")
-        fh.write(resolved_system_prompt)
-        fh.write("\n\n=== USER TURN (sent via `messages[0]`) ===\n")
-        fh.write(user_prompt)
+        fh.write(prompt)
     print(f"\nPrompt cached → outputs/experiment_prompt.txt")
-    print(f"  System prompt : {len(resolved_system_prompt):,} chars")
-    print(f"  User turn     : {len(user_prompt):,} chars\n")
+    print(f"Prompt length: {len(prompt):,} characters\n")
 
-    # ── Single LLM call (streaming, system/user split) ─────────────────────
+    # ── Single LLM call (streaming, single prompt) ─────────────────────────
     client = get_bedrock_client()
-    raw_response, metrics = generate_with_metrics(
-        resolved_system_prompt, user_prompt, args.model_id, client
-    )
+    raw_response, metrics = generate_with_metrics(prompt, args.model_id, client)
 
     # Cache raw response
     with open("outputs/experiment_response_raw.txt", "w", encoding="utf-8") as fh:

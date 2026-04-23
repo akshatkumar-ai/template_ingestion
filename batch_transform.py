@@ -72,6 +72,7 @@ import argparse
 import json
 import os
 import sys
+import time
 
 
 # ---------------------------------------------------------------------------
@@ -155,6 +156,88 @@ def generate(prompt: str, model_id: str, client=None) -> str:
     except Exception as e:
         print(e)
         raise ValueError("Error in generation!")
+
+
+def generate_with_metrics(prompt: str, model_id: str, client) -> tuple[str, dict]:
+    """
+    Stream a prompt to Bedrock and return (response_text, metrics).
+
+    Uses invoke_model_with_response_stream so large responses don't buffer
+    silently and risk timing out.  Progress dots are printed as chunks arrive.
+
+    Returns
+    -------
+    text    : the full model response string
+    metrics : dict with keys input_tokens, output_tokens, stop_reason, wall_seconds
+    """
+    if "claude" not in model_id.lower():
+        raise ValueError(
+            f"Unknown model_id '{model_id}'. Only Claude models are supported."
+        )
+
+    native_request = {
+        "anthropic_version": "bedrock-2023-05-31",
+        "max_tokens": 8192,
+        "temperature": 0.1,
+        "messages": [
+            {
+                "role": "user",
+                "content": [{"type": "text", "text": prompt.strip()}],
+            }
+        ],
+    }
+
+    print(f"  Streaming via {model_id}")
+    print("  Progress: ", end="", flush=True)
+    t_start = time.perf_counter()
+
+    try:
+        response = client.invoke_model_with_response_stream(
+            modelId=model_id, body=json.dumps(native_request)
+        )
+    except Exception as e:
+        print(e)
+        raise ValueError("Error starting streaming request!")
+
+    chunks        = []
+    input_tokens  = "N/A"
+    output_tokens = "N/A"
+    stop_reason   = "N/A"
+
+    try:
+        for event in response["body"]:
+            chunk_data = json.loads(event["chunk"]["bytes"])
+            chunk_type = chunk_data.get("type", "")
+
+            if chunk_type == "content_block_delta":
+                delta = chunk_data.get("delta", {})
+                if delta.get("type") == "text_delta":
+                    chunks.append(delta.get("text", ""))
+                    print(".", end="", flush=True)
+
+            elif chunk_type == "message_delta":
+                usage         = chunk_data.get("usage", {})
+                output_tokens = usage.get("output_tokens", "N/A")
+                stop_reason   = chunk_data.get("delta", {}).get("stop_reason", stop_reason)
+
+            elif chunk_type == "message_start":
+                usage        = chunk_data.get("message", {}).get("usage", {})
+                input_tokens = usage.get("input_tokens", "N/A")
+
+    except Exception as e:
+        print(e)
+        raise ValueError("Error reading streaming response!")
+
+    t_end = time.perf_counter()
+    print()  # newline after progress dots
+
+    metrics = {
+        "input_tokens":  input_tokens,
+        "output_tokens": output_tokens,
+        "stop_reason":   stop_reason,
+        "wall_seconds":  round(t_end - t_start, 2),
+    }
+    return "".join(chunks), metrics
 
 
 # ---------------------------------------------------------------------------
@@ -350,6 +433,14 @@ def parse_args():
         choices=["protocol", "csr", "sap"],
         help="Authoring type: 'protocol', 'csr', or 'sap'. Defaults to 'protocol'.",
     )
+    parser.add_argument(
+        "--metrics",
+        action="store_true",
+        help=(
+            "Enable metric tracking. Uses streaming API to report per-section "
+            "wall-clock time, input/output token counts, and stop_reason."
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -475,7 +566,17 @@ def main():
             instructions,
             args.authoring_type,
         )
-        result = generate(prompt, args.model_id, client)
+
+        # ── Call the LLM (with or without metrics) ─────────────────────────
+        if args.metrics:
+            result, metrics = generate_with_metrics(prompt, args.model_id, client)
+            print(f"  Time: {metrics['wall_seconds']}s | "
+                  f"in={metrics['input_tokens']} out={metrics['output_tokens']} tokens | "
+                  f"stop={metrics['stop_reason']}")
+            if metrics["stop_reason"] == "max_tokens":
+                print(f"  WARNING: output for section {section_number!r} was truncated!")
+        else:
+            result = generate(prompt, args.model_id, client)
 
         # Cache prompt and raw response
         safe_number = section_number.replace("/", "_").replace("\\", "_")
