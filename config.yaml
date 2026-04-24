@@ -1,0 +1,25 @@
+# Repository-root configuration for src/template_extract/main.py
+# Paths may be absolute or relative to this config file.
+
+TEMPLATE_EXTRACT:
+  template_pdf_path: "src/template_extract/data/inputs/53-ph-2-3-protocol_template.pdf"
+  markdown_file_path: "src/template_extract/data/inputs/53-ph-2-3-protocol_template.md"
+  model_id: "arn:aws:bedrock:us-east-1:533267065792:inference-profile/us.anthropic.claude-3-7-sonnet-20250219-v1:0"
+  toc_json_llm_extract: "src/template_extract/data/outputs/toc_llm_extract.json"
+  toc_json_llm_regex_extract: "src/template_extract/data/outputs/toc_llm_regex_extract.json"
+  section_instructions_json: "src/template_extract/data/outputs/section_instructions.json"
+  section_instructions_csv: "src/template_extract/data/outputs/section_instructions.csv"
+
+INSTRUCTION_TRANSFORM:
+  system_prompt: "prompts/system_prompt.txt"
+  csv: "data/temp_ingestion.csv"
+  toc: "data/TOC.md"
+  outputs: "outputs"
+  model_id: "arn:aws:bedrock:us-east-1:533267065792:inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0"
+
+SECTION_DEPENDENCY:
+  input_path: "outputs/protocol_template_hierarchy.json"
+  output_path: "outputs/protocol_template_with_dependencies.json"
+  prompt_path: "prompts/section_dependency_prompt.txt"
+  toc_path: "data/TOC.md"
+  model_id: "arn:aws:bedrock:us-east-1:533267065792:inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0"
