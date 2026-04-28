@@ -7,18 +7,27 @@ def flatten_json_to_csv(json_path, csv_path, toc_path):
     """
     Converts the hierarchical section_instructions.json to a flat CSV format
     maintaining the order from toc_llm_extract.json.
-    
-    Args:
-        json_path (str): Path to the section_instructions.json file
-        csv_path (str): Path to the output CSV file
-        toc_path (str): Path to the toc_llm_extract.json file for ordering
+    If the CSV already exists, it preserves any additional columns (like transformed_output).
     """
+    import os
+    
+    # Load existing CSV data to preserve extra columns
+    existing_data = {}
+    existing_fieldnames = []
+    if os.path.exists(csv_path):
+        with open(csv_path, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            if reader.fieldnames:
+                existing_fieldnames = list(reader.fieldnames)
+            for row in reader:
+                existing_data[row.get('section_no', '')] = row
+
     # Load TOC data for ordering
-    with open(toc_path, 'r') as f:
+    with open(toc_path, 'r', encoding='utf-8') as f:
         toc_data = json.load(f)
     
     # Load section instructions
-    with open(json_path, 'r') as f:
+    with open(json_path, 'r', encoding='utf-8') as f:
         instructions_data = json.load(f)
     
     # Create a mapping from section_number to instructions
@@ -64,26 +73,36 @@ def flatten_json_to_csv(json_path, csv_path, toc_path):
             dep_list = [dep_value]
         else:
             dep_list = []
+            
+        # Start with existing row data if available
+        row = existing_data.get(section_no, {}).copy()
         
-        row = {
-            'section_no': section_no,
-            'section_name': section_name,
-            'section_instructions': instructions,
-            'section_dependency': dep_list
-        }
+        # Update with fresh flattened data
+        row['section_no'] = section_no
+        row['section_name'] = section_name
+        row['section_instructions'] = instructions
+        row['section_dependency'] = str(dep_list) if dep_list else '[]'
+        
         rows.append(row)
     
     # Write to CSV
     if rows:
-        fieldnames = [
+        # Core fields that must be present
+        core_fields = [
             'section_no',
             'section_name',
             'section_instructions',
             'section_dependency'
         ]
         
+        # Combine core fields with any extra fields from the existing CSV
+        fieldnames = core_fields.copy()
+        for field in existing_fieldnames:
+            if field not in fieldnames:
+                fieldnames.append(field)
+                
         with open(csv_path, 'w', newline='', encoding='utf-8') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
             writer.writeheader()
             writer.writerows(rows)
         

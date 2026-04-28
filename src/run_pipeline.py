@@ -47,13 +47,13 @@ REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
-def print_stages(highlight_from=None, highlight_to=None):
-    """Print the available pipeline stages, optionally highlighting a range."""
+def print_stages(highlight_stages=None):
+    """Print the available pipeline stages, optionally highlighting a list of stages."""
     print("\n  Pipeline stages:")
     print("  " + "─" * 44)
     for i, (label, _) in enumerate(STAGES, start=1):
         marker = "  "
-        if highlight_from and highlight_to and highlight_from <= i <= highlight_to:
+        if highlight_stages and i in highlight_stages:
             marker = "▶ "
         print(f"    {marker}{i}. {label}")
     print("  " + "─" * 44)
@@ -130,17 +130,26 @@ def parse_args():
     return args, extra
 
 
-def _ask_number(prompt_text: str) -> int:
-    """Ask the user for a valid stage number."""
+def _ask_stages(prompt_text: str) -> list:
+    """Ask the user for comma-separated stage numbers."""
     while True:
         try:
             value = input(prompt_text).strip()
-            n = int(value)
-            if 1 <= n <= len(STAGES):
-                return n
-            print(f"  Please enter a number between 1 and {len(STAGES)}.")
+            if not value:
+                continue
+            parts = [p.strip() for p in value.split(",")]
+            numbers = []
+            for p in parts:
+                n = int(p)
+                if 1 <= n <= len(STAGES):
+                    numbers.append(n)
+                else:
+                    print(f"  Stage number {n} is out of range.")
+                    break
+            else:
+                return sorted(list(set(numbers)))
         except ValueError:
-            print(f"  Please enter a number between 1 and {len(STAGES)}.")
+            print(f"  Please enter comma-separated numbers between 1 and {len(STAGES)}.")
         except (KeyboardInterrupt, EOFError):
             print("\n  Aborted.")
             sys.exit(0)
@@ -149,12 +158,22 @@ def _ask_number(prompt_text: str) -> int:
 def prompt_user():
     """Interactively ask the user which stages to run."""
     print_stages()
-    stage_from = _ask_number(f"  Start from stage [1-{len(STAGES)}]: ")
-    stage_until = _ask_number(f"  Run until stage  [{stage_from}-{len(STAGES)}]: ")
-    if stage_until < stage_from:
-        print(f"  'until' ({stage_until}) cannot be less than 'from' ({stage_from}).")
-        sys.exit(1)
-    return stage_from, stage_until
+    stages_to_run = _ask_stages(f"  Enter modules to run (comma-separated, 1-{len(STAGES)}): ")
+    
+    batch_start = None
+    batch_end = None
+    
+    if 2 in stages_to_run:
+        print("\n  [Batch Transform Options]")
+        start_val = input("  Enter start row (leave blank for default 1): ").strip()
+        if start_val.isdigit():
+            batch_start = int(start_val)
+        
+        end_val = input("  Enter end row (leave blank for all): ").strip()
+        if end_val.isdigit():
+            batch_end = int(end_val)
+            
+    return stages_to_run, batch_start, batch_end
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
@@ -162,42 +181,50 @@ def prompt_user():
 def main():
     args, extra = parse_args()
 
+    stages_to_run = []
+    batch_start = None
+    batch_end = None
+
     # Resolve --only shorthand
     if args.only is not None:
         if args.stage_from is not None or args.until is not None:
             print("  ✗ --only cannot be combined with --from / --until.", file=sys.stderr)
             sys.exit(1)
-        stage_from = args.only
-        stage_until = args.only
+        stages_to_run = [args.only]
+    elif args.stage_from is not None or args.until is not None:
+        stage_from = args.stage_from or 1
+        stage_until = args.until or len(STAGES)
+        if stage_until < stage_from:
+            print(f"  ✗ --until ({stage_until}) cannot be less than --from ({stage_from}).", file=sys.stderr)
+            sys.exit(1)
+        stages_to_run = list(range(stage_from, stage_until + 1))
     else:
-        stage_from = args.stage_from
-        stage_until = args.until
+        # Interactive mode if neither flag was given
+        stages_to_run, batch_start, batch_end = prompt_user()
 
-    # Interactive mode if neither flag was given
-    if stage_from is None and stage_until is None:
-        stage_from, stage_until = prompt_user()
-    else:
-        # Default --from to 1, --until to last stage
-        stage_from = stage_from or 1
-        stage_until = stage_until or len(STAGES)
-
-    if stage_until < stage_from:
-        print(f"  ✗ --until ({stage_until}) cannot be less than --from ({stage_from}).", file=sys.stderr)
+    if not stages_to_run:
+        print("  ✗ No stages selected.", file=sys.stderr)
         sys.exit(1)
 
     # Show what will run
-    print_stages(highlight_from=stage_from, highlight_to=stage_until)
-    if stage_from == stage_until:
-        print(f"  ▶ Running stage {stage_from} only\n")
-    else:
-        print(f"  ▶ Running stages {stage_from} → {stage_until}\n")
+    print_stages(highlight_stages=stages_to_run)
+    print(f"  ▶ Running stages: {', '.join(map(str, stages_to_run))}\n")
 
-    for i in range(stage_from - 1, stage_until):
-        run_stage(i, extra)
+    for i in stages_to_run:
+        stage_index = i - 1
+        stage_extra = list(extra)
+        
+        # If it's stage 2 and we have interactive start/end, append them
+        if i == 2:
+            if batch_start is not None:
+                stage_extra.extend(["--start", str(batch_start)])
+            if batch_end is not None:
+                stage_extra.extend(["--end", str(batch_end)])
 
-    count = stage_until - stage_from + 1
+        run_stage(stage_index, stage_extra)
+
     print("\n" + "═" * 60)
-    print(f"  ✓ Pipeline finished — {count} stage(s) completed.")
+    print(f"  ✓ Pipeline finished — {len(stages_to_run)} stage(s) completed.")
     print("═" * 60 + "\n")
 
 
