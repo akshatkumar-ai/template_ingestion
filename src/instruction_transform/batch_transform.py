@@ -49,7 +49,7 @@ def load_config():
     """Load configuration from config.yaml in the repository root."""
     # batch_transform.py is at src/instruction_transform/batch_transform.py
     # config.yaml is at the root
-    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "...", ".."))
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     config_path = os.path.join(repo_root, "config.yaml")
     
     if not os.path.isfile(config_path):
@@ -222,7 +222,7 @@ def load_defaults_from_config():
         
         return {
             "system_prompt": resolve_path(instruction_transform_cfg.get("system_prompt", "prompts/system_prompt.txt"), repo_root),
-            "csv": resolve_path(instruction_transform_cfg.get("csv", "data/temp_ingestion.csv"), repo_root),
+            "csv": resolve_path(instruction_transform_cfg.get("csv", "data/section_instructions.csv"), repo_root),
             "toc": resolve_path(instruction_transform_cfg.get("toc", "data/TOC.md"), repo_root),
             "model_id": instruction_transform_cfg.get("model_id", "arn:aws:bedrock:us-east-1:533267065792:inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0"),
             "outputs": resolve_path(instruction_transform_cfg.get("outputs", "outputs"), repo_root),
@@ -233,7 +233,7 @@ def load_defaults_from_config():
         # Fallback to relative defaults
         return {
             "system_prompt": "prompts/system_prompt.txt",
-            "csv": "data/temp_ingestion.csv",
+            "csv": "data/section_instructions.csv",
             "toc": "data/TOC.md",
             "model_id": "arn:aws:bedrock:us-east-1:533267065792:inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0",
             "outputs": "outputs",
@@ -350,9 +350,9 @@ def main():
 
     # Process each selected row
     for row in rows_to_process:
-        section_number = row.get("section_number", "").strip()
-        section_title = row.get("section_title", "").strip()
-        section_instructions = row.get("template_instructions", "").strip()
+        section_number = row.get("section_no", "").strip()
+        section_title = row.get("section_name", "").strip()
+        section_instructions = row.get("section_instructions", "").strip()
         if not section_instructions:
             row["transformed_output"] = ""
             row["reasoning"] = ""

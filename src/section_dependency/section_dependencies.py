@@ -5,6 +5,10 @@ import sys
 import yaml
 import argparse
 
+# Allow importing from sibling packages
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from template_extract.flatten_to_csv import flatten_json_to_csv
+
 
 # ── Config helpers ────────────────────────────────────────────────────────────
 
@@ -411,8 +415,10 @@ def load_defaults_from_config():
         return {
             "input_path": resolve_path(section_dep_cfg.get("input_path", "outputs/protocol_template_hierarchy.json"), repo_root),
             "output_path": resolve_path(section_dep_cfg.get("output_path", "outputs/protocol_template_with_dependencies.json"), repo_root),
+            "csv_output_path": resolve_path(section_dep_cfg.get("csv_output_path", "outputs/protocol_template_with_dependencies.csv"), repo_root),
             "prompt_path": resolve_path(section_dep_cfg.get("prompt_path", "prompts/section_dependency_prompt.txt"), repo_root),
             "toc_path": resolve_path(section_dep_cfg.get("toc_path", "data/TOC.md"), repo_root),
+            "toc_json_path": resolve_path(section_dep_cfg.get("toc_json_path", "data/toc_llm_extract.json"), repo_root),
             "model_id": section_dep_cfg.get("model_id", "arn:aws:bedrock:us-east-1:533267065792:inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0"),
         }
     except Exception as e:
@@ -421,8 +427,10 @@ def load_defaults_from_config():
         return {
             "input_path": "outputs/protocol_template_hierarchy.json",
             "output_path": "outputs/protocol_template_with_dependencies.json",
+            "csv_output_path": "outputs/protocol_template_with_dependencies.csv",
             "prompt_path": "prompts/section_dependency_prompt.txt",
             "toc_path": "data/TOC.md",
+            "toc_json_path": "data/toc_llm_extract.json",
             "model_id": "arn:aws:bedrock:us-east-1:533267065792:inference-profile/us.anthropic.claude-sonnet-4-20250514-v1:0",
         }
 
@@ -469,6 +477,18 @@ def parse_args():
         default=30,
         help="Maximum number of prior sections to use as context. Defaults to 30.",
     )
+    parser.add_argument(
+        "--csv_output_path",
+        default=defaults["csv_output_path"],
+        help=f"Path to save the flattened CSV output. "
+             f"Defaults to: {defaults['csv_output_path']}",
+    )
+    parser.add_argument(
+        "--toc_json_path",
+        default=defaults["toc_json_path"],
+        help=f"Path to the toc_llm_extract.json file for CSV ordering. "
+             f"Defaults to: {defaults['toc_json_path']}",
+    )
     return parser.parse_args()
 
 
@@ -478,7 +498,9 @@ def run_pipeline(
     prompt_path: str,
     toc_path: str,
     model_id: str,
-    max_context_sections: int = 30
+    max_context_sections: int = 30,
+    csv_output_path: str = None,
+    toc_json_path: str = None
 ):
     print("Loading protocol JSON...")
     protocol = load_protocol(input_path)
@@ -512,6 +534,21 @@ def run_pipeline(
     save_protocol(protocol, output_path)
     print(f"Done. Processed {len(all_sections_flat)} sections.")
 
+    # ── Flatten to CSV ────────────────────────────────────────────────────────
+    if csv_output_path and toc_json_path:
+        print(f"\nFlattening dependencies JSON to CSV...")
+        print(f"  JSON input : {output_path}")
+        print(f"  TOC JSON   : {toc_json_path}")
+        print(f"  CSV output : {csv_output_path}")
+        flatten_json_to_csv(
+            json_path=output_path,
+            csv_path=csv_output_path,
+            toc_path=toc_json_path
+        )
+        print(f"CSV saved to {csv_output_path}")
+    else:
+        print("\nSkipping CSV flattening (csv_output_path or toc_json_path not provided).")
+
 
 if __name__ == "__main__":
     args = parse_args()
@@ -521,5 +558,7 @@ if __name__ == "__main__":
         prompt_path=args.prompt_path,
         toc_path=args.toc_path,
         model_id=args.model_id,
-        max_context_sections=args.max_context_sections
+        max_context_sections=args.max_context_sections,
+        csv_output_path=args.csv_output_path,
+        toc_json_path=args.toc_json_path
     )

@@ -18,7 +18,7 @@ venv/
 outputs/
 *.md
 *.pdf
-
+experiment_analysis/
 # IDE
 .vscode/
 .idea/
