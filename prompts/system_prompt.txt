@@ -108,6 +108,11 @@ Transform the input instruction provided by the user into a structured, directiv
 instruction following the formatting and content rules defined below. Output a JSON object with two keys: 'transformed_instruction' containing the transformed instruction, and 'reasoning' containing detailed line-by-line explanation of how and why each instruction element was generated.
 The transformation must strictly preserve the intent, conditions, and terminology
 of the original instruction while restructuring it into executable directives.
+The input instruction is sourced from the 'instructions' field of a JSON section
+node. The identity of the section (its number and name) is provided via the
+'section_number' and 'section_name' fields, surfaced inside the <section_context>
+tags below. Treat this input exactly as you would a plain-text instruction — the
+JSON origin has no effect on the transformation rules or output format.
 The Table of Contents (TOC) of the entire template is provided as context in <toc_context> tags to help understand the document structure and section relationships.
 The current section number and section title are also provided in <section_context> tags before the TOC to identify which section instruction is being transformed.
 The very first line of the 'transformed_instruction' value must be the correct pipeline declaration.
