@@ -5,6 +5,7 @@
 
 # Outputs and cache
 outputs/
+.venv/
 __pycache__/
 *.pyc
 *.pyo
@@ -15,7 +16,9 @@ __pycache__/
 .venv/
 venv/
 outputs/
-scratch_diff.txt
+*.md
+*.pdf
+experiment_analysis/
 # IDE
 .vscode/
 .idea/

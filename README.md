@@ -1,28 +1,30 @@
-## batch_transform.py
+# Running the Pipeline
 
-Processes section instructions from a JSON file (`section_instructions.json`) one section per LLM call.
-Uses `system_prompt.txt` as the prompt template. Saves per-section prompts and responses to `outputs/<section_number>/`.
+You can run the full pipeline or individual modules using the central orchestrator script. 
+
+## Interactive Mode (Recommended)
+Run the script with no arguments. It will prompt you to enter the module numbers (comma-separated) and ask for the start/end rows if `Batch Transform` is selected:
 
 ```bash
-# Protocol authoring (default)
-python batch_transform.py --start 1 --end 31
-
-# CSR authoring
-python batch_transform.py --authoring_type csr --start 1 --end 31
-
-# SAP authoring
-python batch_transform.py --authoring_type sap --start 1 --end 31
-
-# With metric tracking (streaming + per-section time/token/stop_reason reporting)
-python batch_transform.py --authoring_type csr --json csr_json_input.json --metrics
+python src/run_pipeline.py
 ```
 
-## experiment_transform.py
-
-Sends all sections in a single bulk LLM call (streaming) using `system_prompt_complete_json.txt`.
-Used to test time and token limits of the model when processing the entire document at once.
-Saves the final resolved prompt to `outputs/experiment_prompt.txt` and raw response to `outputs/experiment_response_raw.txt`.
+## CLI Mode
+You can bypass the interactive menu by specifying arguments directly:
 
 ```bash
-python experiment_transform.py --authoring_type csr --output experiment_output.json
+# Run all stages (1 to 3)
+python src/run_pipeline.py --from 1 --until 3
+
+# Run only a specific stage (e.g., Stage 2: Batch Transform)
+python src/run_pipeline.py --only 2
+
+# Run stages 2 and 3
+python src/run_pipeline.py --from 2 --until 3
+```
+
+Any extra arguments provided will be passed directly to the underlying scripts:
+```bash
+# Run only batch transform (stage 2) with specific start/end and authoring type
+python src/run_pipeline.py --only 2 --start 1 --end 31 --authoring_type csr
 ```
